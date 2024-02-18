@@ -42,6 +42,7 @@
   </script>
   <script>
     function installPWA() {
+      console.log('Button clicked - Installing PWA');
       if (window.deferredInstallPrompt) {
         // Show the installation prompt
         window.deferredInstallPrompt.prompt();
@@ -57,5 +58,12 @@
         });
       }
     }
+  </script>
+  <script>
+    window.addEventListener('beforeinstallprompt', (event) => {
+      console.log('beforeinstallprompt event fired');
+      event.preventDefault();
+      window.deferredInstallPrompt = event;
+    });
   </script>
 </html>
