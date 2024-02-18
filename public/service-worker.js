@@ -1,8 +1,7 @@
 const CACHE_NAME = 'my-cache-v1';
 const urlsToCache = [
   '/',
-  '/stylesheets/application.css',
-  '/javascripts/application.js',
+  'images/app-icon.png'
   // Add more URLs to cache as needed
 ];
 
