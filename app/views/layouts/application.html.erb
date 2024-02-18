@@ -13,7 +13,7 @@
 
   <body>
     <%= render partial: 'shared/display_flash' if not flash.empty? %>
-    <button onclick="installPWA()">Install App</button>
+    <button id="installButton">Install App</button>
     <%= yield %>
   </body>
   <script>
@@ -30,32 +30,30 @@
     }
   </script>
   <script>
+    let deferredInstallPrompt;
+
+    window.addEventListener('beforeinstallprompt', (event) => {
+      console.log('beforeinstallprompt event fired');
+      event.preventDefault();
+      deferredInstallPrompt = event;
+      const installButton = document.getElementById('installButton');
+      installButton.style.display = 'block';
+      installButton.addEventListener('click', installPWA);
+    });
+    
     function installPWA() {
       console.log('Button clicked - Installing PWA');
-      if (window.deferredInstallPrompt) {
-        // Show the installation prompt
-        console.log("inside");
-        window.deferredInstallPrompt.prompt();
-        // Wait for the user to respond to the prompt
-        window.deferredInstallPrompt.userChoice.then((choiceResult) => {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        deferredInstallPrompt.userChoice.then((choiceResult) => {
           if (choiceResult.outcome === 'accepted') {
             console.log('User accepted the installation prompt');
           } else {
             console.log('User dismissed the installation prompt');
           }
-          // Clear the deferred prompt variable
-          window.deferredInstallPrompt = null;
+          deferredInstallPrompt = null;
         });
-      }else{
-        console.log("ERROR");
       }
     }
-  </script>
-  <script>
-    window.addEventListener('beforeinstallprompt', (event) => {
-      console.log('beforeinstallprompt event fired');
-      event.preventDefault();
-      window.deferredInstallPrompt = event;
-    });
   </script>
 </html>
