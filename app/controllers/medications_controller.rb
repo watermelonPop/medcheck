@@ -21,7 +21,7 @@ class MedicationsController < ApplicationController
 
   # GET /medications/new
   def new
-    @user = User.find_by(params[:user_id])
+    @user = current_user
     @medication = Medication.new
   end
 
