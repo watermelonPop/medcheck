@@ -30,21 +30,11 @@
     }
   </script>
   <script>
-    window.addEventListener('beforeinstallprompt', (event) => {
-      // Prevent the default prompt
-      event.preventDefault();
-      // Store the event for later use
-      window.deferredInstallPrompt = event;
-      // Optionally, show your custom install prompt UI
-      // You can use this to display a custom "Install" button
-      // and trigger the installation programmatically
-    });
-  </script>
-  <script>
     function installPWA() {
       console.log('Button clicked - Installing PWA');
       if (window.deferredInstallPrompt) {
         // Show the installation prompt
+        console.log("inside");
         window.deferredInstallPrompt.prompt();
         // Wait for the user to respond to the prompt
         window.deferredInstallPrompt.userChoice.then((choiceResult) => {
@@ -56,6 +46,8 @@
           // Clear the deferred prompt variable
           window.deferredInstallPrompt = null;
         });
+      }else{
+        console.log("ERROR");
       }
     }
   </script>
