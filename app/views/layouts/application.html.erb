@@ -13,6 +13,7 @@
 
   <body>
     <%= render partial: 'shared/display_flash' if not flash.empty? %>
+    <button onclick="installPWA()">Install App</button>
     <%= yield %>
   </body>
   <script>
@@ -26,6 +27,35 @@
             console.error('Service Worker registration failed:', error);
           });
       });
+    }
+  </script>
+  <script>
+    window.addEventListener('beforeinstallprompt', (event) => {
+      // Prevent the default prompt
+      event.preventDefault();
+      // Store the event for later use
+      window.deferredInstallPrompt = event;
+      // Optionally, show your custom install prompt UI
+      // You can use this to display a custom "Install" button
+      // and trigger the installation programmatically
+    });
+  </script>
+  <script>
+    function installPWA() {
+      if (window.deferredInstallPrompt) {
+        // Show the installation prompt
+        window.deferredInstallPrompt.prompt();
+        // Wait for the user to respond to the prompt
+        window.deferredInstallPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the installation prompt');
+          } else {
+            console.log('User dismissed the installation prompt');
+          }
+          // Clear the deferred prompt variable
+          window.deferredInstallPrompt = null;
+        });
+      }
     }
   </script>
 </html>
