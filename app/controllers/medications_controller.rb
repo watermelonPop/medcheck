@@ -1,5 +1,4 @@
 class MedicationsController < ApplicationController
-
   def time_for_day(day)
     medication_schedules.find_by(day_of_week: day)&.time
   end
@@ -86,6 +85,7 @@ class MedicationsController < ApplicationController
       end
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

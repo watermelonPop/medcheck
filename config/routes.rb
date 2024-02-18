@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :medication_schedules, only: [:create, :destroy, :edit, :update]
     end
   end
+
     # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
@@ -15,4 +16,5 @@ Rails.application.routes.draw do
   get 'welcome/index', to: 'welcome#index', as: 'welcome'
   get '/logout', to: 'sessions#logout', as: 'logout'
   get '/auth/google_oauth2/callback', to: 'sessions#omniauth'
+  post '/public_medications/decrement', to: 'public_medications#decrement'
 end
