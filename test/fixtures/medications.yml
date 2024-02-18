@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  amount_taken: 1
+  dose: MyString
+  amount_left: 1
+  last_picked_up: 2024-02-09
+
+two:
+  name: MyString
+  amount_taken: 1
+  dose: MyString
+  amount_left: 1
+  last_picked_up: 2024-02-09

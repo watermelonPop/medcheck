@@ -1,0 +1,27 @@
+<div id="<%= dom_id medication %>">
+  <p>
+    <strong>Name:</strong>
+    <%= medication.name %>
+  </p>
+
+  <p>
+    <strong>Amount taken:</strong>
+    <%= medication.amount_taken %>
+  </p>
+
+  <p>
+    <strong>Dose:</strong>
+    <%= medication.dose_amount.try(:to_s) || "" %> <%= medication.dose_unit || "" %>
+  </p>
+
+  <p>
+    <strong>Amount left:</strong>
+    <%= medication.amount_left %>
+  </p>
+
+  <p>
+    <strong>Last picked up:</strong>
+    <%= medication.last_picked_up %>
+  </p>
+
+</div>

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Medications</h1>
+
+<div id="medications">
+  <% @medications.each do |medication| %>
+    <%= render medication %>
+    <p>
+      <%= link_to "View Medication", user_medication_path(user_id: session[:user_id], name: medication.name) %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New medication", new_user_medication_path(@user) %>

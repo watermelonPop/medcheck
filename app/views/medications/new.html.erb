@@ -1,0 +1,40 @@
+<h1>New Medication</h1>
+
+<%= form_with(model: [@user, @medication], url: "/users/#{session[:user_id]}/medications") do |form| %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount_taken %>
+    <%= form.number_field :amount_taken, class: "form-control", step: 1, min: 0 %> <!-- Set min value if needed -->
+  </div>
+
+  <div class="field">
+    <%= form.label :dose_amount %>
+    <%= form.text_field :dose_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dose_unit %>
+    <%= form.select :dose_unit, options_for_select(["mg", "g", "oz", "ml"]), {}, { class: "form-control" } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount_left %>
+    <%= form.number_field :amount_left, class: "form-control", step: 1, min: 0 %> <!-- Set min value if needed -->
+  </div>
+
+  <div class="field">
+    <%= form.label :last_picked_up %>
+    <%= form.date_field :last_picked_up, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= form.submit 'Create Medication' %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', user_medications_path(@user) %>

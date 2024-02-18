@@ -1,0 +1,10 @@
+<h1>Editing medication</h1>
+
+<%= render "form", medication: @medication %>
+
+<br>
+
+<div>
+  <%= link_to "Show this medication", user_medication_path(user_id: session[:user_id], name: @medication.name) %> |
+  <%= link_to "Back to medications", user_medications_path(@user) %>
+</div>

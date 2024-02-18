@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<% if @medication %>
+  <%= render @medication %>
+<% else %>
+  <p>Medication not found</p>
+<% end %>
+
+<div>
+  <%= link_to "Edit this medication", edit_user_medication_path(@medication) %> |
+  <%= link_to "Back to medications", user_medications_path(@user) %>
+
+  <%= link_to "Destroy this medication", user_medication_path(user_id: session[:user_id], name: @medication.name), data: { confirm: "Are you sure you want to delete this medication?", turbo_method: :delete } %>
+</div>

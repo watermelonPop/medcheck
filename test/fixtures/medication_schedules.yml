@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  medication: one
+  day_of_week: one
+  time: 2024-02-09 23:04:05
+
+two:
+  medication: two
+  day_of_week: two
+  time: 2024-02-09 23:04:05
