@@ -53,7 +53,6 @@ class MedicationsController < ApplicationController
   # PATCH/PUT /medications/1 or /medications/1.json
   def update
     @user = current_user
-    puts "Name Parameter: #{params[:name]}"
     @medication = @user.medications.find_by(name: params[:name])
     if @medication.nil?
       redirect_to user_path(@user), alert: "Medication not found"
