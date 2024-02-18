@@ -13,7 +13,7 @@
 
   <body>
     <%= render partial: 'shared/display_flash' if not flash.empty? %>
-    <button id="installButton">Install App</button>
+    <button id="installButton" onclick="installPWA()">Install App</button>
     <%= yield %>
   </body>
   <script>
