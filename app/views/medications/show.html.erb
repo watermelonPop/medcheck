@@ -6,6 +6,8 @@
   <ul>
     <% @medication.medication_schedules.each do |schedule| %>
       <li><%= schedule.day_of_week.name %>: <%= schedule.time %></li>
+      <%= link_to "Edit", edit_user_medication_medication_schedule_path(@user, @medication.name, schedule) %>
+      <%= link_to "Delete", user_medication_medication_schedule_path(@user, @medication.name, schedule), data: { confirm: "Are you sure you want to delete this medication schedule?", turbo_method: :delete  } %>
     <% end %>
   </ul>
   <div>

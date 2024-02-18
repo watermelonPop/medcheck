@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :users do
     resources :medications, param: :name, only: [:index, :show, :create, :new, :edit, :destroy, :update] do
-      resources :medication_schedules, only: [:create]
+      resources :medication_schedules, only: [:create, :destroy, :edit, :update]
     end
   end
     # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
