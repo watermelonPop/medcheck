@@ -17,6 +17,13 @@ class SessionsController < ApplicationController
       u.last_name = names[1..].join(' ')
     end
 
+    @current_day_schedules = []
+      
+    @user.medications.each do |medication|
+      medication_schedules = medication.medication_schedules.where(day_of_week: current_day_of_week)
+      @current_day_schedules << { medication: medication, schedules: medication_schedules } unless medication_schedules.empty?
+    end
+    
     if @user.valid?
       set_session
     else
