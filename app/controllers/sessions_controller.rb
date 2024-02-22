@@ -17,6 +17,8 @@ class SessionsController < ApplicationController
       u.last_name = names[1..].join(' ')
     end
 
+    current_day_of_week = Time.now.strftime('%A')
+
     @current_day_schedules = []
       
     @user.medications.each do |medication|
