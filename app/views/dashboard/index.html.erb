@@ -1,0 +1,36 @@
+<%= stylesheet_link_tag "dashboard", "data-turbo-track": "reload" %>
+<div class="titleDiv">
+    <p>DASHBOARD</p>
+</div>
+<div class="todayScheduleWidgetDiv">
+    <p id="datetime"></p>
+</div>
+
+<div class="medicationsWidgetDiv">
+    <p>meds:</p>
+    <div class="medicationsList">
+        <div id="medications">
+            <% @medications.each do |medication| %>
+            <%= render medication %>
+            <p>
+                <%= link_to "View Medication", user_medication_path(user_id: session[:user_id], name: medication.name) %>
+            </p>
+            <% end %>
+        </div>
+    </div>
+</div>
+<script>
+    function updateDateTime() {
+        const options = { weekday: 'long', month: 'short', day: 'numeric' };
+        const dateTimeString = new Date().toLocaleDateString('en-US', options);
+        document.getElementById('datetime').textContent = dateTimeString;
+    }
+
+    // Call the updateDateTime function initially
+    updateDateTime();
+
+    // Update the date and time every second
+    setInterval(updateDateTime, 1000);
+</script>
+
+

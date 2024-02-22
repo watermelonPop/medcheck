@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :users do
+    resources :dashboard, only: [:index], as: 'dashboard'
     resources :medications, param: :name, only: [:index, :show, :create, :new, :edit, :destroy, :update] do
       resources :medication_schedules, only: [:create, :destroy, :edit, :update]
     end

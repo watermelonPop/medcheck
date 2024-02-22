@@ -16,9 +16,11 @@
   </head>
 
   <body>
-    <%= render partial: 'shared/display_flash' if not flash.empty? %>
-    <button id="installButton" onclick="installPWA()">Install App</button>
-    <%= yield %>
+    <div class="outerDiv">
+      <%= render partial: 'shared/display_flash' if not flash.empty? %>
+      <button id="installButton" onclick="installPWA()">Install App</button>
+      <%= yield %>
+    </div>
   </body>
   <script>
     if ('serviceWorker' in navigator) {

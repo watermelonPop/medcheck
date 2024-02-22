@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  include Rails.application.routes.url_helpers
   skip_before_action :require_login, only: [:omniauth]
   # GET /logout
   def logout
@@ -25,6 +26,6 @@ class SessionsController < ApplicationController
 
   def set_session
     session[:user_id] = @user.id
-    redirect_to user_path(@user), notice: 'You are logged in.'
+    redirect_to user_dashboard_index_path(@user), notice: 'You are logged in.'
   end
 end
