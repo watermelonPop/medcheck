@@ -1,2 +1,15 @@
-<h1>Welcome#index</h1>
-<p><%= button_to "Login with Google", "/auth/google_oauth2", data: {turbo: "false"} %></p>
+<%= stylesheet_link_tag "login", "data-turbo-track": "reload" %>
+
+<div class="container">
+    <div class="titleDiv">
+        <p class="title">medcheck</p>
+    </div>
+
+    <div class="logoDiv">
+        <%= image_tag "/images/app-icon.png", alt: "Image Description", class: "logo" %>
+    </div>
+
+    <div class="loginBtnDiv">
+        <%= button_to "Login with Google", "/auth/google_oauth2", data: {turbo: "false"}, class: "login-btn" %>
+    </div>
+</div>
