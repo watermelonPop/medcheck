@@ -20,6 +20,7 @@
             <p id="datetime" class="widgetTitle"></p>
             <div class="scheduleSepDiv">
             </div>
+            <% @current_day_schedules %>
             <% @current_day_schedules.each do |schedule| %>
                 <div class="schedule">
                     <p class="widgetText"><%= schedule[:schedule].time.strftime("%l:%M %p") %></p>
