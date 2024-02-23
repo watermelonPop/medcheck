@@ -57,6 +57,7 @@
     function updateDateTime() {
         const options = { weekday: 'long', month: 'short', day: 'numeric' };
         const dateTimeString = new Date().toLocaleDateString('en-US', options);
+        const datetimeElement = document.getElementById('datetime');
         if (datetimeElement) {
             datetimeElement.innerHTML = dateTimeString;
         } else {
