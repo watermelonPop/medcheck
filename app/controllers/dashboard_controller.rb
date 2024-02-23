@@ -15,5 +15,6 @@ class DashboardController < ApplicationController
         end
 
         @current_day_schedules.sort_by! { |schedule| schedule[:schedule].time.strftime("%H:%M") }
+        puts @current_day_schedules.inspect
     end
 end
