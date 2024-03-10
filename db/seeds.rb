@@ -20,4 +20,4 @@ days_of_week = [
 
 days_of_week.each do |day|
     DayOfWeek.create(name: day)
-  end
+end

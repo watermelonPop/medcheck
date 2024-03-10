@@ -15,44 +15,45 @@
             </div>
         </div>
     <% end %>
-    <div class="todayScheduleWidgetDiv">
-        <div class="todayScheduleDiv">
-            <p id="datetime" class="widgetTitle"></p>
-            <div class="scheduleSepDiv">
-            </div>
-            <%= @current_day_schedules.length %>
-            <div class="marker">
-                <% @current_day_schedules.each do |schedule| %>
-                    <div class="schedule">
-                        <p class="widgetText"><%= schedule[:schedule].time.strftime("%l:%M %p") %></p>
-                        <p class="widgetText"><%= schedule[:medication].name %>, <%= schedule[:medication].dose_amount %><%= schedule[:medication].dose_unit %></p>
-                    </div>
-                    <div class="scheduleSepDiv">
-                    </div>
-                <% end %>
+    <div class="mobileDiv">
+        <div class="todayScheduleWidgetDiv">
+            <div class="todayScheduleDiv">
+                <p id="datetime" class="widgetTitle"></p>
+                <div class="scheduleSepDiv">
+                </div>
+                <div class="marker">
+                    <% @current_day_schedules.each do |schedule| %>
+                        <div class="schedule">
+                            <p class="widgetText"><%= schedule[:schedule].time.strftime("%l:%M %p") %></p>
+                            <p class="widgetText"><%= schedule[:medication].name %>, <%= schedule[:medication].dose_amount %><%= schedule[:medication].dose_unit %></p>
+                        </div>
+                        <div class="scheduleSepDiv">
+                        </div>
+                    <% end %>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="medicationsWidgetDiv">
-        <div class="medicationsDiv">
-            <p class="widgetTitle">meds:</p>
-            <% @medications.each do |medication| %>
-                <%= link_to user_medication_path(user_id: session[:user_id], name: medication.name), class: "widgetLink" do %>
-                    <div class="medications">
-                        <div class="medicationIconDiv">
-                            <svg class="medicationIcon" viewBox="0 0 100 100" style="fill: <%= medication.color %>;">
-                                <%= raw(medication.icon) %>
-                            <svg>
+        <div class="medicationsWidgetDiv">
+            <div class="medicationsDiv">
+                <p class="widgetTitle">meds:</p>
+                <% @medications.each do |medication| %>
+                    <%= link_to user_medication_path(user_id: session[:user_id], name: medication.name), class: "widgetLink" do %>
+                        <div class="medications">
+                            <div class="medicationIconDiv">
+                                <svg class="medicationIcon" viewBox="0 0 100 100" style="fill: <%= medication.color %>;">
+                                    <%= raw(medication.icon) %>
+                                <svg>
+                            </div>
+                            <div class="medicationInfo">
+                                <p class="medicationName"><%= medication.name %><p>
+                                <p><%= medication.dose_amount %><%= medication.dose_unit %><p>
+                                <p><%= medication.amount_left %> left<p>
+                            </div>
                         </div>
-                        <div class="medicationInfo">
-                            <p><%= medication.name %><p>
-                            <p><%= medication.dose_amount %><%= medication.dose_unit %><p>
-                            <p><%= medication.amount_left %> left<p>
-                        </div>
-                    </div>
+                    <% end %>
                 <% end %>
-            <% end %>
+            </div>
         </div>
     </div>
 </div>

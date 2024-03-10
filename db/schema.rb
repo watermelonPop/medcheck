@@ -37,8 +37,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_22_004259) do
     t.float "dose_amount"
     t.string "dose_unit"
     t.integer "user_id", null: false
-    t.string "day_of_week"
-    t.string "time"
     t.string "icon"
     t.string "color"
     t.index ["user_id"], name: "index_medications_on_user_id"
