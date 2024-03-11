@@ -1,6 +1,24 @@
 body{
   overflow: hidden;
 }
+
+.outerLink{
+  width: 50%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Add this line */
+  flex-basis: 0;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.bottomLink{
+  margin-left: 15px;
+  margin-right: 0;
+}
 .todayScheduleWidgetDiv{
     background-color: #D8E2DC;
     border-radius: 10px;
@@ -13,7 +31,7 @@ body{
     flex-direction: column;
     flex-grow: 1; /* Add this line */
     flex-basis: 0;
-    padding: 2%;
+    padding: 5%;
 }
 
 .mobileDiv{
@@ -33,7 +51,6 @@ body{
     flex-direction: column;
     flex-grow: 1; /* Add this line */
     flex-basis: 0;
-    padding: 2%;
 }
 
 .scrollDiv{
@@ -97,17 +114,6 @@ body{
 
   .blackLink{
     color: black;
-  }
-
-  .outerLink{
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Add this line */
-    flex-basis: 0;
   }
 
 
@@ -262,6 +268,25 @@ body{
         margin-right: 0; /* Remove margin-right to prevent spacing between widgets */
         margin-bottom: 20px; /* Add some spacing between the widgets */
         margin-left: 0;
+        padding: 0;
+      }
+
+      .outerLink{
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1; /* Add this line */
+        flex-basis: 0;
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .bottomLink{
+        margin-left: 0;
+        width: 100%;
       }
 
     }
