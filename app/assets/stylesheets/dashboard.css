@@ -223,18 +223,30 @@ body{
       column-gap: 15px;
     }
 
+    .outerDashboard{
+      padding: 0;
+      margin: 0;
+    }
+    body{
+      padding: 0;
+      margin: 0;
+    }
+
 
     @media only screen and (max-width: 768px) {
       .mobileDiv {
         flex-direction: column;
         height: auto; /* Change height to auto to accommodate vertical stacking */
+        width: 90%;
+        height: 70%;
       }
     
       .todayScheduleWidgetDiv,
       .medicationsWidgetDiv {
-        width: 100%; /* Make both widgets take full width on mobile */
+        width: 96%; /* Make both widgets take full width on mobile */
         margin-right: 0; /* Remove margin-right to prevent spacing between widgets */
         margin-bottom: 20px; /* Add some spacing between the widgets */
+        margin-left: 0;
       }
-    
+
     }
