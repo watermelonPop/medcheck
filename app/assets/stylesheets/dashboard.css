@@ -95,6 +95,21 @@ body{
     text-decoration: none;
   }
 
+  .blackLink{
+    color: black;
+  }
+
+  .outerLink{
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Add this line */
+    flex-basis: 0;
+  }
+
 
   .outerDashboard{
     width: 100vw;

@@ -1,0 +1,17 @@
+.appTitleDiv {
+        display: flex;
+        background-color: #9D8189;
+        text-decoration: none;
+        width: 85vw;
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .appTitle {
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 60px;
+        font-weight: bold;
+        margin: 0;
+        color: #FFE5D9;
+        text-decoration: none;
+      }

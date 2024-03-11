@@ -16,26 +16,27 @@
         </div>
     <% end %>
     <div class="mobileDiv">
-        <div class="todayScheduleWidgetDiv">
-            <div class="todayScheduleDiv">
-                <p id="datetime" class="widgetTitle"></p>
-                <div class="scrollDiv">
-                    <div class="scheduleSepDiv">
-                    </div>
-                    <div class="marker">
-                        <% @current_day_schedules.each do |schedule| %>
-                            <div class="schedule">
-                                <p class="widgetText"><%= schedule[:schedule].time.strftime("%l:%M %p") %></p>
-                                <p class="widgetText"><%= schedule[:medication].name %>, <%= schedule[:medication].dose_amount %><%= schedule[:medication].dose_unit %></p>
-                            </div>
+            <%= link_to today_path, class: "widgetLink outerLink blackLink" do %>
+                <div class="todayScheduleWidgetDiv">
+                    <div class="todayScheduleDiv">
+                        <p id="datetime" class="widgetTitle"></p>
+                        <div class="scrollDiv">
                             <div class="scheduleSepDiv">
                             </div>
-                        <% end %>
+                            <div class="marker">
+                                <% @current_day_schedules.each do |schedule| %>
+                                    <div class="schedule">
+                                        <p class="widgetText"><%= schedule[:schedule].time.strftime("%l:%M %p") %></p>
+                                        <p class="widgetText"><%= schedule[:medication].name %>, <%= schedule[:medication].dose_amount %><%= schedule[:medication].dose_unit %></p>
+                                    </div>
+                                    <div class="scheduleSepDiv">
+                                    </div>
+                                <% end %>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
+            <% end %>
         <div class="medicationsWidgetDiv">
             <div class="medicationsDiv">
                 <p class="widgetTitle">meds:</p>

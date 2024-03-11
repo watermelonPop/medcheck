@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#logout', as: 'logout'
   get '/auth/google_oauth2/callback', to: 'sessions#omniauth'
   post '/public_medications/decrement', to: 'public_medications#decrement'
+  get '/users/:user_id/today', to: 'medication_schedules#get_current_day_schedules', as: 'today'
 end

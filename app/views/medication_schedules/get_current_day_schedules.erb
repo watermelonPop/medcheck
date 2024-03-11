@@ -1,0 +1,52 @@
+<%= stylesheet_link_tag "today", "data-turbo-track": "reload" %>
+<div class="outerDashboard">
+    <%= link_to user_path(@user), class: "widgetLink" do %>
+        <div class="appTitleDiv">
+            <div class="center">
+                <p class="appTitle">TODAY</p>
+            </div>
+        </div>
+    <% end %>
+    <div class="mobileDiv">
+            <%= link_to today_path, class: "widgetLink outerLink blackLink" do %>
+                <div class="todayScheduleWidgetDiv">
+                    <div class="todayScheduleDiv">
+                        <p id="datetime" class="widgetTitle"></p>
+                        <div class="scrollDiv">
+                            <div class="scheduleSepDiv">
+                            </div>
+                            <div class="marker">
+                                <% @current_day_schedules.each do |schedule| %>
+                                    <div class="schedule">
+                                        <p class="widgetText"><%= schedule[:schedule].time.strftime("%l:%M %p") %></p>
+                                        <p class="widgetText"><%= schedule[:medication].name %>, <%= schedule[:medication].dose_amount %><%= schedule[:medication].dose_unit %></p>
+                                    </div>
+                                    <div class="scheduleSepDiv">
+                                    </div>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+    </div>
+</div>
+<script>
+    function updateDateTime() {
+        const options = { weekday: 'long', month: 'short', day: 'numeric' };
+        const dateTimeString = new Date().toLocaleDateString('en-US', options);
+        const datetimeElement = document.getElementById('datetime');
+        if (datetimeElement) {
+            datetimeElement.innerHTML = dateTimeString;
+        } else {
+            console.error("Element with ID 'datetime' not found.");
+        }
+    }
+
+    // Call the updateDateTime function initially
+    updateDateTime();
+
+    // Update the date and time every second
+    setInterval(updateDateTime, 1000);
+</script>
+

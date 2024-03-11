@@ -56,26 +56,23 @@ class MedicationSchedulesController < ApplicationController
     end
 
     def get_current_day_schedules
-        puts "BEGIN"
-        @user = current_user
-        current_day_of_week = Time.now.strftime('%A')
-        puts "WEEKDAY" + current_day_of_week
-        @medication_schedules = @user.medication_schedules.where(day_of_week: current_day_of_week)
-        puts "SCHEDULE: " + @medication_schedules
+        puts "BEGIN INDEX"
+        @user = User.find(session[:user_id])
+        @medications = Medication.all
+        
         @current_day_schedules = []
+        current_day_of_week = Time.now.strftime('%A')
+        puts "TODAY: " + current_day_of_week
 
         @user.medications.each do |medication|
+            puts "MEDICATION: " + medication.name
+            puts "ALL MEDS: " + medication.medication_schedules.length.to_s
             medication_schedules = medication.medication_schedules.joins(:day_of_week).where("day_of_weeks.name = ?", current_day_of_week)
+            puts "SCHEDULES: " + medication_schedules.length.to_s
             medication_schedules.each do |schedule|
+                puts "TIME: " + schedule.time.strftime("%l:%M %p")
               @current_day_schedules << { medication: medication, schedule: schedule }
             end
-        end
-      
-        @current_day_schedules.sort_by! { |schedule| schedule[:schedule].time.strftime("%H:%M") }
-      
-        respond_to do |format|
-          format.html # Add your desired view template for displaying the schedules
-          format.json { render json: @medication_schedules }
         end
     end
 
