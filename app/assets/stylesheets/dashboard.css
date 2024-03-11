@@ -222,3 +222,19 @@ body{
       display: flex;
       column-gap: 15px;
     }
+
+
+    @media only screen and (max-width: 768px) {
+      .mobileDiv {
+        flex-direction: column;
+        height: auto; /* Change height to auto to accommodate vertical stacking */
+      }
+    
+      .todayScheduleWidgetDiv,
+      .medicationsWidgetDiv {
+        width: 100%; /* Make both widgets take full width on mobile */
+        margin-right: 0; /* Remove margin-right to prevent spacing between widgets */
+        margin-bottom: 20px; /* Add some spacing between the widgets */
+      }
+    
+    }
