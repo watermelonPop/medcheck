@@ -16,9 +16,24 @@
         text-decoration: none;
       }
 
-      .center svg {
+      .nonIcon {
         width: auto;
         height: 80%;
         margin-right: 5%;
         fill: #FFE5D9;
+      }
+
+      .todayScheduleWidgetDiv{
+        width: 92%;
+        margin-left: 15px;
+      }
+
+
+
+      @media only screen and (max-width: 768px) {
+        .todayScheduleWidgetDiv{
+          width: 100%;
+          margin-left: 0;
+        }
+  
       }
