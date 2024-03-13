@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :dashboard, only: [:index], as: 'dashboard'
     resources :medications, param: :name, only: [:index, :show, :create, :new, :edit, :destroy, :update] do
-      resources :medication_schedules, only: [:create, :destroy, :edit, :update]
+      resources :medication_schedules, only: [:create, :destroy, :edit, :update, :new, :index]
     end
   end
 
@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   get '/auth/google_oauth2/callback', to: 'sessions#omniauth'
   post '/public_medications/decrement', to: 'public_medications#decrement'
   get '/users/:user_id/today', to: 'medication_schedules#get_current_day_schedules', as: 'today'
+  get '/users/:user_id/medications/:medication_name/get_medication_schedules/:day_of_week', to: 'medication_schedules#get_day_schedules', as: 'get-day-schedule'
 end

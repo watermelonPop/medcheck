@@ -1,0 +1,28 @@
+.medicationIcon{
+        width: 15px;
+        height: 15px;
+}
+
+.iconSelect{
+        display: flex;
+        background-color: #FFCAD4;
+}
+
+.backingDiv{
+        background-color: #F4ACB7;
+}
+
+.formInfo{
+        background-color: transparent;
+}
+
+.colorDiv{
+        width: 30px;
+        height: 30px;
+        border-style: solid;
+}
+
+.colorSelect{
+        display: flex;
+}
+

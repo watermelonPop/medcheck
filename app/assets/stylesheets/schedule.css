@@ -1,0 +1,65 @@
+.daysDiv{
+        display: flex;
+        justify-content: space-between;
+        width: 85%;
+        height: fit-content;
+        margin-bottom: 15px;
+}
+
+.circleDay{
+        border-radius: 70px;
+        background-color: #F4ACB7;
+        height: fit-content;
+        width: 35px;
+}
+
+.scheduleDiv{
+        width: 87%;
+        height: 50%;
+        background-color: #D8E2DC;
+        border-radius: 10px;
+}
+
+.btns {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 30px;
+        font-family: "Gamja Flower", sans-serif;
+        font-weight: 400;
+        background-color: #9D8189;
+        border: none;
+        border-radius: 5px;
+        color: #FFE5D9;
+        text-decoration: none;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        height: fit-content;
+        width: 82%;
+        align-self: center;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        margin-top: 15px;
+      }
+      
+      .btns a{
+        text-decoration: none;
+      }
+      
+      .btns:hover{
+        background-color: #F4ACB7;
+        text-decoration: none;
+        color: black;
+      }
+      
+      .btns:focus{
+        background-color: #F4ACB7;
+        text-decoration: none;
+        color: black;
+      }
+
+      .selected{
+        background-color: #9D8189;
+      }

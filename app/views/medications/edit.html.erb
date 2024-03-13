@@ -1,10 +1,116 @@
-<h1>Editing medication</h1>
-
-<%= render "form", medication: @medication %>
-
-<br>
-
-<div>
-  <%= link_to "Show this medication", user_medication_path(user_id: session[:user_id], name: @medication.name) %> |
-  <%= link_to "Back to medications", user_medications_path(@user) %>
+<%= stylesheet_link_tag "editMed", "data-turbo-track": "reload" %>
+<div class="outerDashboard">
+    <%= link_to user_medication_path(user_id: session[:user_id], name: @medication.name), class: "widgetLink" do %>
+      <div class="appTitleDiv">
+              <div class="center">
+                      <svg class="nonIcon" width="50px" height="50px" viewBox="0 0 32 32" data-name="Layer 2" id="Layer_2" xmlns="http://www.w3.org/2000/svg"><title/><path d="M11.17,10.23a33.37,33.37,0,0,0-3.05,3.13c-.51.62-1.28,1.3-1.21,2.17s.81,1.24,1.35,1.76a16.3,16.3,0,0,1,2.57,3.17c.86,1.36,3,.11,2.16-1.26a21.06,21.06,0,0,0-1.82-2.48A16.16,16.16,0,0,0,10,15.52c-.22-.21-.86-1.14-.68-.49l-.13,1a17.85,17.85,0,0,1,3.72-4c1.19-1.08-.58-2.85-1.77-1.76Z"/><path d="M9.4,17a109.13,109.13,0,0,0,12.53-.1c1.59-.11,1.61-2.61,0-2.5a109.13,109.13,0,0,1-12.53.1c-1.61-.07-1.6,2.43,0,2.5Z"/></svg>
+                      <p class="appTitle">Edit <%=  @medication.name %></p>
+              </div>
+      </div>
+    <% end %>
+    <div class="backingDiv">
+      <% icons = [["Icon 1", '<svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.31,4.691a5.5,5.5,0,0,0-7.78,0l-6.84,6.84a5.5,5.5,0,0,0,3.89,9.39,5.524,5.524,0,0,0,3.89-1.61l6.84-6.84a5.5,5.5,0,0,0,0-7.78Zm-.71,7.07-3.42,3.42L8.82,8.821,12.24,5.4a4.5,4.5,0,0,1,7.68,3.17A4.429,4.429,0,0,1,18.6,11.761Z"/></svg>'], ["Icon 2", '<svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86 86"><path d="M67.354,24.352H18.65C8.366,24.352,0,32.717,0,43c0,10.283,8.366,18.649,18.65,18.649h48.704 c10.281,0,18.647-8.366,18.647-18.649C86.002,32.717,77.636,24.352,67.354,24.352z M23.582,31.781 c-12.984,0-13.875,6.909-13.883,6.979c-0.101,0.949-0.902,1.652-1.837,1.652c-0.064,0-0.132-0.003-0.198-0.01 c-1.016-0.109-1.751-1.021-1.642-2.036c0.045-0.42,1.288-10.284,17.56-10.284c1.021,0,1.849,0.828,1.849,1.85 C25.431,30.955,24.603,31.781,23.582,31.781z"/></svg>'], 
+      ["Icon 3", '<svg class="icon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512"><g><path d="m501,189.8c0-70.8-126.1-109-244.7-109-118.5,0-244.5,38.1-244.7,108.8 0,0 0,0.1 0,0.1l-.6,132.5c0,70.8 126.1,109 244.7,109 118.6,0 244.7-38.2 244.7-108.9l.6-132.5c0,0.1 0,0.1 0,0zm-40.8,0c0,27.8-79.4,68.2-203.9,68.2-8.3,0-16.4-0.2-24.3-0.5l96-131.1c82.4,11.5 132.2,41.4 132.2,63.4zm-203.9-68.2c8.3,0 16.4,0.2 24.2,0.5l-96,131.1c-82.4-11.5-132.1-41.4-132.1-63.4-7.10543e-15-27.8 79.4-68.2 203.9-68.2zm-.6,268.8c-124.5,0-203.9-40.4-203.9-68.1l.3-70.4c46.7,30.8 127,46.9 204.1,46.9 76.8,0 156.8-16 203.6-46.6l-.3,69.9c0.1,27.9-79.3,68.3-203.8,68.3z"/></g></svg>'], 
+      ["Icon 4", '<svg class="icon-svg" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>heart-bottle</title><path d="M23.053 9.845l-1.75-0.469 0.727-2.714 2.254 0.604 1.019-3.804-9.938-2.663-1.019 3.804 2.195 0.588-0.727 2.714-1.71-0.458c-2.371-0.635-4.801 0.734-5.436 3.105l-3.112 11.614c-0.635 2.371 0.774 4.812 3.145 5.447l8.95 2.398c2.371 0.635 4.772-0.785 5.407-3.155l3.112-11.614c0.635-2.371-0.745-4.761-3.116-5.397zM22.503 18.877c-1.011 3.338-5.878 3.239-8.211 6.447-0.492-3.964-4.939-6.127-3.866-9.679 1.007-3.333 5.555-3.386 6.396 0.248 2.473-2.46 6.759-0.575 5.681 2.984z"></path></svg>'], 
+      ["Icon 5", '<svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12.33 17C12.15 17.06 11.84 17.06 11.66 17C10.1 16.47 6.6 14.24 6.6 10.46C6.6 8.79 7.94 7.44 9.6 7.44C10.58 7.44 11.45 7.91 12 8.65C12.54 7.92 13.42 7.44 14.4 7.44C16.06 7.44 17.4 8.79 17.4 10.46C17.4 14.24 13.9 16.47 12.33 17Z"/></svg>']] %>
+      <% colors = ["#bf4f51", "#609078", "#6ca0dc", "#13274f", "#663046"] %>
+      <%= form_with(model: [@user, @medication], url: "/users/#{session[:user_id]}/medications/#{@medication.name}", html: { class: 'outerForm' }, method: :patch) do |form| %>
+        <div class="formInfo">
+          <p class="widgetText">Name: <%= form.text_field :name, class: 'selectEl' %></p>
+          <p class="widgetText">Amount Taken: <%= form.number_field :amount_taken, class: 'selectEl' %></p>
+          <p class="widgetText">Dose Unit: <%= form.text_field :dose_unit, class: 'selectEl' %></p>
+          <p class="widgetText">Dose Amount: <%= form.number_field :dose_amount, class: 'selectEl' %></p>
+          <p class="widgetText">Amount Left: <%= form.number_field :amount_left, class: 'selectEl' %></p>
+          <p class="widgetText">Last Picked Up: <%= form.date_field :last_picked_up, class: 'selectEl' %></p>
+          <div class="iconSelect">
+            <p class="widgetText">Icon: </p>
+            <% icons.each do |icon| %>
+              <div class="icons" data-value="<%= icon[1] %>">
+                <svg class="medicationIcon" viewBox="0 0 100 100" style="fill: <%= @medication.color %>;">
+                    <%= raw(icon[1]) %>
+                </svg>
+              </div>
+            <% end %>
+          </div>
+          <div class="colorSelect">
+              <p class="widgetText">Color: </p>
+              <% colors.each do |color| %>
+                <div class="colorDiv" style="background-color: <%= color %>;">
+                </div>
+              <% end %>
+          </div>
+        </div>
+        <%= form.hidden_field :icon, class: 'icon-input' %>
+        <%= form.hidden_field :color, class: 'color-input' %>
+        <%= link_to "Destroy this medication", user_medication_path(user_id: session[:user_id], name: @medication.name), data: { turbo_confirm: "Delete #{@medication.name}?", turbo_method: :delete } %>
+        <%= form.submit "DONE", class: "createbtns" %>
+      <% end %>
+    </div>
 </div>
+
+
+<script>
+    document.addEventListener("turbo:load", function() {
+
+      var icons = ['<svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.31,4.691a5.5,5.5,0,0,0-7.78,0l-6.84,6.84a5.5,5.5,0,0,0,3.89,9.39,5.524,5.524,0,0,0,3.89-1.61l6.84-6.84a5.5,5.5,0,0,0,0-7.78Zm-.71,7.07-3.42,3.42L8.82,8.821,12.24,5.4a4.5,4.5,0,0,1,7.68,3.17A4.429,4.429,0,0,1,18.6,11.761Z"/></svg>', '<svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86 86"><path d="M67.354,24.352H18.65C8.366,24.352,0,32.717,0,43c0,10.283,8.366,18.649,18.65,18.649h48.704 c10.281,0,18.647-8.366,18.647-18.649C86.002,32.717,77.636,24.352,67.354,24.352z M23.582,31.781 c-12.984,0-13.875,6.909-13.883,6.979c-0.101,0.949-0.902,1.652-1.837,1.652c-0.064,0-0.132-0.003-0.198-0.01 c-1.016-0.109-1.751-1.021-1.642-2.036c0.045-0.42,1.288-10.284,17.56-10.284c1.021,0,1.849,0.828,1.849,1.85 C25.431,30.955,24.603,31.781,23.582,31.781z"/></svg>', 
+      '<svg class="icon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512"><g><path d="m501,189.8c0-70.8-126.1-109-244.7-109-118.5,0-244.5,38.1-244.7,108.8 0,0 0,0.1 0,0.1l-.6,132.5c0,70.8 126.1,109 244.7,109 118.6,0 244.7-38.2 244.7-108.9l.6-132.5c0,0.1 0,0.1 0,0zm-40.8,0c0,27.8-79.4,68.2-203.9,68.2-8.3,0-16.4-0.2-24.3-0.5l96-131.1c82.4,11.5 132.2,41.4 132.2,63.4zm-203.9-68.2c8.3,0 16.4,0.2 24.2,0.5l-96,131.1c-82.4-11.5-132.1-41.4-132.1-63.4-7.10543e-15-27.8 79.4-68.2 203.9-68.2zm-.6,268.8c-124.5,0-203.9-40.4-203.9-68.1l.3-70.4c46.7,30.8 127,46.9 204.1,46.9 76.8,0 156.8-16 203.6-46.6l-.3,69.9c0.1,27.9-79.3,68.3-203.8,68.3z"/></g></svg>', 
+      '<svg class="icon-svg" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>heart-bottle</title><path d="M23.053 9.845l-1.75-0.469 0.727-2.714 2.254 0.604 1.019-3.804-9.938-2.663-1.019 3.804 2.195 0.588-0.727 2.714-1.71-0.458c-2.371-0.635-4.801 0.734-5.436 3.105l-3.112 11.614c-0.635 2.371 0.774 4.812 3.145 5.447l8.95 2.398c2.371 0.635 4.772-0.785 5.407-3.155l3.112-11.614c0.635-2.371-0.745-4.761-3.116-5.397zM22.503 18.877c-1.011 3.338-5.878 3.239-8.211 6.447-0.492-3.964-4.939-6.127-3.866-9.679 1.007-3.333 5.555-3.386 6.396 0.248 2.473-2.46 6.759-0.575 5.681 2.984z"></path></svg>', 
+      '<svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12.33 17C12.15 17.06 11.84 17.06 11.66 17C10.1 16.47 6.6 14.24 6.6 10.46C6.6 8.79 7.94 7.44 9.6 7.44C10.58 7.44 11.45 7.91 12 8.65C12.54 7.92 13.42 7.44 14.4 7.44C16.06 7.44 17.4 8.79 17.4 10.46C17.4 14.24 13.9 16.47 12.33 17Z"/></svg>'];
+      
+      
+      var iconList = document.getElementsByClassName("icons");
+      var hiddenField = document.querySelector('.icon-input');
+      var value = hiddenField.value;
+      var selectedInd = icons.indexOf(value);
+      var selected = iconList[selectedInd];
+      selected.style.backgroundColor = "#9D8189";
+      
+      for (var i = 0; i < iconList.length; i++) {
+          iconList[i].addEventListener("click", function() {
+                  for (var j = 0; j < iconList.length; j++) {
+                    iconList[j].style.backgroundColor = "#F4ACB7";
+                  }
+
+                  // Add the currentDay class to the clicked circleDay div
+                  this.style.backgroundColor = "#9D8189";
+
+                  var selectedIcon = this.dataset.value;
+                  updateIcon(selectedIcon);
+          });
+      }
+
+      var colors = ["#bf4f51", "#609078", "#6ca0dc", "#13274f", "#663046"];
+
+      var colorList = document.getElementsByClassName("colorDiv");
+      var hiddenColorField = document.querySelector('.color-input');
+      var colorValue = hiddenColorField.value;
+      var selectedColorInd = colors.indexOf(colorValue);
+      var selectedColor = colorList[selectedColorInd];
+
+      selectedColor.style.borderColor = "blue";
+      
+      for (var i = 0; i < colorList.length; i++) {
+          colorList[i].addEventListener("click", function() {
+                  for (var j = 0; j < colorList.length; j++) {
+                    colorList[j].style.borderColor = "black";
+                  }
+
+                  // Add the currentDay class to the clicked circleDay div
+                  this.style.borderColor = "blue";
+
+                  var newSelectedColor = this.style.backgroundColor;
+                  updateColor(newSelectedColor);
+          });
+      }
+    });
+      
+    function updateIcon(selectedIcon){
+        var iconInput = document.querySelector('input[name="medication[icon]"]');
+        iconInput.value = selectedIcon;
+    }
+
+    function updateColor(selectedColor) {
+      var colorInput = document.querySelector('input[name="medication[color]"]');
+      colorInput.value = selectedColor;
+    }
+</script>

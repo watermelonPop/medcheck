@@ -1,0 +1,8 @@
+<% @current_day_schedules.each do |schedule| %>
+        <div class="schedule">
+            <p class="widgetText"><%= schedule[:schedule].time.strftime("%l:%M %p") %></p>
+            <p class="widgetText"><%= schedule[:medication].name %>, <%= schedule[:medication].dose_amount %><%= schedule[:medication].dose_unit %></p>
+        </div>
+        <div class="scheduleSepDiv">
+        </div>
+<% end %>

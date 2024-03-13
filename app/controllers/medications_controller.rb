@@ -69,20 +69,12 @@ class MedicationsController < ApplicationController
   end
 
   def destroy
-    @user = current_user
-    @medication = @user.medications.find_by(name: params[:name])
-    if @medication.nil?
-      redirect_to user_path(@user), alert: "Medication not found"
-      return
-    end
-    respond_to do |format|
-      if @medication.destroy
-        format.html { redirect_to user_medications_path(@user), notice: "Medication was successfully destroyed." }
-        format.json { render :show, status: :ok, location: @medication }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @medication.errors, status: :unprocessable_entity }
-      end
+    @user = User.find(params[:user_id])
+    @medication = @user.medications.find_by(name: params[:name]) # Change "params[:name]" to "params[:id]"
+    if @medication.destroy
+      redirect_to user_medications_path(@user), notice: "Medication successfully deleted."
+    else
+      redirect_to user_medications_path(@user), alert: "Failed to delete medication."
     end
   end
 

@@ -1,10 +1,10 @@
 .backingDiv{
         width: 87%;
-        height: 70%;
+        height: 50%;
         background-color: #FFCAD4;
         border-radius: 10px;
         display: flex;
-        column-gap: 30px;
+        column-gap: 15px;
         justify-content: center;
         align-items: center;
 }
@@ -121,3 +121,48 @@
         width: 50px;
         margin-right: 10px;
 }
+
+.btnDiv{
+        background-color: aliceblue;
+        width: 87%;
+        height: fit-content;
+}
+
+.btns {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 30px;
+        font-family: "Gamja Flower", sans-serif;
+        font-weight: 400;
+        background-color: #9D8189;
+        border: none;
+        border-radius: 5px;
+        color: #FFE5D9;
+        text-decoration: none;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        height: fit-content;
+        width: 82%;
+        align-self: center;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+      }
+      
+      .btns a{
+        text-decoration: none;
+      }
+      
+      .btns:hover{
+        background-color: #F4ACB7;
+        text-decoration: none;
+        color: black;
+      }
+      
+      .btns:focus{
+        background-color: #F4ACB7;
+        text-decoration: none;
+        color: black;
+      }

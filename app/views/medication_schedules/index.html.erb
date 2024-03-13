@@ -1,0 +1,82 @@
+<%= stylesheet_link_tag "schedule.css", "data-turbo-track": "reload" %>
+<div class="outerDashboard">
+        <%= link_to user_medication_path(user_id: session[:user_id], name: @medication.name), class: "widgetLink" do %>
+                <div class="appTitleDiv">
+                        <div class="center">
+                                <svg class="nonIcon" width="50px" height="50px" viewBox="0 0 32 32" data-name="Layer 2" id="Layer_2" xmlns="http://www.w3.org/2000/svg"><title/><path d="M11.17,10.23a33.37,33.37,0,0,0-3.05,3.13c-.51.62-1.28,1.3-1.21,2.17s.81,1.24,1.35,1.76a16.3,16.3,0,0,1,2.57,3.17c.86,1.36,3,.11,2.16-1.26a21.06,21.06,0,0,0-1.82-2.48A16.16,16.16,0,0,0,10,15.52c-.22-.21-.86-1.14-.68-.49l-.13,1a17.85,17.85,0,0,1,3.72-4c1.19-1.08-.58-2.85-1.77-1.76Z"/><path d="M9.4,17a109.13,109.13,0,0,0,12.53-.1c1.59-.11,1.61-2.61,0-2.5a109.13,109.13,0,0,1-12.53.1c-1.61-.07-1.6,2.43,0,2.5Z"/></svg>
+                                <p class="appTitle"><%= @medication.name %> Schedule</p>
+                        </div>
+                </div>
+        <% end %>
+        <% days_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] %>
+        <% current_day = days_of_week[Time.now.strftime("%w").to_i] %>
+        <div class="daysDiv" id="day-container" data-current-day="<%= current_day %>" data-user-id="<%= @user.id %>" data-medication-name="<%= @medication.name %>">
+                <div class="circleDay" id="Sunday">
+                        <p class="widgetText">Su</p>
+                </div>
+                <div class="circleDay" id="Monday">
+                        <p class="widgetText">M</p>
+                </div>
+                <div class="circleDay" id="Tuesday">
+                        <p class="widgetText">Tu</p>
+                </div>
+                <div class="circleDay" id="Wednesday">
+                        <p class="widgetText">W</p>
+                </div>
+                <div class="circleDay" id="Thursday">
+                        <p class="widgetText">Th</p>
+                </div>
+                <div class="circleDay" id="Friday">
+                        <p class="widgetText">F</p>
+                </div>
+                <div class="circleDay" id="Saturday">
+                        <p class="widgetText">S</p>
+                </div>
+        </div>
+        <div class="scheduleDiv">
+        </div>
+        <%= link_to "+ add schedule", new_user_medication_medication_schedule_path(@user, @medication.name), class: "btns" %>
+</div>
+
+<script>
+        var iden = document.getElementById("day-container").dataset.currentDay;
+        var userId = document.getElementById("day-container").dataset.userId;
+        var medName = document.getElementById("day-container").dataset.medicationName;
+        var selected = document.getElementById(iden);
+        selected.style.backgroundColor = "#9D8189";
+        var circleDays = document.getElementsByClassName("circleDay");
+        updateSchedule(iden);
+        for (var i = 0; i < circleDays.length; i++) {
+                circleDays[i].addEventListener("click", function() {
+                        // Remove the currentDay class from all circleDay divs
+                        for (var j = 0; j < circleDays.length; j++) {
+                                circleDays[j].style.backgroundColor = "#F4ACB7";
+                        }
+
+                        // Add the currentDay class to the clicked circleDay div
+                        this.style.backgroundColor = "#9D8189";
+
+                        var selectedDay = this.id;
+                        updateSchedule(selectedDay);
+                });
+        }
+
+
+        function updateSchedule(selectedDay) {
+                var scheduleDiv = document.querySelector(".scheduleDiv");
+
+                // Make an AJAX request to fetch the schedule data
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                        var scheduleData = xhr.responseText;
+
+                        // Update the scheduleDiv with the retrieved data
+                        scheduleDiv.innerHTML = scheduleData;
+                }
+                };
+
+                xhr.open("GET", "/users/" + userId + "/medications/" + medName + "/get_medication_schedules/" + selectedDay, true);
+                xhr.send();
+        }
+</script>
