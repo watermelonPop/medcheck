@@ -66,12 +66,14 @@
   }
 
   .mobileDiv{
-    height: 60vh;
+    height: 70vh;
+    width: 100%;
   }
 
   @media only screen and (max-width: 768px) {
     .mobileDiv{
       height: 75vh;
+      width: 89%;
     }
     .todayScheduleWidgetDiv{
       height: 75vh;

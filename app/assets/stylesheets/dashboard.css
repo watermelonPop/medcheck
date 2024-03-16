@@ -22,7 +22,7 @@ body{
 .todayScheduleWidgetDiv{
     background-color: #D8E2DC;
     border-radius: 10px;
-    width: 90%;
+    width: 40vw;
     height: 100%;
     align-items: center;
     justify-content: center;
@@ -31,21 +31,26 @@ body{
     flex-direction: column;
     flex-grow: 1; /* Add this line */
     flex-basis: 0;
-    padding: 5%;
+    /*padding: 5%;
+    margin-left: 0px;*/
+    padding: 0px;
+    margin: 0px;
 }
 
 .mobileDiv{
   display: flex;
-  width: 85vw;
+  width: 89vw;
   height: 50vh;
   column-gap: 15px;
+  justify-content: space-between;
+  padding-left: 0px;
   background-color: transparent;
 }
 
 .medicationsWidgetDiv{
     background-color: #F4ACB7;
     border-radius: 10px;
-    width: 100%;
+    width: 40vw;
     height: 100%;
     align-items: center;
     justify-content: center;
@@ -53,6 +58,10 @@ body{
     flex-direction: column;
     flex-grow: 1; /* Add this line */
     flex-basis: 0;
+    /*padding: 5%;
+    margin-left: 0px;*/
+    padding: 0px;
+    margin: 0px;
 }
 
 .scrollDiv{
@@ -278,6 +287,7 @@ body{
         margin-bottom: 20px; /* Add some spacing between the widgets */
         margin-left: 0;
         padding: 0;
+        height: 28vh;
       }
 
       .outerLink{

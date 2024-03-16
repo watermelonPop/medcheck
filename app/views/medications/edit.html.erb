@@ -104,9 +104,27 @@
       var colors = ["#bf4f51", "#609078", "#6ca0dc", "#13274f", "#663046"];
 
       var colorList = document.getElementsByClassName("colorDiv");
+
       var hiddenColorField = document.querySelector('.color-input');
+
       var colorValue = hiddenColorField.value;
-      var selectedColorInd = colors.indexOf(colorValue);
+
+      // Regular expression to extract RGB values
+      const rgbRegex = /rgb\((\d+),\s*(\d+),\s*(\d+)\)/;
+
+      // Match the regular expression
+      const matchData = colorValue.match(rgbRegex);
+
+      // Extract RGB values from the match data
+      var selectedColorInd;
+      if (matchData) {
+        const r = parseInt(matchData[1]);
+        const g = parseInt(matchData[2]);
+        const b = parseInt(matchData[3]);
+        selectedColorInd = colors.indexOf(rgbToHex(r, g, b));
+      }else{
+        selectedColorInd = colors.indexOf(colorValue);
+      }
       var selectedColor = colorList[selectedColorInd];
 
       selectedColor.style.borderColor = "black";
@@ -142,5 +160,14 @@
       for (var i=0; i<iconList.length; i++){
         iconList[i].style.fill = selectedColor
       }
+    }
+
+    function componentToHex(c) {
+      var hex = c.toString(16);
+      return hex.length == 1 ? "0" + hex : hex;
+    }
+
+    function rgbToHex(r, g, b) {
+      return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
     }
 </script>

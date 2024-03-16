@@ -1,8 +1,8 @@
 class User < ApplicationRecord
     validates :email, presence: true
     attribute :profile_picture_url, :string
-    has_many :medications
-    has_many :days_taken
+    has_many :medications, dependent: :destroy
+    has_many :days_taken, dependent: :destroy
     def user_days_taken
         days_taken.order(date_taken: :desc)
     end

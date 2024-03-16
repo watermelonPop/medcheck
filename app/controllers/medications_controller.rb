@@ -37,7 +37,7 @@ class MedicationsController < ApplicationController
   def create
     @user = current_user
     @medication = @user.medications.build(medication_params)
-
+    puts "ICON: " + @medication.icon.to_s
     respond_to do |format|
       if @medication.save
         format.html { redirect_to user_medications_path(@user), notice: "Medication was successfully created." }
