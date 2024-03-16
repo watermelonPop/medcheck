@@ -10,4 +10,10 @@ class Medication < ApplicationRecord
     has_many :medication_schedules, dependent: :destroy
     has_many :days_of_week, through: :medication_schedules
     belongs_to :user
+
+    def next_pickup
+        days_until_empty = amount_left / amount_taken
+        next_pickup_date = Date.today + days_until_empty
+        return next_pickup_date
+    end
 end

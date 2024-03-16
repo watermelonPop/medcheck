@@ -16,13 +16,15 @@
                     <% @medications.each do |medication| %>
                         <%= link_to user_medication_path(user_id: session[:user_id], name: medication.name), class: "widgetLink" do %>
                             <div class="medications">
-                                <div class="medicationIconDiv">
-                                    <svg class="medicationIcon" viewBox="0 0 100 100" style="fill: <%= medication.color %>;">
-                                        <%= raw(medication.icon) %>
-                                    </svg>
-                                </div>
-                                <div class="medicationInfo">
-                                    <p class="medicationName"><%= medication.name %><p>
+                                <div class="innerMed">
+                                    <div class="medicationIconDiv">
+                                        <svg class="medicationIcon" viewBox="0 0 100 100" style="fill: <%= medication.color %>;">
+                                            <%= raw(medication.icon) %>
+                                        </svg>
+                                    </div>
+                                    <div class="medicationInfo">
+                                        <p class="medicationName"><%= medication.name %><p>
+                                    </div>
                                 </div>
                             </div>
                         <% end %>
@@ -35,3 +37,5 @@
         </div>
     </div>
 </div>
+
+

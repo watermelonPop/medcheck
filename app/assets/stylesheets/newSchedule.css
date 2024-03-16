@@ -7,6 +7,7 @@
         padding-top: 10px;
         padding-bottom: 10px;
         color: #FFE5D9;
+        display: flex;
 }
 
 .daysDiv{
@@ -24,11 +25,14 @@
         width: 35px;
 }
 
-.scheduleDiv{
+.newScheduleDiv{
         width: 87%;
-        height: 35%;
+        height: 36vh;
         background-color: #D8E2DC;
         border-radius: 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        overflow-y: scroll;
 }
 
 .outerForm{
@@ -115,4 +119,44 @@
       
       .selectEl:-ms-input-placeholder {
         color: #F4ACB7;
+      }
+
+      .blockDiv{
+        display: block;
+        width: 50%;
+      }
+
+
+      @media only screen and (max-width: 768px) {
+        .appTitle{
+          font-size: 30px !important;
+        }
+
+        .newScheduleDiv{
+          width: 87%;
+          height: 45vh !important;
+          background-color: #D8E2DC;
+          border-radius: 10px;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          overflow-y: scroll;
+        }
+
+        .formInfo{
+          background-color: #9D8189;
+          border-radius: 10px;
+          width: 100%;
+          height: fit-content;
+          margin-top: 15px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          color: #FFE5D9;
+          overflow: hidden;
+        }
+
+        .blockDiv{
+          display: block;
+          width: 50%;
+        }
+
       }

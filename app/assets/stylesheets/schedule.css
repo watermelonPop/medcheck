@@ -15,9 +15,12 @@
 
 .scheduleDiv{
         width: 87%;
-        height: 50%;
+        height: 42vh;
         background-color: #D8E2DC;
         border-radius: 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        overflow-y: scroll;
 }
 
 .btns {
@@ -62,4 +65,51 @@
 
       .selected{
         background-color: #9D8189;
+      }
+
+
+      .editIcon{
+        width: 25px;
+        height: 25px;
+        margin-right: 15px;
+      }
+
+      .modalBtnDiv, .modalBtnDiv:focus{
+        outline: none;
+        border-style: none;
+      }
+
+      .modalBtnDiv{
+        background-color: #FFCAD4;
+        border-radius: 10px;
+        width: fit-content;
+        padding: 10px;
+        height: fit-content;
+        align-self: center;
+        margin: 0 auto;
+        font-family: "Gamja Flower", sans-serif;
+        cursor: pointer;
+      }
+
+      .modalBtnDiv:hover{
+        background-color: #9D8189;
+        color: #FFE5D9;
+      }
+
+      .smallLabel{
+        margin-right: 10px;
+      }
+
+
+
+      @media only screen and (max-width: 768px) {
+        .scheduleDiv{
+          width: 87%;
+          height: 52vh;
+          background-color: #D8E2DC;
+          border-radius: 10px;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          overflow-y: scroll;
+        }
       }

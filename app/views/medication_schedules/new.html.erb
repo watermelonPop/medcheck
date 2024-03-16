@@ -33,21 +33,25 @@
                         <p class="widgetText">S</p>
                 </div>
         </div>
-        <div class="scheduleDiv">
+        <div class="newScheduleDiv">
                 
         </div>
         <%= form_with(model: @medication.medication_schedules.build, url: user_medication_medication_schedules_path(@user, @medication.name), html: { class: 'outerForm' }) do |form| %>
                 <div class="formInfo">
-                  <p class="widgetText">Day: <%= form.select :day_of_week, options_for_select([
-                    ['Sunday', '1'],
-                    ['Monday', '2'],
-                    ['Tuesday', '3'],
-                    ['Wednesday', '4'],
-                    ['Thursday', '5'],
-                    ['Friday', '6'],
-                    ['Saturday', '7']
-                  ]), {}, class: 'selectEl' %></p>
-                  <p class="widgetText">Time: <%= form.time_field :time, class: 'selectEl' %></p>
+                        <div class="blockDiv">
+                                <p class="widgetText">Day: <%= form.select :day_of_week, options_for_select([
+                                        ['Sunday', '1'],
+                                        ['Monday', '2'],
+                                        ['Tuesday', '3'],
+                                        ['Wednesday', '4'],
+                                        ['Thursday', '5'],
+                                        ['Friday', '6'],
+                                        ['Saturday', '7']
+                                        ]), {}, class: 'selectEl' %></p>
+                        </div>
+                        <div class="blockDiv">
+                                <p class="widgetText">Time: <%= form.time_field :time, class: 'selectEl' %></p>
+                        </div>
                 </div>
                 <%= form.submit "CREATE", class: "createbtns" %>
         <% end %>
@@ -78,7 +82,7 @@
 
 
         function updateSchedule(selectedDay) {
-                var scheduleDiv = document.querySelector(".scheduleDiv");
+                var scheduleDiv = document.querySelector(".newScheduleDiv");
 
                 // Make an AJAX request to fetch the schedule data
                 var xhr = new XMLHttpRequest();

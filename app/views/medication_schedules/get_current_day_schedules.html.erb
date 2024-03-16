@@ -21,6 +21,25 @@
                                     <div class="schedule">
                                         <p class="widgetText"><%= schedule[:schedule].time.strftime("%l:%M %p") %></p>
                                         <p class="widgetText"><%= schedule[:medication].name %>, <%= schedule[:medication].dose_amount %><%= schedule[:medication].dose_unit %></p>
+                                        <% if schedule[:schedule].taken == true %>
+                                            <div class="takeMedDiv" onclick="untakeMedication(event, '<%= session[:user_id] %>', '<%= schedule[:medication].id %>', '<%= schedule[:schedule].id %>')">
+                                                <svg class="takeMedIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <g data-name="Layer 2">
+                                                    <g data-name="checkmark-circle-2">
+                                                    <rect width="24" height="24" opacity="0"/>
+                                                    <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+                                                    <path d="M14.7 8.39l-3.78 5-1.63-2.11a1 1 0 0 0-1.58 1.23l2.43 3.11a1 1 0 0 0 .79.38 1 1 0 0 0 .79-.39l4.57-6a1 1 0 1 0-1.6-1.22z"/>
+                                                    </g>
+                                                    </g>
+                                                </svg>
+                                            </div>
+                                        <% else %>
+                                            <div class="takenMedDiv" onclick="takeMedication(event, '<%= session[:user_id] %>', '<%= schedule[:medication].id %>', '<%= schedule[:schedule].id %>')">
+                                                <svg class="takenMedIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                        <% end %>
                                     </div>
                                     <div class="scheduleSepDiv">
                                     </div>
@@ -33,6 +52,7 @@
     </div>
 </div>
 <script>
+    var csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     function updateDateTime() {
         const options = { weekday: 'long', month: 'short', day: 'numeric' };
         const dateTimeString = new Date().toLocaleDateString('en-US', options);
@@ -49,5 +69,64 @@
 
     // Update the date and time every second
     setInterval(updateDateTime, 1000);
-</script>
+    function takeMedication(event, userId, medicationId, scheduleId) {
+        // Make an AJAX request to your controller method
+        // Replace 'your_controller' and 'your_method' with your actual controller and method names
+        var body = JSON.stringify({
+            user_id: userId,
+            medication_id: medicationId,
+            schedule_id: scheduleId
+        });
+        // Make a POST request to your controller method
+        fetch(`/users/${userId}/medications/${medicationId}/medication_schedules/${scheduleId}/take_med`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': csrfToken
+            },
+            body: body
+        })
+        .then(response => {
+        if (response.ok) {
+            // Do something if the request is successful
+            location.reload();
+            console.log("Medication taken successfully");
+        } else {
+            // Do something if the request fails
+            console.error("Failed to take medication");
+        }
+        })
+        .catch(error => console.error("Error:", error));
+    }
 
+
+    function untakeMedication(event, userId, medicationId, scheduleId) {
+        // Make an AJAX request to your controller method
+        // Replace 'your_controller' and 'your_method' with your actual controller and method names
+        var body = JSON.stringify({
+            user_id: userId,
+            medication_id: medicationId,
+            schedule_id: scheduleId
+        });
+        // Make a POST request to your controller method
+        fetch(`/users/${userId}/medications/${medicationId}/medication_schedules/${scheduleId}/untake_med`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': csrfToken
+            },
+            body: body
+        })
+        .then(response => {
+        if (response.ok) {
+            // Do something if the request is successful
+            location.reload();
+            console.log("Medication untaken successfully");
+        } else {
+            // Do something if the request fails
+            console.error("Failed to untake medication");
+        }
+        })
+        .catch(error => console.error("Error:", error));
+    }
+</script>

@@ -1,0 +1,265 @@
+.simple-calendar {
+        width: 100%;
+        height: 100%;
+
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 25px;
+        text-decoration: none;
+        text-align: center;
+      }
+      
+      .calendar-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 20px;
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 25px;
+        text-decoration: none;
+        text-align: center;
+      }
+      
+      .calendar-title {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+      
+      nav a {
+        text-decoration: none;
+        color: #333;
+        padding: 5px 10px;
+        border: 3px solid #9D8189;
+        border-radius: 5px;
+        margin-right: 5px;
+      }
+      
+      table {
+        width: 95%;
+        border-collapse: collapse;
+        height: 85%;
+        margin: 20px;
+        padding-bottom: 10px;
+        border: 2px solid #9D8189;
+      }
+      
+      th, td {
+        padding: 10px;
+        text-align: center;
+      }
+      
+      th {
+        background-color: #F4ACB7;
+        font-weight: bold;
+      }
+      
+      .day {
+        border: 2px solid #9D8189;
+        vertical-align: top;
+        width: 14.2857%; /* 100 / 7 */
+      }
+      
+      .calendar-date {
+        font-weight: bold;
+      }
+      
+      .events {
+        list-style: none;
+        padding: 0;
+      }
+      
+      .event {
+        margin-bottom: 5px;
+      }
+
+
+      
+      .event-medication {
+        display: flex;
+        padding: 10px;
+        border-radius: 10px;
+      }
+      
+      .event-details {
+        margin-left: 10px;
+        font-size: 0.9em;
+      }
+
+      .mobileDiv{
+        background-color: #D8E2DC;
+        border-radius: 10px;
+        overflow-y: scroll;
+      }
+
+      .takenIcon{
+        width: 30px;
+        height: 30px;
+      }
+
+      .medicationIcon{
+        width: 30px;
+        height: 30px;
+        border-radius: 10px;
+      }
+
+      .medicationIconDiv{
+        background-color: transparent;
+        border-color: #9D8189;
+      }
+
+
+      .modal-overlay* {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* semi-transparent grey background */
+        z-index: 999; /* ensure modal is on top of other content */
+        /*display: flex;*/
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+  
+      .modal-content* {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* optional: add box shadow for depth */
+        display: none;
+        }
+
+        
+        @media only screen and (max-width: 768px) {
+          .table thead th {
+            text-transform: uppercase;
+          }
+        
+          .table thead th::first-letter {
+            display: none;
+          }
+
+          .table{
+            width: 90%;
+            row-gap: 0px;
+            column-gap: 0px;
+            font-size: 20px;
+          }
+
+          .day {
+            border-style: none;
+            vertical-align: top;
+            width: 8%; /* 100 / 7 */
+            height: fit-content;
+            cursor: pointer;
+          }
+
+          .mobile-calendar-date{
+            border-radius: 80px;
+            background-color: #F4ACB7;
+          }
+
+          tr>td{
+            padding-bottom: 0px;
+          }
+
+          #mobile-content-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+
+          nav a{
+            font-size: 20px;
+          }
+
+          .calendar-title{
+            font-size: 30px;
+          }
+
+          .mobile-calendarDisplay{
+            height: 50%;
+          }
+
+          .innerScheduleContent{
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 90%;
+          }
+
+          .mobile-scheduleDisplay{
+            height: 40%;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+          }
+
+          .mobileDiv{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #D8E2DC;
+          }
+
+          .eachSchedDiv{
+            background-color: #F4ACB7;
+            justify-content: center;
+            border-radius: 10px;
+            padding-top: 0px;
+            display: flex;
+            padding-bottom: 5px;
+            font-family: "Gamja Flower", sans-serif;
+            margin-bottom: 5px;
+          }
+
+          .fonted{
+            font-family: "Gamja Flower", sans-serif;
+            text-align: center;
+          }
+
+          .medicationIcon{
+            width: 5px;
+            height: 5px;
+            margin-right: 0px;
+          }
+
+          .medicationIconDiv{
+            height: 100% !important;
+            width: fit-content !important;
+            padding-right: 0px;
+          }
+
+          .innerTxtDiv{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+
+          .dayScrollDiv{
+            height: 90%;
+            overflow-y: scroll;
+          }
+
+          .takeMedDiv{
+            width: 60px !important;
+            height: auto;
+          }
+
+          .takeMedIcon{
+            width: 100%;
+            height: 100%;
+            fill: black;
+          }
+
+          .takenMedDiv{
+            width: 60px !important;
+            height: auto;
+          }
+
+          .takenMedIcon{
+            width: 100%;
+            height: 100%;
+          }
+
+        }

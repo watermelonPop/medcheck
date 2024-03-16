@@ -10,11 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_22_004259) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_14_172943) do
   create_table "day_of_weeks", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "days_takens", force: :cascade do |t|
+    t.date "date_taken", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "schedule_id"
+    t.date "schedule"
+    t.integer "medication_schedule_id", null: false
+    t.boolean "taken"
+    t.integer "user_id", null: false
+    t.index ["medication_schedule_id"], name: "index_days_takens_on_medication_schedule_id"
+    t.index ["schedule_id"], name: "index_days_takens_on_schedule_id"
+    t.index ["user_id"], name: "index_days_takens_on_user_id"
   end
 
   create_table "medication_schedules", force: :cascade do |t|
@@ -23,6 +37,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_22_004259) do
     t.time "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "taken", default: false
     t.index ["day_of_week_id"], name: "index_medication_schedules_on_day_of_week_id"
     t.index ["medication_id"], name: "index_medication_schedules_on_medication_id"
   end
@@ -54,6 +69,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_22_004259) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "days_takens", "medication_schedules"
+  add_foreign_key "days_takens", "medication_schedules", column: "schedule_id"
+  add_foreign_key "days_takens", "users"
   add_foreign_key "medication_schedules", "day_of_weeks"
   add_foreign_key "medication_schedules", "medications"
   add_foreign_key "medications", "users"

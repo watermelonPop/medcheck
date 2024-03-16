@@ -15,38 +15,60 @@
       ["Icon 5", '<svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12.33 17C12.15 17.06 11.84 17.06 11.66 17C10.1 16.47 6.6 14.24 6.6 10.46C6.6 8.79 7.94 7.44 9.6 7.44C10.58 7.44 11.45 7.91 12 8.65C12.54 7.92 13.42 7.44 14.4 7.44C16.06 7.44 17.4 8.79 17.4 10.46C17.4 14.24 13.9 16.47 12.33 17Z"/></svg>']] %>
       <% colors = ["#bf4f51", "#609078", "#6ca0dc", "#13274f", "#663046"] %>
       <%= form_with(model: [@user, @medication], url: "/users/#{session[:user_id]}/medications/#{@medication.name}", html: { class: 'outerForm' }, method: :patch) do |form| %>
-        <div class="formInfo">
-          <p class="widgetText">Name: <%= form.text_field :name, class: 'selectEl' %></p>
-          <p class="widgetText">Amount Taken: <%= form.number_field :amount_taken, class: 'selectEl' %></p>
-          <p class="widgetText">Dose Unit: <%= form.text_field :dose_unit, class: 'selectEl' %></p>
-          <p class="widgetText">Dose Amount: <%= form.number_field :dose_amount, class: 'selectEl' %></p>
-          <p class="widgetText">Amount Left: <%= form.number_field :amount_left, class: 'selectEl' %></p>
-          <p class="widgetText">Last Picked Up: <%= form.date_field :last_picked_up, class: 'selectEl' %></p>
-          <div class="iconSelect">
-            <p class="widgetText">Icon: </p>
-            <% icons.each do |icon| %>
-              <div class="icons" data-value="<%= icon[1] %>">
-                <svg class="medicationIcon" viewBox="0 0 100 100" style="fill: <%= @medication.color %>;">
-                    <%= raw(icon[1]) %>
-                </svg>
-              </div>
-            <% end %>
+        <div class="flexDiv">
+          <div class="formInfo">
+            <div class="innerFormInfo">
+              <p class="widgetText botMar">Name: <%= form.text_field :name, class: 'selectEl' %></p>
+              <p class="widgetText botMar"># Taken: <%= form.number_field :amount_taken, class: 'selectEl' %></p>
+              
+              <p class="widgetText botMar">
+                Dose: <%= form.number_field :dose_amount, class: 'selectEl' %>
+                <%= form.select :dose_unit, options_for_select([
+                                          ['mg', '1'],
+                                          ['g', '2'],
+                                          ['mcg', '3'],
+                                          ['mL', '4']]), {}, class: 'selectEl', id: 'doseField' %>
+              </p>
+              <p class="widgetText botMar"># Left: <%= form.number_field :amount_left, class: 'selectEl' %></p>
+              <p class="widgetText botMar">Last Picked Up: <%= form.date_field :last_picked_up, class: 'selectEl' %></p>
+            </div>
           </div>
-          <div class="colorSelect">
-              <p class="widgetText">Color: </p>
-              <% colors.each do |color| %>
-                <div class="colorDiv" style="background-color: <%= color %>;">
+          <div class="outerSelectDiv">
+            <div class="iconSelect">
+                <p class="widgetText">Icon: </p>
+                <div class="innerSelect">
+                  <% icons.each do |icon| %>
+                    <div class="icons" data-value="<%= icon[1] %>">
+                      <svg class="medicationIcon" viewBox="0 0 100 100" style="fill: <%= @medication.color %>;">
+                          <%= raw(icon[1]) %>
+                      </svg>
+                    </div>
+                  <% end %>
                 </div>
-              <% end %>
+            </div>
+            <div class="colorSelect">
+                <p class="widgetText">Color: </p>
+                <div class="innerSelect">
+                  <% colors.each do |color| %>
+                    <div class="colorDiv" style="background-color: <%= color %>;">
+                    </div>
+                  <% end %>
+                </div>
+            </div>
           </div>
         </div>
         <%= form.hidden_field :icon, class: 'icon-input' %>
         <%= form.hidden_field :color, class: 'color-input' %>
-        <%= link_to "Destroy this medication", user_medication_path(user_id: session[:user_id], name: @medication.name), data: { turbo_confirm: "Delete #{@medication.name}?", turbo_method: :delete } %>
-        <%= form.submit "DONE", class: "createbtns" %>
+        <div class="flexDiv">
+          <%= link_to "Delete", user_medication_path(user_id: session[:user_id], name: @medication.name), data: { turbo_confirm: "Delete #{@medication.name}?", turbo_method: :delete}, class: "createbtns shorterBtn" %>
+          <%= form.submit "DONE", class: "createbtns" %>
+        </div>
       <% end %>
     </div>
 </div>
+
+
+
 
 
 <script>
@@ -58,21 +80,21 @@
       '<svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12.33 17C12.15 17.06 11.84 17.06 11.66 17C10.1 16.47 6.6 14.24 6.6 10.46C6.6 8.79 7.94 7.44 9.6 7.44C10.58 7.44 11.45 7.91 12 8.65C12.54 7.92 13.42 7.44 14.4 7.44C16.06 7.44 17.4 8.79 17.4 10.46C17.4 14.24 13.9 16.47 12.33 17Z"/></svg>'];
       
       
-      var iconList = document.getElementsByClassName("icons");
+      var iconList = document.getElementsByClassName("medicationIcon");
       var hiddenField = document.querySelector('.icon-input');
       var value = hiddenField.value;
       var selectedInd = icons.indexOf(value);
       var selected = iconList[selectedInd];
-      selected.style.backgroundColor = "#9D8189";
+      selected.style.border = "solid 2px black";
       
       for (var i = 0; i < iconList.length; i++) {
           iconList[i].addEventListener("click", function() {
                   for (var j = 0; j < iconList.length; j++) {
-                    iconList[j].style.backgroundColor = "#F4ACB7";
+                    iconList[j].style.border = "solid 2px #FFE5D9";
                   }
 
                   // Add the currentDay class to the clicked circleDay div
-                  this.style.backgroundColor = "#9D8189";
+                  this.style.border = "solid 2px black";
 
                   var selectedIcon = this.dataset.value;
                   updateIcon(selectedIcon);
@@ -87,19 +109,20 @@
       var selectedColorInd = colors.indexOf(colorValue);
       var selectedColor = colorList[selectedColorInd];
 
-      selectedColor.style.borderColor = "blue";
+      selectedColor.style.borderColor = "black";
       
       for (var i = 0; i < colorList.length; i++) {
           colorList[i].addEventListener("click", function() {
                   for (var j = 0; j < colorList.length; j++) {
-                    colorList[j].style.borderColor = "black";
+                    colorList[j].style.borderColor = "#FFE5D9";
                   }
 
                   // Add the currentDay class to the clicked circleDay div
-                  this.style.borderColor = "blue";
+                  this.style.borderColor = "black";
 
                   var newSelectedColor = this.style.backgroundColor;
                   updateColor(newSelectedColor);
+                  changeIconColor(newSelectedColor);
           });
       }
     });
@@ -112,5 +135,12 @@
     function updateColor(selectedColor) {
       var colorInput = document.querySelector('input[name="medication[color]"]');
       colorInput.value = selectedColor;
+    }
+
+    function changeIconColor(selectedColor){
+      var iconList = document.getElementsByClassName("medicationIcon");
+      for (var i=0; i<iconList.length; i++){
+        iconList[i].style.fill = selectedColor
+      }
     }
 </script>

@@ -1,12 +1,13 @@
 .backingDiv{
         width: 87%;
         height: 50%;
-        background-color: #FFCAD4;
+        background-color: transparent;
         border-radius: 10px;
         display: flex;
         column-gap: 15px;
         justify-content: center;
         align-items: center;
+        flex-direction: row;
 }
 
 .appTitleDiv {
@@ -73,7 +74,7 @@
 .medInfo{
         background-color: #F4ACB7;
         width: 50%;
-        height: 100%;
+        height: 16vh;
         border-radius: 10px;
 
         font-family: "Gamja Flower", sans-serif;
@@ -97,8 +98,8 @@
 
 .medSchedDiv{
         background-color: #D8E2DC;
-        width: 42%;
-        height: 90%;
+        width: 100%;
+        height: 44vh;
         border-radius: 10px;
 }
 
@@ -107,6 +108,7 @@
         column-gap: 15px;
         width: 100%;
         height: 50%;
+        margin-right: 0px;
 }
 
 .medicationIcon{
@@ -123,7 +125,6 @@
 }
 
 .btnDiv{
-        background-color: aliceblue;
         width: 87%;
         height: fit-content;
 }
@@ -166,3 +167,199 @@
         text-decoration: none;
         color: black;
       }
+
+      .takeMedDiv, .takenMedDiv{
+        width: 30px;
+        height: 30px;
+      }
+
+
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* semi-transparent grey background */
+        z-index: 999; /* ensure modal is on top of other content */
+        /*display: flex;*/
+        display: none;
+        justify-content: center;
+        align-items: center;
+        font-family: "Gamja Flower", sans-serif;
+        text-align: center;
+      }
+  
+      .modal-content {
+        background-color: #F4ACB7;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* optional: add box shadow for depth */
+        display: none;
+        width: 40%;
+        height: 40%;
+        justify-content: center;
+        }
+
+        .modalTitleDiv{
+                background-color: #FFCAD4;
+                border-radius: 10px;
+        }
+
+        .modalBtnDiv{
+                background-color: #FFCAD4;
+                border-radius: 10px;
+                width: fit-content;
+                padding: 10px;
+                height: fit-content;
+                align-self: center;
+                margin: 0 auto;
+        }
+
+        .flexDiv{
+                display: flex;
+                width: 100%;
+                justify-content: center;
+        }
+
+        #pickup_date{
+                margin-left: 10px;
+        }
+
+        .oDiv{
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                align-items: center;
+                display: flex;
+                margin-top: 10px;
+        }
+
+        .modalInput{
+                font-family: "Gamja Flower", sans-serif;
+                font-size: 25px; 
+                border-radius: 10px;
+                background-color: #FFE5D9;
+                outline: none;
+                border-style: none;
+        }
+
+        .modalInput:focus{
+                outline: none
+        }
+
+        .botMar{
+                margin-bottom: 15px;
+        }
+
+        .noLeftMargin{
+                margin-left: 0px;
+        }
+
+        .medSchedDiv{
+                height: 38vh;
+        }
+
+
+
+
+
+        @media only screen and (max-width: 768px) {
+                .backingDiv{
+                        width: 87%;
+                        height: 50%;
+                        border-radius: 10px;
+                        display: flex;
+                        row-gap: 15px;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: row;
+                        flex-direction: column;
+                        padding: 0px;
+                }
+
+                .medInfoDiv{
+                        width: 100%;
+                        height: 30%;
+                        border-radius: 10px;
+                        display: flex;
+                        flex-direction: column;
+                        row-gap: 10px;
+                }
+
+                .rowDiv{
+                        column-gap: 10px;
+                }
+
+                .outerMedSchedDiv{
+                        background-color: #D8E2DC;
+                        width: 100%;
+                        height: 25vh;
+                        border-radius: 10px;
+                        margin-left: 0px;
+                }
+
+                .medSchedDiv{
+                        background-color: #D8E2DC;
+                        width: 100%;
+                        height: 25vh;
+                        border-radius: 10px;
+                        margin-left: 0px;
+                }
+
+                .takeMedDiv, .takenMedDiv{
+                        width: 30px;
+                        height: 30px;
+                }
+
+                .takeMedIcon, .takenMedIcon{
+                        padding: 0px;
+                }
+
+                .medInfo{
+                        background-color: #F4ACB7;
+                        width: 50%;
+                        height: 10vh;
+                        border-radius: 10px;
+                
+                        font-family: "Gamja Flower", sans-serif;
+                        margin: 0;
+                        text-decoration: none;
+                        text-align: center;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                }
+
+                .txt{
+                        display: flex;
+                        flex-direction: row;
+                        column-gap: 5px;
+                }
+
+                .largeTxt, .medTxt, .smallTxt{
+                        font-size: 25px;
+                }
+
+                .modal-content {
+                        background-color: #F4ACB7;
+                        padding: 20px;
+                        border-radius: 8px;
+                        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* optional: add box shadow for depth */
+                        display: none;
+                        width: 70%;
+                        height: 40%;
+                        justify-content: center;
+                }
+
+                .medicationIconDiv{
+                        width: 40px;
+                        height: 40px;
+                        margin-left: 10px;
+                      }
+                
+                      .medicationIcon{
+                        width: 25px;
+                        height: 25px;
+                      }
+        }

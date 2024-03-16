@@ -79,4 +79,24 @@
                 xhr.open("GET", "/users/" + userId + "/medications/" + medName + "/get_medication_schedules/" + selectedDay, true);
                 xhr.send();
         }
+
+        function showModal(num){
+        document.getElementById("outerModal" + num).style.display = "flex";
+        document.getElementById("innerModal" + num).style.display = "block";
+        }
+
+        function closeModal(num){
+        document.getElementById("outerModal" + num).style.display = "none";
+        document.getElementById("innerModal" + num).style.display = "none";
+        }
+
+        function showDeleteModal(num){
+        document.getElementById("deleteOuterModal" + num).style.display = "flex";
+        document.getElementById("deleteInnerModal" + num).style.display = "block";
+        }
+
+        function closeDeleteModal(num){
+        document.getElementById("deleteOuterModal" + num).style.display = "none";
+        document.getElementById("deleteInnerModal" + num).style.display = "none";
+        }
 </script>

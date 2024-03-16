@@ -19,8 +19,9 @@
 
       .medicationsWidgetDiv{
         width: 100%;
-        height: 100%;
+        height: 90%;
         margin-bottom: 0;
+        overflow: hidden;
       }
 
       .mobileDiv{
@@ -30,6 +31,7 @@
         margin-left: 0;
         margin-right: 0;
         margin-bottom: 0;
+        overflow: hidden;
       }
 
       .btns {
@@ -70,3 +72,44 @@
     text-decoration: none;
     color: black;
   }
+
+
+
+.medications{
+  background-color: #FFCAD4;
+  display: flex;
+  justify-content: center;
+}
+
+.innerMed{
+  width: 80%;
+  justify-content: space-between;
+  display: flex;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.medicationInfo{
+  margin-left: 0px;
+}
+
+.medicationIcon{
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  padding: 10px;
+}
+
+.medicationIconDiv{
+  margin-left: 10px;
+  width: 100px;
+  height: 100%;
+  margin-top: 15px;
+}
+
+.scrollDiv{
+  height: 60%;
+}

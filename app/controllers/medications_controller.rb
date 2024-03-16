@@ -78,6 +78,12 @@ class MedicationsController < ApplicationController
     end
   end
 
+  def new_pickup
+    @user = current_user
+    @medication = @user.medications.find_by(name: params[:name])
+    @medication.update(last_picked_up: params[:date])
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

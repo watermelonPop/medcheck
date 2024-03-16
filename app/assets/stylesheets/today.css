@@ -37,3 +37,43 @@
         }
   
       }
+
+
+      .takeMedIcon{
+        width: auto;
+        height: 100%;
+        padding: 10px;
+      }
+    
+    .takeMedDiv{
+        height: 100%;
+        width: 12%;
+        margin-right: 10px;
+        fill: black;
+    }
+
+    .takenMedIcon{
+      width: auto;
+      height: 100%;
+      padding: 10px;
+    }
+  
+  .takenMedDiv{
+      height: 100%;
+      width: 12%;
+      margin-right: 10px;
+      fill: black;
+  }
+
+  .mobileDiv{
+    height: 60vh;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .mobileDiv{
+      height: 75vh;
+    }
+    .todayScheduleWidgetDiv{
+      height: 75vh;
+    }
+  }

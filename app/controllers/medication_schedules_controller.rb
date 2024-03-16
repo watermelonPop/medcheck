@@ -1,4 +1,5 @@
 class MedicationSchedulesController < ApplicationController
+    require_dependency 'days_taken'
 
     def create
         @user = current_user
@@ -26,9 +27,7 @@ class MedicationSchedulesController < ApplicationController
 
     def index
         @user = current_user
-        puts "PARAM: " + params[:medication_name]
         @medication = @user.medications.find_by(name: params[:medication_name])
-        puts "NAME: " + @medication.name
     end
 
 
@@ -54,7 +53,6 @@ class MedicationSchedulesController < ApplicationController
 
     def update
         @user = current_user
-        puts "PARAM: #{params[:medication_name]}"
         @medication = @user.medications.find_by(name: params[:medication_name])
         @medication_schedule = @medication.medication_schedules.find(params[:id])
 
@@ -70,28 +68,20 @@ class MedicationSchedulesController < ApplicationController
     end
 
     def get_current_day_schedules
-        puts "BEGIN INDEX"
         @user = User.find(session[:user_id])
-        @medication
-        
+
         @current_day_schedules = []
         current_day_of_week = Time.now.strftime('%A')
-        puts "TODAY: " + current_day_of_week
 
         @user.medications.each do |medication|
-            puts "MEDICATION: " + medication.name
-            puts "ALL MEDS: " + medication.medication_schedules.length.to_s
             medication_schedules = medication.medication_schedules.joins(:day_of_week).where("day_of_weeks.name = ?", current_day_of_week)
-            puts "SCHEDULES: " + medication_schedules.length.to_s
             medication_schedules.each do |schedule|
-                puts "TIME: " + schedule.time.strftime("%l:%M %p")
               @current_day_schedules << { medication: medication, schedule: schedule }
             end
         end
     end
 
     def get_day_schedules
-        puts "BEGIN INDEX"
         @user = User.find(session[:user_id])
         @medication = @user.medications.find_by(name: params[:medication_name])
         
@@ -101,15 +91,56 @@ class MedicationSchedulesController < ApplicationController
         medication_schedules = @medication.medication_schedules.joins(:day_of_week).where("day_of_weeks.name = ?", @current_day)
         medication_schedules = medication_schedules.sort_by { |schedule| schedule.time.strftime("%H:%M") }
         medication_schedules.each do |schedule|
-            puts "TIME: " + schedule.time.strftime("%l:%M %p")
             @current_day_schedules << { medication: @medication, schedule: schedule }
         end
     end
 
+
+    def take_med
+        puts "TAKE MED ENTERED"
+        @user = current_user
+        @medication_schedule = MedicationSchedule.find(params[:id])
+        #puts "SCHEDULE: " + @medication_schedule.to_s
+        @medication_schedule.update(taken: true)
+        newAmt = @medication_schedule.medication.amount_left - @medication_schedule.medication.amount_taken
+        @medication_schedule.medication.update(amount_left: newAmt)
+        puts "UPDATED SCHEDULE"
+        date_taken = Date.today
+        puts "DATE TAKEN: #{date_taken}"
+        
+        days_taken = @user.days_taken.create(date_taken: date_taken, medication_schedule_id: @medication_schedule.id, taken: true)
+        if days_taken.valid?
+            puts "DAYS TAKEN CREATED"
+        else
+            puts "ERROR CREATING DAYS TAKEN"
+            puts days_taken.errors.full_messages.inspect
+        end
+        puts "END"
+    end
+
+    def untake_med
+        @user = current_user
+        @medication_schedule = MedicationSchedule.find(params[:id])
+        @medication_schedule.update(taken: false)
+        newAmt = @medication_schedule.medication.amount_left + @medication_schedule.medication.amount_taken
+        @medication_schedule.medication.update(amount_left: newAmt)
+
+        #take out of days_taken
+        all_days_taken = DaysTaken.all
+        puts "ALL DAYS: " + all_days_taken.length.to_s
+        taken_today = DaysTaken.find_by(date_taken: Date.today, medication_schedule: @medication_schedule, taken: true)
+        if taken_today.present?
+            puts "DESTROYED"
+            taken_today.destroy
+        end
+        puts "END UNTAKE"
+    end
+
+
     private
 
         def medication_schedule_params
-            params.require(:medication_schedule).permit(:day_of_week, :time).tap do |whitelisted|
+            params.require(:medication_schedule).permit(:day_of_week, :time, :taken).tap do |whitelisted|
             whitelisted[:day_of_week] = DayOfWeek.find(params[:medication_schedule][:day_of_week].to_i)
             end
         end

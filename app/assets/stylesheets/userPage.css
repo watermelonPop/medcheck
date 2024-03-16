@@ -1,0 +1,23 @@
+.backingDiv{
+        height: 60vh;
+        display: flex;
+        flex-direction: column;
+        font-family: "Gamja Flower", sans-serif;
+}
+
+
+@media only screen and (max-width: 768px) {
+        .backingDiv{
+                height: 75vh;
+                display: flex;
+                flex-direction: column;
+                font-family: "Gamja Flower", sans-serif;
+                background-color: #F4ACB7;
+                width: 90%;
+        }
+
+        .flexDiv{
+                display: flex;
+                flex-direction: row;
+        }
+}

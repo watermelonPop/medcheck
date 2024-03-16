@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag "newMedication", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag "userPage", "data-turbo-track": "reload" %>
 <div class="outerDashboard">
     <%= link_to user_dashboard_index_path(@user), class: "widgetLink" do %>
       <div class="appTitleDiv">
@@ -8,10 +8,14 @@
               </div>
       </div>
     <% end %>
-    <div class="backingDiv">
-      <p>Name: </p>
-      <p class="selectEl"><%= @current_user.first_name %> <%= @current_user.last_name %></p>
-      <p>Email: </p>
-      <p class="selectEl"><%= @current_user.email %></p>
-      </div>
+        <div class="backingDiv">
+                <div class="flexDiv botMar">
+                        <p class="medTxt">Name: </p>
+                        <p class="selectEl"><%= @current_user.first_name %> <%= @current_user.last_name %></p>
+                </div>
+                <div class="flexDiv botMar">
+                        <p class="medTxt">Email: </p>
+                        <p class="selectEl"><%= @current_user.email %></p>
+                </div>
+        </div>
 </div>

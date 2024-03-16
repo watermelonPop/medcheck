@@ -22,7 +22,7 @@ body{
 .todayScheduleWidgetDiv{
     background-color: #D8E2DC;
     border-radius: 10px;
-    width: 100%;
+    width: 90%;
     height: 100%;
     align-items: center;
     justify-content: center;
@@ -38,6 +38,8 @@ body{
   display: flex;
   width: 85vw;
   height: 50vh;
+  column-gap: 15px;
+  background-color: transparent;
 }
 
 .medicationsWidgetDiv{
@@ -64,12 +66,15 @@ body{
     background-color: #FFCAD4;
     border-radius: 10px;
     height: fit-content;
-    width: 85%;
+    width: 82%;
     align-self: center;
     margin-left: auto;
     margin-right: auto;
     align-items: center;
     margin-bottom: 25px;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .appTitleDiv {
@@ -212,7 +217,7 @@ body{
     }
 
     .medicationIconDiv{
-        width: 30%;
+        width: 20%;
         margin-left: 10px;
     }
 
@@ -223,7 +228,6 @@ body{
     }
 
     .medicationInfo {
-      margin-left: 10%; /* Add this line */
       margin-top: 10px;
       margin-bottom: 10px;
       height: fit-content;
@@ -253,13 +257,18 @@ body{
       margin: 0;
     }
 
+    .takeMedDiv, .takenMedDiv{
+      width: 20%;
+      height: 20%;
+    }
+
 
     @media only screen and (max-width: 768px) {
       .mobileDiv {
         flex-direction: column;
         height: auto; /* Change height to auto to accommodate vertical stacking */
         width: 90%;
-        height: 70%;
+        height: 60%;
       }
     
       .todayScheduleWidgetDiv,
@@ -287,6 +296,22 @@ body{
       .bottomLink{
         margin-left: 0;
         width: 100%;
+      }
+
+      .takeMedDiv, .takenMedDiv{
+        width: 50%;
+        height: 50%;
+      }
+
+      .medicationIconDiv{
+        width: 40px;
+        height: 40px;
+        margin-left: 10px;
+      }
+
+      .medicationIcon{
+        width: 30px;
+        height: 30px;
       }
 
     }

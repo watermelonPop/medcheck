@@ -35,3 +35,187 @@
         text-decoration: none;
         cursor: pointer;
     }
+
+    .backingDiv{
+        height: 50%;
+        width: 88%;
+        margin-bottom: 15px;
+        background-color: transparent;
+    }
+
+    .outerForm{
+        width: 100%;
+        height: 100%;
+    }
+
+    .formInfo{
+        display: flex;
+        width: 50%;
+        height: 100%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        overflow-y: scroll;
+        background-color: #D8E2DC;
+        border-radius: 10px;
+        color: black;
+    }
+
+    .innerFormInfo{
+        padding: 20px;
+    }
+
+    #doseField{
+        width: fit-content;
+    }
+
+    .outerSelectDiv{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        height: 42vh;
+        justify-content: space-between;
+        align-items: space-between
+    }
+
+    .createbtns{
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 30px;
+        font-family: "Gamja Flower", sans-serif;
+        font-weight: 400;
+        background-color: #9D8189;
+        border: none;
+        border-radius: 5px;
+        color: #FFE5D9;
+        text-decoration: none;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        height: fit-content;
+        width: 100%;
+        align-self: center;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        margin-top: 15px;
+      }
+      
+      .createbtns a{
+        text-decoration: none;
+      }
+      
+      .createbtns:hover{
+        background-color: #F4ACB7;
+        text-decoration: none;
+        color: black;
+      }
+      
+      .createbtns:focus{
+        background-color: #F4ACB7;
+        text-decoration: none;
+        color: black;
+      }
+
+      .shorterBtn{
+        width: 90%;
+      }
+
+      .outerDashboard{
+        padding-top: 0px;
+        height: 100%;
+        margin-top: 5%;
+      }
+
+      body{
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+      }
+
+      .flexDiv{
+        column-gap: 20px;
+      }
+
+      .selectEl{
+        width: 50%;
+      }
+
+      .colorSelect, .iconSelect{
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        height: 30%;
+      }
+
+      .colorSelect{
+        background-color: #FFCAD4;
+        border-radius: 10px;
+      }
+
+      .iconSelect{
+        background-color: #F4ACB7;
+        border-radius: 10px;
+      }
+
+      .colorDiv{
+        border-color: #FFE5D9;
+      }
+
+      .medicationIcon{
+        border: solid 2px #FFE5D9;
+        width: 30px;
+        height: 30px;
+      }
+
+      .innerSelect{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+
+
+      @media only screen and (max-width: 768px) {
+        .flexDiv{
+          flex-direction: column;
+        }
+
+        .formInfo, .outerSelectDiv{
+          width: 100%;
+        }
+
+        .formInfo{
+          height: 25vh;
+          overflow-y: scroll;
+          justify-content: center;
+        }
+
+        .outerSelectDiv{
+          display: flex;
+          flex-direction: row;
+          height: 25vh;
+        }
+
+        .colorSelect, .iconSelect{
+          width: 47%;
+          height: 25vh;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          padding-left: 0px;
+          padding-right: 0px;
+        }
+
+        .innerSelect{
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          margin: 10px;
+        }
+
+        .icons{
+          margin-left: 2px;
+          margin-right: 2px;
+        }
+      }

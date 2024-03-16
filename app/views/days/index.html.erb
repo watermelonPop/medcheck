@@ -1,0 +1,143 @@
+<%= stylesheet_link_tag "calendar", "data-turbo-track": "reload" %>
+<div id="desktop-content">
+  <div class="outerDashboard">
+      <%= link_to user_dashboard_index_path(@user), class: "widgetLink" do %>
+          <div class="appTitleDiv">
+                  <div class="center">
+                          <svg class="nonIcon" width="50px" height="50px" viewBox="0 0 32 32" data-name="Layer 2" id="Layer_2" xmlns="http://www.w3.org/2000/svg"><title/><path d="M11.17,10.23a33.37,33.37,0,0,0-3.05,3.13c-.51.62-1.28,1.3-1.21,2.17s.81,1.24,1.35,1.76a16.3,16.3,0,0,1,2.57,3.17c.86,1.36,3,.11,2.16-1.26a21.06,21.06,0,0,0-1.82-2.48A16.16,16.16,0,0,0,10,15.52c-.22-.21-.86-1.14-.68-.49l-.13,1a17.85,17.85,0,0,1,3.72-4c1.19-1.08-.58-2.85-1.77-1.76Z"/><path d="M9.4,17a109.13,109.13,0,0,0,12.53-.1c1.59-.11,1.61-2.61,0-2.5a109.13,109.13,0,0,1-12.53.1c-1.61-.07-1.6,2.43,0,2.5Z"/></svg>
+                          <p class="appTitle">HISTORY</p>
+                  </div>
+          </div>
+      <% end %>
+      <div class="mobileDiv">
+      <% counter = 0 %>
+        <%= month_calendar events: @taken_by_date, class: 'calendar' do |date, taken_by_date| %>
+          <div class="calendar-date">
+            <%= date.day %>
+          </div>
+          <ul class="events">
+            <% taken_by_date.each do |event| %>
+              <li class="event" onclick="showModal('<%= counter %>')">
+                <div class="event-medication" style="background-color: <% if event.taken %>#FFCAD4<% end %>;">
+                  <svg class="medicationIcon" viewBox="0 0 100 100" style="fill: <%= event.medication_schedule.medication.color %>;">
+                    <%= raw(event.medication_schedule.medication.icon)%>
+                  </svg>
+                  <%= event.medication_schedule.time.strftime("%l:%M %p") %>
+                </div>
+              </li>
+              <div class="modal-overlay" id="outerModal<%= counter %>">
+                  <div class="modal-content" id="innerModal<%= counter %>">
+                    <div onclick="closeModal('<%= counter %>')" style="cursor: pointer;">&#10005;</div>
+                      <h2><%= date.strftime("%B %e") %></h2>
+                      <div>
+                        <p><%= event.medication_schedule.medication.amount_taken %> <%= event.medication_schedule.medication.name %></p>
+                        <p>at <%= event.medication_schedule.time.strftime("%l:%M %p") %></p>
+                        <p><%= event.medication_schedule.medication.dose_amount %><%= event.medication_schedule.medication.dose_unit %></p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <% counter += 1 %>
+            <% end %>
+            <% if date > Date.today %>
+              <% get_all_medication_day_schedules(day_of_week: date.strftime("%A"), date_needed: date).each do |event| %>
+                <li class="untakenEvent" onclick="showModal('<%= counter %>')">
+                  <div class="event-medication" style="background-color: <% if event.taken %>#FFCAD4<% end %>; <% if !event.taken %>border: 2px solid #FFCAD4<% end %>;">
+                    <svg class="medicationIcon" viewBox="0 0 100 100" style="fill: <%= event.medication_schedule.medication.color %>;">
+                      <%= raw(event.medication_schedule.medication.icon)%>
+                    </svg>
+                    <%= event.medication_schedule.time.strftime("%l:%M %p") %>
+                  </div>
+                </li>
+                <div class="modal-overlay" id="outerModal<%= counter %>">
+                  <div class="modal-content" id="innerModal<%= counter %>">
+                    <div onclick="closeModal(<%= counter %>)" style="cursor: pointer;">&#10005;</div>
+                      <h2><%= date.strftime("%B %e") %></h2>
+                      <div>
+                        <p><%= event.medication_schedule.medication.amount_taken %> <%= event.medication_schedule.medication.name %></p>
+                        <p>at <%= event.medication_schedule.time.strftime("%l:%M %p") %></p>
+                        <p><%= event.medication_schedule.medication.dose_amount %><%= event.medication_schedule.medication.dose_unit %></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% counter+=1 %>
+              <% end %>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+  </div>
+</div>
+<div id="mobile-content-container">
+  <div class="outerDashboard">
+        <%= link_to user_dashboard_index_path(@user), class: "widgetLink" do %>
+            <div class="appTitleDiv">
+                    <div class="center">
+                            <svg class="nonIcon" width="50px" height="50px" viewBox="0 0 32 32" data-name="Layer 2" id="Layer_2" xmlns="http://www.w3.org/2000/svg"><title/><path d="M11.17,10.23a33.37,33.37,0,0,0-3.05,3.13c-.51.62-1.28,1.3-1.21,2.17s.81,1.24,1.35,1.76a16.3,16.3,0,0,1,2.57,3.17c.86,1.36,3,.11,2.16-1.26a21.06,21.06,0,0,0-1.82-2.48A16.16,16.16,0,0,0,10,15.52c-.22-.21-.86-1.14-.68-.49l-.13,1a17.85,17.85,0,0,1,3.72-4c1.19-1.08-.58-2.85-1.77-1.76Z"/><path d="M9.4,17a109.13,109.13,0,0,0,12.53-.1c1.59-.11,1.61-2.61,0-2.5a109.13,109.13,0,0,1-12.53.1c-1.61-.07-1.6,2.43,0,2.5Z"/></svg>
+                            <p class="appTitle">HISTORY</p>
+                    </div>
+            </div>
+        <% end %>
+        <div class="mobileDiv" id="backing">
+          <div class="mobile-calendarDisplay">
+            <%= month_calendar do |date| %>
+              <div class="mobile-calendar-date" onclick="updateSchedule('<%= session[:user_id] %>', '<%= date %>')">
+                <%= date.day %>
+              </div>
+            <% end %>
+          </div>
+          <div class="mobile-scheduleDisplay" id="mobileSched">
+          </div>
+        </div>
+  </div>
+</div>
+
+<script>
+    function resize(){
+      if (window.innerWidth < 768) {
+        document.getElementById("desktop-content").style.display = "none";
+        document.getElementById("mobile-content-container").style.display = "block";
+      } else {
+        document.getElementById("desktop-content").style.display = "block";
+        document.getElementById("mobile-content-container").style.display = "none";
+      }
+    }
+    window.onload = resize();
+    window.addEventListener('resize', function() {
+      // Your code here
+      resize();
+    });
+
+    function showModal(num){
+      document.getElementById("outerModal" + num).style.display = "flex";
+      document.getElementById("innerModal" + num).style.display = "block";
+    }
+
+    function closeModal(num){
+      document.getElementById("outerModal" + num).style.display = "none";
+      document.getElementById("innerModal" + num).style.display = "none";
+    }
+
+    function updateSchedule(userId, selectedDay) {
+      var scheduleDiv = document.getElementById("mobileSched");
+      document.getElementById("backing").style.backgroundColor = "#D8E2DC"
+      //alert(document.getElementById("backing").style.backgroundColor);
+      // Make an AJAX request to fetch the schedule data
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+              var scheduleData = xhr.responseText;
+
+              // Update the scheduleDiv with the retrieved data
+              scheduleDiv.innerHTML = scheduleData;
+      }
+      };
+      xhr.open("GET", "/users/" + userId + "/day_history/" + selectedDay, true);
+      xhr.send();
+    }
+
+
+</script>
+
+
