@@ -21,44 +21,4 @@
       <%= yield %>
     </div>
   </body>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-          .then(registration => {
-            console.log('Service Worker registered:', registration);
-          })
-          .catch(error => {
-            console.error('Service Worker registration failed:', error);
-          });
-      });
-    }
-  </script>
-  <script>
-    let deferredInstallPrompt;
-
-    window.addEventListener('beforeinstallprompt', (event) => {
-      console.log('beforeinstallprompt event fired');
-      event.preventDefault();
-      deferredInstallPrompt = event;
-      const installButton = document.getElementById('installButton');
-      installButton.style.display = 'block';
-      installButton.addEventListener('click', installPWA);
-    });
-    
-    function installPWA() {
-      console.log('Button clicked - Installing PWA');
-      if (deferredInstallPrompt) {
-        deferredInstallPrompt.prompt();
-        deferredInstallPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the installation prompt');
-          } else {
-            console.log('User dismissed the installation prompt');
-          }
-          deferredInstallPrompt = null;
-        });
-      }
-    }
-  </script>
 </html>
