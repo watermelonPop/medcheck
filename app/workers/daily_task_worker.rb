@@ -8,11 +8,10 @@ class DailyTaskWorker
                 yesterday_schedules = get_yesterday_schedules
 
                 yesterday_schedules.each do |schedule|
-                        if(schedule.taken == true):
+                        if(schedule.taken == true)
                                 schedule.update(taken: false)
                         else
-                                DaysTaken.create(date_taken: (Date.today - 1), schedule: schedule, false)
-
+                                DaysTaken.create(date_taken: (Date.today - 1), schedule: schedule, taken: false)
                         end
                 end
         end
