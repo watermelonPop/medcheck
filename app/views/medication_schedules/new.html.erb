@@ -84,18 +84,21 @@
         function updateSchedule(selectedDay) {
                 var scheduleDiv = document.querySelector(".newScheduleDiv");
 
-                // Make an AJAX request to fetch the schedule data
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                        var scheduleData = xhr.responseText;
-
+                // Make a fetch request to fetch the schedule data
+                fetch("/users/" + userId + "/medications/" + medName + "/get_medication_schedules/" + selectedDay)
+                        .then(response => {
+                        if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                        })
+                        .then(scheduleData => {
                         // Update the scheduleDiv with the retrieved data
                         scheduleDiv.innerHTML = scheduleData;
-                }
-                };
+                        })
+                        .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                        });
 
-                xhr.open("GET", "/users/" + userId + "/medications/" + medName + "/get_medication_schedules/" + selectedDay, true);
-                xhr.send();
         }
 </script>

@@ -122,19 +122,21 @@
     function updateSchedule(userId, selectedDay) {
       var scheduleDiv = document.getElementById("mobileSched");
       document.getElementById("backing").style.backgroundColor = "#D8E2DC"
-      //alert(document.getElementById("backing").style.backgroundColor);
-      // Make an AJAX request to fetch the schedule data
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-              var scheduleData = xhr.responseText;
 
-              // Update the scheduleDiv with the retrieved data
-              scheduleDiv.innerHTML = scheduleData;
-      }
-      };
-      xhr.open("GET", "/users/" + userId + "/day_history/" + selectedDay, true);
-      xhr.send();
+      fetch("/users/" + userId + "/day_history/" + selectedDay)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(scheduleData => {
+            // Update the scheduleDiv with the retrieved data
+            scheduleDiv.innerHTML = scheduleData;
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
     }
 
 
