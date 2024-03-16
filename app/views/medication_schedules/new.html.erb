@@ -53,7 +53,7 @@
                                 <p class="widgetText">Time: <%= form.time_field :time, class: 'selectEl' %></p>
                         </div>
                 </div>
-                <%= form.submit "CREATE", class: "createbtns" %>
+                <%= form.submit "CREATE", class: "createbtns", onclick: "reroute()" %>
         <% end %>
 </div>
 
@@ -100,5 +100,9 @@
                         console.error('There was a problem with the fetch operation:', error);
                         });
 
+        }
+
+        function reroute(){
+                location.reload();
         }
 </script>
