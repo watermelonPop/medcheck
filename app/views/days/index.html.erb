@@ -81,7 +81,7 @@
         <% end %>
         <div class="mobileDiv" id="backing">
           <div class="mobile-calendarDisplay">
-            <%= month_calendar do |date| %>
+            <%= month_calendar(previous_text: '<', next_text: '>', today_text: 'Today') do |date| %>
               <div class="mobile-calendar-date" onclick="updateSchedule('<%= session[:user_id] %>', '<%= date %>')">
                 <%= date.day %>
               </div>
@@ -94,6 +94,15 @@
 </div>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.calendar-heading nav a').forEach(function(button) {
+        if(button.textContent == "Previous"){
+          button.textContent = '<';
+        }else if(button.textContent == "Next"){
+          button.textContent = '>';
+        }
+      });
+    });
     function resize(){
       if (window.innerWidth < 768) {
         document.getElementById("desktop-content").style.display = "none";

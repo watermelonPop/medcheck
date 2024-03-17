@@ -144,13 +144,14 @@
             width: 90%;
             row-gap: 0px;
             column-gap: 0px;
-            font-size: 20px;
+            font-size: 14px;
+            background-color: aliceblue;
           }
 
           .day {
             border-style: none;
             vertical-align: top;
-            width: 8%; /* 100 / 7 */
+            width: 4% !important;
             height: fit-content;
             cursor: pointer;
           }
@@ -171,11 +172,14 @@
           }
 
           nav a{
-            font-size: 20px;
+            font-size: 15px;
+            margin-left: 0px;
+            margin-right: 0px;
           }
 
           .calendar-title{
             font-size: 30px;
+            
           }
 
           .mobile-calendarDisplay{

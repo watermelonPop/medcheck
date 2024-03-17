@@ -54,7 +54,7 @@
                                 <p class="widgetText">Time: <%= form.time_field :time, class: 'selectEl' %></p>
                         </div>
                 </div>
-                <%= form.submit "CREATE", class: "createbtns", onclick: "reroute()" %>
+                <%= form.submit "CREATE", class: "createbtns", onclick: "redirect()" %>
         <% end %>
 </div>
 
@@ -103,7 +103,27 @@
 
         }
 
-        function reroute(){
+        function redirect(){
                 location.reload();
+        }
+
+        function showModal(num){
+        document.getElementById("outerModal" + num).style.display = "flex";
+        document.getElementById("innerModal" + num).style.display = "block";
+        }
+
+        function closeModal(num){
+        document.getElementById("outerModal" + num).style.display = "none";
+        document.getElementById("innerModal" + num).style.display = "none";
+        }
+
+        function showDeleteModal(num){
+        document.getElementById("deleteOuterModal" + num).style.display = "flex";
+        document.getElementById("deleteInnerModal" + num).style.display = "block";
+        }
+
+        function closeDeleteModal(num){
+        document.getElementById("deleteOuterModal" + num).style.display = "none";
+        document.getElementById("deleteInnerModal" + num).style.display = "none";
         }
 </script>

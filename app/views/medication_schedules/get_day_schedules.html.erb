@@ -54,7 +54,7 @@
             <div class="modal-content" id="deleteInnerModal<%=counter%>"> 
                 <div onclick="closeDeleteModal('<%=counter%>')" style="cursor: pointer; text-align: right;">&#10005;</div>      
                 <div class="modalTitleDiv botMar"><p class="largeTxt">Delete Schedule?</p></div>
-                <%= link_to 'Delete', "/users/#{session[:user_id]}/medications/#{schedule[:medication].name}/medication_schedules/#{schedule[:schedule].id}", method: :delete,class: "modalBtnDiv smallTxt widgetLink blackLink" %>
+                <%= link_to 'Delete', "/users/#{session[:user_id]}/medications/#{schedule[:medication].name}/medication_schedules/#{schedule[:schedule].id}", method: :delete,class: "modalBtnDiv smallTxt widgetLink blackLink", onclick: "redirect()" %>
             </div>
         </div>
         <% counter += 1 %>
