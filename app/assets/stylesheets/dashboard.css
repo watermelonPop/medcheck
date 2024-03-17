@@ -324,7 +324,7 @@ body{
         height: 30px;
       }
 
-      .widgetLink:focus, .widgetLink:active{
+      .widgetLink:focus, .widgetLink:active, .widgetLink:visited{
         outline: 0;
         border: none;
         -moz-outline-style: none;
