@@ -38,7 +38,7 @@
                 <p class="widgetText">Icon: </p>
                 <div class="innerSelect">
                   <% icons.each do |icon| %>
-                    <div class="icons" data-value="<%= icon[1] %>">
+                    <div class="icons" data-value="<%= icon[1] %>" onclick="tester()">
                       <svg class="medicationIcon" viewBox="0 0 100 100" style="fill: <%= @medication.color %>;">
                           <%= raw(icon[1]) %>
                       </svg>
@@ -118,6 +118,10 @@
           });
       }
     });
+
+    function tester(){
+      alert("testing");
+    }
       
     function updateIcon(selectedIcon){
         console.log("Selected Icon: ", selectedIcon); 
