@@ -24,10 +24,10 @@
               <p class="widgetText botMar">
                 Dose: <%= form.number_field :dose_amount, class: 'selectEl' %>
                 <%= form.select :dose_unit, options_for_select([
-                                          ['mg', '1'],
-                                          ['g', '2'],
-                                          ['mcg', '3'],
-                                          ['mL', '4']]), {}, class: 'selectEl', id: 'doseField' %>
+                                          ['mg', 'mg'],
+                                          ['g', 'g'],
+                                          ['mcg', 'mcg'],
+                                          ['mL', 'mL']]), {}, class: 'selectEl', id: 'doseField' %>
               </p>
               <p class="widgetText botMar"># Left: <%= form.number_field :amount_left, class: 'selectEl' %></p>
               <p class="widgetText botMar">Last Picked Up: <%= form.date_field :last_picked_up, class: 'selectEl' %></p>
