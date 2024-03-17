@@ -4,6 +4,7 @@ class MedicationSchedulesController < ApplicationController
     def create
         @user = current_user
         @medication = @user.medications.find_by(name: params[:medication_name])
+        puts "CREATE PARAMS: " + medication_schedule_params.to_s
         @medication_schedule = @medication.medication_schedules.build(medication_schedule_params)
 
         respond_to do |format|
