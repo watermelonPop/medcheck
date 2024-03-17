@@ -156,7 +156,7 @@
 
         .blockDiv{
           display: block;
-          width: 50%;
+          width: fit-content;
         }
 
       }

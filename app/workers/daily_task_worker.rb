@@ -23,7 +23,7 @@ class DailyTaskWorker
                 yesterday = (Time.now - 1.day).strftime('%A')
         
                 @user.medications.each do |medication|
-                    medication_schedules = medication.medication_schedules.joins(:day_of_week).where("day_of_weeks.name = ?", yesterday)
+                    medication_schedules = medication.medication_schedules.joins(:day_of_week).where("day_of_weeks.name = ? OR day_of_weeks.name = ?", yesterday, "Everyday")
                     medication_schedules.each do |schedule|
                       @yesterday_schedules << { medication: medication, schedule: schedule }
                     end

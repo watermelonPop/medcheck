@@ -7,7 +7,7 @@ class DashboardController < ApplicationController
         current_day_of_week = Time.now.strftime('%A')
 
         @user.medications.each do |medication|
-            medication_schedules = medication.medication_schedules.joins(:day_of_week).where("day_of_weeks.name = ?", current_day_of_week)
+            medication_schedules = medication.medication_schedules.joins(:day_of_week).where("day_of_weeks.name = ? OR day_of_weeks.name = ?", current_day_of_week, "Everyday")
 
             medication_schedules.each do |schedule|
               @current_day_schedules << { medication: medication, schedule: schedule }

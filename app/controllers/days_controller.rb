@@ -38,7 +38,7 @@ class DaysController < ApplicationController
     @current_day = params[:day_of_week]
     @current_day_schedules = []
 
-    medication_schedules = @medication.medication_schedules.joins(:day_of_week).where("day_of_weeks.name = ?", @current_day)
+    medication_schedules = @medication.medication_schedules.joins(:day_of_week).where("day_of_weeks.name = ? OR day_of_weeks.name = ?", @current_day, "Everyday")
     medication_schedules = medication_schedules.sort_by { |schedule| schedule.time.strftime("%H:%M") }
     medication_schedules.each do |schedule|
         @current_day_schedules << { medication: @medication, schedule: schedule }
