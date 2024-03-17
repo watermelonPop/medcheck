@@ -14,7 +14,7 @@ class MedicationSchedulesController < ApplicationController
                 format.html { redirect_to user_medication_path(user_id: session[:user_id], name: @medication.name), alert: "Failed to create medication schedule." }
             else
                 puts "CREATED WENT THROUGH"
-                redirect_to user_medications_path(@user)
+                 format.html{ redirect_to user_medications_path(@user) }
             end
         end
     end
