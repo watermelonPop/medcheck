@@ -14,7 +14,7 @@ class MedicationSchedulesController < ApplicationController
                 format.html { redirect_to user_medication_path(user_id: session[:user_id], name: @medication.name), alert: "Failed to create medication schedule." }
             else
                 puts "CREATED WENT THROUGH"
-                 format.html{ redirect_to user_medications_path(@user) }
+                 format.html{ user_medication_medication_schedules_path(@user, @medication.name) }
             end
         end
     end
@@ -41,7 +41,7 @@ class MedicationSchedulesController < ApplicationController
         @medication_schedule = @medication.medication_schedules.find(params[:id])
     
         if @medication_schedule.destroy
-          redirect_to user_medication_path(user_id: session[:user_id], name: @medication.name),
+          redirect_to user_medication_medication_schedules_path(@user, @medication.name),
             notice: "Medication schedule was successfully deleted."
         else
           redirect_to user_medication_path(user_id: session[:user_id], name: @medication.name),
