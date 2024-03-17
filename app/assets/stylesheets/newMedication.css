@@ -1,6 +1,7 @@
 .medicationIcon{
         width: 15px;
         height: 15px;
+        border: solid 2px #FFE5D9;
 }
 
 .iconSelect{
