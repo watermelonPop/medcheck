@@ -28,4 +28,7 @@ body{
     a:focus {
         outline: none;
     }
+    * {
+        touch-action: manipulation;
+    }
 }

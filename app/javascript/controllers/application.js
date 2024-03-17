@@ -7,5 +7,8 @@ application.debug = false
 window.Stimulus   = application
 
 document.addEventListener("touchstart", function(){}, true);
-
+document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+    }, false);
+    
 export { application }
