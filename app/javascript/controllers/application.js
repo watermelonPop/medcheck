@@ -6,4 +6,6 @@ const application = Application.start()
 application.debug = false
 window.Stimulus   = application
 
+document.addEventListener("touchstart", function(){}, true);
+
 export { application }
