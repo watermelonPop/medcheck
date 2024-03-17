@@ -94,6 +94,17 @@
                   var selectedIcon = this.dataset.value;
                   updateIcon(selectedIcon);
           });
+          iconList[i].addEventListener("touchstart", function() {
+                  for (var j = 0; j < iconList.length; j++) {
+                    iconList[j].style.border = "solid 2px #FFE5D9";
+                  }
+
+                  // Add the currentDay class to the clicked circleDay div
+                  this.style.border = "solid 2px black";
+
+                  var selectedIcon = this.dataset.value;
+                  updateIcon(selectedIcon);
+          });
       }
 
       var colors = ["#bf4f51", "#609078", "#6ca0dc", "#13274f", "#663046"];
@@ -104,6 +115,18 @@
       
       for (var i = 0; i < colorList.length; i++) {
           colorList[i].addEventListener("click", function() {
+                  for (var j = 0; j < colorList.length; j++) {
+                    colorList[j].style.borderColor = "#FFE5D9";
+                  }
+
+                  // Add the currentDay class to the clicked circleDay div
+                  this.style.borderColor = "black";
+
+                  var newSelectedColor = this.style.backgroundColor;
+                  updateColor(newSelectedColor);
+                  changeIconColor(newSelectedColor);
+          });
+          colorList[i].addEventListener("touchstart", function() {
                   for (var j = 0; j < colorList.length; j++) {
                     colorList[j].style.borderColor = "#FFE5D9";
                   }
