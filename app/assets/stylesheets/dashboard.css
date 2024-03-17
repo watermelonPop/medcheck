@@ -324,8 +324,11 @@ body{
         height: 30px;
       }
 
-      .widgetLink:focus{
-        outline: none;
+      .widgetLink:focus, .widgetLink:active{
+        outline: 0;
+        border: none;
+        -moz-outline-style: none;
+        box-shadow: none;
       }
 
     }
