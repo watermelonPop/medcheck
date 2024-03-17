@@ -324,4 +324,8 @@ body{
         height: 30px;
       }
 
+      .widgetLink:focus{
+        outline: none;
+      }
+
     }
