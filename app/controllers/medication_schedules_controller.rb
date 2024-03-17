@@ -6,6 +6,17 @@ class MedicationSchedulesController < ApplicationController
         @medication = @user.medications.find_by(name: params[:medication_name])
         puts "CREATE PARAMS: " + medication_schedule_params.to_s
         @medication_schedule = @medication.medication_schedules.build(medication_schedule_params)
+
+        respond_to do |format|
+            if !@medication_schedule.save
+                puts "NOT SAVE"
+                puts @medication_schedule.errors.inspect
+                format.html { redirect_to user_medication_path(user_id: session[:user_id], name: @medication.name), alert: "Failed to create medication schedule." }
+            else
+                puts "CREATED WENT THROUGH"
+                redirect_to user_medications_path(@user)
+            end
+        end
     end
 
     def new
