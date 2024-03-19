@@ -82,7 +82,7 @@
         <div class="mobileDiv" id="backing">
           <div class="mobile-calendarDisplay">
             <%= month_calendar do |date| %>
-              <div class="mobile-calendar-date" onclick="updateSchedule(this, '<%= session[:user_id] %>', '<%= date %>')">
+              <div id="<%= date.strftime("%Y%b%d") %>" class="mobile-calendar-date" onclick="updateSchedule(this, '<%= session[:user_id] %>', '<%= date %>')" data-user="<%= session[:user_id] %>" data-date="<%= date %>">
                 <%= date.day %>
               </div>
             <% end %>
@@ -102,6 +102,14 @@
           button.textContent = '>';
         }
       });
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = date.toLocaleString('default', { month: 'short' }); // Get abbreviated month name
+      const day = date.getDate();
+
+      let todayId = year + month + day;
+      let idEl = document.getElementById(todayId);
+      updateSchedule(idEl, idEl.dataset.user, idEl.dataset.date);
     });
     function resize(){
       if (window.innerWidth < 768) {
