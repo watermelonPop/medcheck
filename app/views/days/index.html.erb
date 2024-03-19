@@ -81,8 +81,8 @@
         <% end %>
         <div class="mobileDiv" id="backing">
           <div class="mobile-calendarDisplay">
-            <%= month_calendar(previous_text: '<', next_text: '>', today_text: 'Today') do |date| %>
-              <div class="mobile-calendar-date" onclick="updateSchedule('<%= session[:user_id] %>', '<%= date %>')">
+            <%= month_calendar do |date| %>
+              <div class="mobile-calendar-date" onclick="updateSchedule(this, '<%= session[:user_id] %>', '<%= date %>')">
                 <%= date.day %>
               </div>
             <% end %>
@@ -128,7 +128,13 @@
       document.getElementById("innerModal" + num).style.display = "none";
     }
 
-    function updateSchedule(userId, selectedDay) {
+    function updateSchedule(dateElement, userId, selectedDay) {
+      dateElementList = document.querySelectorAll('.mobile-calendar-date').forEach(function(element){
+        element.style.backgroundColor = "#F4ACB7";
+        element.style.color = "black";
+      });
+      dateElement.style.backgroundColor = "#9D8189";
+      dateElement.style.color = "#FFE5D9";
       var scheduleDiv = document.getElementById("mobileSched");
       document.getElementById("backing").style.backgroundColor = "#D8E2DC"
 

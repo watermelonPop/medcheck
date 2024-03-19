@@ -112,13 +112,8 @@ class MedicationSchedulesController < ApplicationController
         date_taken = Date.today
         puts "DATE TAKEN: #{date_taken}"
         
-        days_taken = @user.days_taken.create(date_taken: date_taken, medication_schedule_id: @medication_schedule.id, taken: true)
-        if days_taken.valid?
-            puts "DAYS TAKEN CREATED"
-        else
-            puts "ERROR CREATING DAYS TAKEN"
-            puts days_taken.errors.full_messages.inspect
-        end
+        days_taken = @user.days_taken.find_by(date_taken: date_taken, medication_schedule_id: @medication_schedule.id)
+        days_taken.update(taken: true)
         puts "END"
     end
 
@@ -133,11 +128,7 @@ class MedicationSchedulesController < ApplicationController
         all_days_taken = DaysTaken.all
         puts "ALL DAYS: " + all_days_taken.length.to_s
         taken_today = DaysTaken.find_by(date_taken: Date.today, medication_schedule: @medication_schedule, taken: true)
-        if taken_today.present?
-            puts "DESTROYED"
-            taken_today.destroy
-        end
-        puts "END UNTAKE"
+        taken_today.update(taken: false)
     end
 
 
