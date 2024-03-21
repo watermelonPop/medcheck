@@ -10,11 +10,11 @@ class DailyTaskWorker
                         puts "TODAYS SCHEDULES: "
                         today_schedules.each do |schedule|
                                 puts "SCHEDULE: " + schedule.to_s
-                                if(schedule.taken == true)
+                                if(schedule[:schedule].taken == true)
                                         puts "WAS TAKEN"
-                                        schedule.update(taken: false)
+                                        schedule[:schedule].update(taken: false)
                                 end
-                                user.days_taken.create(date_taken: Date.today, schedule: schedule, taken: false)
+                                user.days_taken.create(date_taken: Date.today, schedule: schedule[:schedule], taken: false)
                                 puts "NEW DAYS TAKEN CREATED"
                         end
                 end
