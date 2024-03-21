@@ -14,7 +14,7 @@ class DailyTaskWorker
                                         puts "WAS TAKEN"
                                         schedule[:schedule].update(taken: false)
                                 end
-                                user.days_taken.create(date_taken: Date.today, schedule: schedule[:schedule], taken: false)
+                                user.days_taken.create(date_taken: Date.today, medication_schedule_id: schedule[:schedule].id, taken: false)
                                 puts "NEW DAYS TAKEN CREATED"
                         end
                 end
