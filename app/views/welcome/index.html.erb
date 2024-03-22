@@ -1,5 +1,15 @@
 <%= stylesheet_link_tag "login", "data-turbo-track": "reload" %>
-
+<head>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(function(OneSignal) {
+        OneSignal.init({
+        appId: "90311568-0504-428b-9c92-0b1dda7bea46",
+        });
+    });
+    </script>
+</head>
 <div class="container">
     <div class="appTitleDiv">
         <p class="appTitle">medcheck</p>
