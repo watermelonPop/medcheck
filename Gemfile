@@ -48,6 +48,7 @@ gem "bootsnap", require: false
 
 gem "simple_calendar"
 gem 'sidekiq'
+gem 'sidekiq-client-cli'
 gem 'whenever', '~> 0.9.4'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
