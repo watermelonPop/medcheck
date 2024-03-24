@@ -50,6 +50,7 @@ gem "simple_calendar"
 gem 'sidekiq'
 gem 'sidekiq-client-cli'
 gem 'whenever', '~> 0.9.4'
+gem 'onesignal', '~> 1.0.1'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
