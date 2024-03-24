@@ -28,4 +28,5 @@ Rails.application.routes.draw do
   get '/users/:user_id/today', to: 'medication_schedules#get_current_day_schedules', as: 'today'
   get '/users/:user_id/medications/:medication_name/get_medication_schedules/:day_of_week', to: 'medication_schedules#get_day_schedules', as: 'get-day-schedule'
   get '/users/:user_id/day_history/:date_needed', to: 'days#get_history_day_schedules', as: 'get-day-history'
+  get '/OneSignalSDKWorker.js', to: 'service_workers#onesignal_sdk_worker'
 end
