@@ -8,7 +8,7 @@ namespace :onesignal do
           # Ensure that your OneSignal gem initializer has already set the app_id
       
           # Create a new OneSignal::Notification object with the configured app_id
-          notification = OneSignal::Notification.new({ app_id: OneSignal::OneSignal.configuration.app_id, included_segments: ['All'] })
+          notification = OneSignal::Notification.new({ app_id: OneSignal.configuration.app_id, included_segments: ['All'] })
       
           # Customize your notification as needed
           notification.contents = { en: "Hello, World!" }
