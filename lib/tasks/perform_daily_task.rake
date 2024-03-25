@@ -3,5 +3,6 @@ namespace :tasks do
         task perform_daily_task: :environment do
           DailyTaskWorker.perform_async
           puts "Daily task enqueued successfully."
+          system("bundle exec sidekiq")
         end
 end
