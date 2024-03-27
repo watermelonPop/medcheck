@@ -1,5 +1,5 @@
 namespace :onesignal do
-        desc "Send notification using OneSignal"
+        desc "Send individual notification using OneSignal"
         task schedule_notifications: :environment do
           # Load the Rails environment
           require 'onesignal'

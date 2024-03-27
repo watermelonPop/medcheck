@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
 
   # GET /auth/google_oauth2/callback
   def omniauth
+    require 'onesignal'
     auth = request.env['omniauth.auth']
     @user = User.find_or_create_by(uid: auth['uid'], provider: auth['provider']) do |u|
       u.email = auth['info']['email']
@@ -18,18 +19,7 @@ class SessionsController < ApplicationController
     end
     
     if @user.valid?
-      url = URI("https://api.onesignal.com/apps/90311568-0504-428b-9c92-0b1dda7bea46/users")
-
-      http = Net::HTTP.new(url.host, url.port)
-      http.use_ssl = true
-
-      request = Net::HTTP::Post.new(url)
-      request["accept"] = 'application/json'
-      request["content-type"] = 'application/json'
-      request.body = "{\"identity\":{\"external_id\":\"#{@user.id}\"}}"
-
-      response = http.request(request)
-      puts response.read_body
+      OneSignal.login(@user.id.to_s)
       set_session
     else
       redirect_to welcome_path, alert: 'Login failed.'
