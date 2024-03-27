@@ -18,7 +18,18 @@ class SessionsController < ApplicationController
     end
     
     if @user.valid?
-      OneSignal::Player.create(app_id: '90311568-0504-428b-9c92-0b1dda7bea46', identifier: @user.id)
+      url = URI("https://api.onesignal.com/apps/90311568-0504-428b-9c92-0b1dda7bea46/users")
+
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+
+      request = Net::HTTP::Post.new(url)
+      request["accept"] = 'application/json'
+      request["content-type"] = 'application/json'
+      request.body = "{\"identity\":{\"external_id\":\"#{@user.id}\"}}"
+
+      response = http.request(request)
+      puts response.read_body
       set_session
     else
       redirect_to welcome_path, alert: 'Login failed.'
