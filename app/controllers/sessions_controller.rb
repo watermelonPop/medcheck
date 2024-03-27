@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
     end
     
     if @user.valid?
-      OneSignal.login(@user.id)
+      OneSignal::Player.create(app_id: '90311568-0504-428b-9c92-0b1dda7bea46', identifier: @user.id)
       set_session
     else
       redirect_to welcome_path, alert: 'Login failed.'
