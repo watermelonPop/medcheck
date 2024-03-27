@@ -15,7 +15,7 @@ namespace :onesignal do
           users.each do |user_id|
             # Create a new OneSignal::Notification object with the configured app_id
             puts "USER ID: " + user_id.to_s
-            notification = OneSignal::Notification.new({ app_id: '90311568-0504-428b-9c92-0b1dda7bea46', include_external_user_ids: [user_id], is_any_web: true })
+            notification = OneSignal::Notification.new({ app_id: '90311568-0504-428b-9c92-0b1dda7bea46', include_external_user_ids: [user_id.to_s], is_any_web: true })
             
             # Customize your notification as needed
             notification.contents = { en: "Hello, User #{user_id}! This is a personalized message." }
