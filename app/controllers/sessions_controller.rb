@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
     end
     
     if @user.valid?
+      OneSignal.login(@user.id)
       set_session
     else
       redirect_to welcome_path, alert: 'Login failed.'
