@@ -1,0 +1,45 @@
+<div id="<%= dom_id medication %>">
+  <p>
+    <strong>Name:</strong>
+    <%= medication.name %>
+  </p>
+
+  <p>
+    <strong>Dose amount:</strong>
+    <%= medication.dose_amount %>
+  </p>
+
+  <p>
+    <strong>Dose unit:</strong>
+    <%= medication.dose_unit %>
+  </p>
+
+  <p>
+    <strong>Amount taken:</strong>
+    <%= medication.amount_taken %>
+  </p>
+
+  <p>
+    <strong>Amount left:</strong>
+    <%= medication.amount_left %>
+  </p>
+
+  <p>
+    <strong>Last picked up:</strong>
+    <%= medication.last_picked_up %>
+  </p>
+
+  <p>
+    <strong>Icon:</strong>
+    <%= raw medication.icon %>
+  </p>
+
+  <p>
+    <strong>Color:</strong>
+    <div style="background-color: <%= medication.color %>; width: 15px; height: 15px;">
+    </div>
+    
+  </p>
+
+
+</div>

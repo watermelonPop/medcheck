@@ -1,0 +1,96 @@
+<script>
+        function setLabels(){
+                let scanElement = document.getElementById("scan");
+                let value = scanElement.innerHTML;
+                value = value.replaceAll("Previous", "<");
+                value = value.replaceAll("Next", ">");
+                value = value.replaceAll("Sun", "U");
+                value = value.replaceAll("Mon", "M");
+                value = value.replaceAll("Tue", "T");
+                value = value.replaceAll("Wed", "W");
+                value = value.replaceAll("Thu", "R");
+                value = value.replaceAll("Fri", "F");
+                value = value.replaceAll("Sat", "S");
+                scanElement.innerHTML = value;
+        }
+        setLabels();
+</script>
+<html>
+<div class="backingDivDash">
+        <div class="titleDivDash">
+                <p class="dashTitle">HISTORY</p>
+        </div>
+        <div class="outerViewCal" id="scan">
+                <%= month_calendar do |date| %>
+                                <p class="tinyDate" <% if @user %>data-user-id="<%= @user.id %>"<% end %> data-date="<%= date %>" <% if date.year == Date.today.year && date.month == Date.today.month && date.day == Date.today.day %>style="background-color: #9D8189;"<% end %> onclick="selectDay(this)">
+                                        <%= date.strftime("%d") %>
+                                </p>
+                <% end %>
+        </div>
+        <div class="innerDetailsCal" id="details">
+        </div>
+</div>
+</html>
+<script>
+        function setLabels(){
+                let scanElement = document.getElementById("scan");
+                let value = scanElement.innerHTML;
+                value = value.replaceAll("Previous", "<");
+                value = value.replaceAll("Next", ">");
+                value = value.replaceAll("Sun", "U");
+                value = value.replaceAll("Mon", "M");
+                value = value.replaceAll("Tue", "T");
+                value = value.replaceAll("Wed", "W");
+                value = value.replaceAll("Thu", "R");
+                value = value.replaceAll("Fri", "F");
+                value = value.replaceAll("Sat", "S");
+                scanElement.innerHTML = value;
+        }
+        setLabels();
+        let list = document.querySelectorAll(".calendar-heading nav a");
+        for(let i = 0; i < list.length; i++){
+                list[i].addEventListener("click", function() {
+                        setLabels();
+                })
+        }
+
+        let dates = document.getElementsByClassName("tinyDate");
+        let today = new Date();
+        today.setHours(0, 0, 0, 0);
+        for(let i = 0; i < dates.length; i++){
+                let currDate = new Date(Date.parse(dates[i].dataset.date));
+                currDate.setHours(0, 0, 0, 0);
+                if(currDate.getTime() == today.getTime()){
+                        selectDay(dates[i]);
+                }
+        }
+
+        function selectDay(element){
+                let listDays = document.getElementsByClassName("tinyDate");
+                for(let i = 0; i < listDays.length; i++){
+                        listDays[i].style.borderColor = "#D8E2DC";
+                }
+                element.style.borderColor = "black"
+                let d = element.dataset.date;
+                let userId = element.dataset.userId;
+                loadDetails(userId, d);
+        }
+
+        function loadDetails(userId, date){
+                fetch("/users/" + userId + "/history/get_date/" + date)
+                .then(response => {
+                if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                }
+                return response.text();
+                })
+                .then(data => {
+                        // Update the scheduleDiv with the retrieved data
+                        document.getElementById("details").innerHTML = data;
+                })
+                .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+
+</script>

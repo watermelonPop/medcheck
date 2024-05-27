@@ -1,0 +1,28 @@
+<div class="outerHist">
+        <p class="historyDate"><%= Date.parse(@date).strftime("%a, %b %e") %></p>
+        <div class="histScroll">
+                <hr class="schedDivider">
+                <% @days_taken.each do |day| %>
+                        <div class="innerHist">
+                                <p>
+                                        <%= MedicationSchedule.find_by(id: day.medication_schedule_id).medication.name %>
+                                </p>
+                                <p>
+                                        <%= MedicationSchedule.find_by(id: day.medication_schedule_id).medication.dose_amount %>
+                                        <%= MedicationSchedule.find_by(id: day.medication_schedule_id).medication.dose_unit %>
+                                </p>
+                                <p>
+                                <%= MedicationSchedule.find_by(id: day.medication_schedule_id).time.strftime("%l:%M %p") %>
+                                </p>
+                                <p>
+                                        <% if day.taken %>
+                                                <i class="fa-solid fa-circle-check"></i>
+                                        <% else %>
+                                                <i class="fa-regular fa-circle"></i>
+                                        <% end %>
+                                </p>
+                        </div>
+                        <hr class="schedDivider">
+                <% end %>
+        </div>
+</div>

@@ -13,3 +13,984 @@
  *= require_tree .
  *= require_self
  */
+
+ body{
+        background-color: #FFE5D9;
+        height: 100vh;
+        width: 100vw;
+        margin: 0px;
+        overflow: hidden;
+ }
+
+ .backingDiv{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 90%;
+        width: 100%;
+        margin: 0px;
+        row-gap: 5%;
+ }
+
+ .backingDivAcc{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 85%;
+        width: 100%;
+        margin: 0px;
+        row-gap: 2%;
+        margin-top: 5%;
+        margin-bottom: 3%;
+ }
+
+ .backingDivDash{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 90%;
+        width: 100%;
+        margin: 0px;
+        row-gap: 2%;
+ }
+
+ .backingDivToday{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 90%;
+        width: 100%;
+        margin: 0px;
+        row-gap: 2%;
+ }
+
+ .logo{
+        height: auto;
+        width: 70%;
+ }
+
+ .titleDiv{
+        background-color: #D8E2DC;
+        width: 70%;
+        height: 15%;
+        border-radius: 8px;
+ }
+
+ .titleDivDash{
+        background-color: #9D8189;
+        width: 70%;
+        height: 15%;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+ }
+
+ .title{
+        font-size: 60px;
+        font-family: "Gamja Flower", sans-serif;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+ }
+
+ .dashTitle{
+        font-size: 60px;
+        font-family: "Gamja Flower", sans-serif;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #FFE5D9;
+ }
+
+ .SchedTitle{
+        font-size: 40px;
+        font-family: "Gamja Flower", sans-serif;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #FFE5D9;
+ }
+
+ .medEditTitle{
+        font-size: 35px;
+        font-family: "Gamja Flower", sans-serif;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #FFE5D9;
+ }
+
+ .medShowTitle{
+        font-size: 50px;
+        font-family: "Gamja Flower", sans-serif;
+        text-align: center;
+        width: 90%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #FFE5D9;
+ }
+
+ .medSchedLink{
+        width: 100%;
+        height: 100%;
+ }
+
+ .historyDate{
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        height: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 25px;
+ }
+
+ .outerHist{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: "Gamja Flower", sans-serif;
+ }
+
+ .histScroll{
+        overflow-y: scroll;
+        margin: 0;
+        height: 70%;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+ }
+
+ .innerHist{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+ }
+
+ .innerHist p{
+        width: fit-content;
+        font-size: 20px;
+ }
+ .titleDivNewMed{
+        font-size: 60px;
+        font-family: "Gamja Flower", sans-serif;
+        text-align: center;
+        width: 100%;
+        height: 15%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #9D8189;
+        border-radius: 8px;
+ }
+
+ .titleDivNewSchedMed{
+        font-size: 60px;
+        font-family: "Gamja Flower", sans-serif;
+        text-align: center;
+        width: 100%;
+        height: 35%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #9D8189;
+        border-radius: 8px;
+ }
+
+ .titleDivEditMed{
+        font-size: 60px;
+        font-family: "Gamja Flower", sans-serif;
+        text-align: center;
+        width: 70%;
+        height: 15%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #D8E2DC;
+        border-radius: 8px;
+ }
+
+ .outerBtnDiv{
+        width: 70%;
+        height: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: #D8E2DC;
+ }
+
+ .login-btn{
+        font-size: 40px;
+        font-family: "Gamja Flower", sans-serif;
+        text-align: center;
+        outline: none;
+        border-style: none;
+        width: 70vw;
+        height: 15vh;
+        margin: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: transparent;
+ }
+
+ .new-btn{
+        font-size: 40px;
+        font-family: "Gamja Flower", sans-serif;
+        text-align: center;
+        outline: none;
+        border-style: none;
+        width: 70vw;
+        height: 15vh;
+        margin: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: transparent;
+        color: #FFE5D9;
+        text-decoration: none;
+ }
+
+ .new-sched-btn{
+        font-size: 40px;
+        font-family: "Gamja Flower", sans-serif;
+        text-align: center;
+        outline: none;
+        border-style: none;
+        margin: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: transparent;
+        color: #FFE5D9;
+        text-decoration: none;
+        height: 20vh;
+        margin:0;
+ }
+
+ .delBtn{
+        font-size: 40px;
+        font-family: "Gamja Flower", sans-serif;
+        text-align: center;
+        outline: none;
+        border-style: none;
+        width: 100%;
+        height: 100%;
+        margin: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: transparent;
+        text-decoration: none;
+ }
+
+ .daysWeekDiv{
+        display: flex;
+        background-color: #FFCAD4;
+        width: 70%;
+        border-radius: 8px;
+        justify-content: space-evenly;
+        align-items: center;
+ }
+
+ .dayWeek{
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 20px;
+        background-color: #F4ACB7;
+        border-radius: 20px;
+        padding-left: 3%;
+        padding-right: 3%;
+ }
+
+ .schedInputDiv{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        row-gap: 5%;
+ }
+
+ .outerSchedForm{
+        width: 70%;
+        height: 35%;
+ }
+
+ .schedInputs{
+        background-color: #9D8189;
+        width: 100%;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        border-radius: 8px;
+
+ }
+
+ .create-btn{
+        font-size: 40px;
+        font-family: "Gamja Flower", sans-serif;
+        text-align: center;
+        outline: none;
+        border-style: none;
+        width: 100%;
+        height: 15vh;
+        margin: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: transparent;
+        margin: 0;
+ }
+
+
+
+ .colorDiv{
+        height: 50%;
+        border-style: solid;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        border-color: #FFE5D9;
+        width: 150%;
+ }
+
+
+ .dashMedsDiv{
+        height: 35%;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #F4ACB7;
+        border-radius: 8px;
+ }
+
+ .outerViewCal{
+        background-color: #F4ACB7;
+        border-radius: 8px;
+        height: 47%;
+        width: 70%;
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+ }
+
+ .calendar-heading{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+ }
+
+ .simple-calendar{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+ }
+
+ .calendar-heading nav a {
+        color: black;
+        text-decoration: none;
+ }
+
+ .table, .table-striped{
+        height: 60%;
+        width: 95%;
+ }
+
+ .innerDetailsCal{
+        background-color: #D8E2DC;
+        border-radius: 8px;
+        height: 25%;
+        width: 70%;
+ }
+
+ .scrollableMeds{
+        height: 70%;
+        width: 100%;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 10%;
+ }
+
+ .dashTodaySched{
+        height: 60%;
+        width: 100%;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 3%;
+ }
+
+ .indSched{
+        display: flex;
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 20px;
+        width: 90%;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+ }
+
+ .dashTaken{
+        color: black;
+        width: 20%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+ }
+
+ .indSched p{
+        text-align: center;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+ }
+ .schedDivider{
+        border: 1px solid black;
+        width: 90%;
+ }
+
+ .schedDiv{
+        background-color: #D8E2DC;
+        border-radius: 8px;
+        width: 70%;
+        height: 70%;
+ }
+
+ .newschedDiv{
+        background-color: #D8E2DC;
+        border-radius: 8px;
+        width: 70%;
+        height: 30%;
+ }
+
+ .schedDividerShow{
+        border: 1px solid black;
+        width: 90%;
+ }
+
+ .innerDaySched{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #D8E2DC;
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        border-radius: 8px;
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 20px;
+ }
+
+ .schedListItem{
+
+ }
+
+ .widgetTitle{
+        height: 20%;
+        width: 100%;
+        text-align: center;
+        font-size: 25px;
+        font-family: "Gamja Flower", sans-serif;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 3%;
+ }
+
+ .medicationDiv{
+        text-decoration: none;
+        color: black;
+        display: flex;
+        height: 50%;
+        width: 90%;
+        column-gap: 3%;
+        border-radius: 8px;
+
+ }
+
+ .medicationLgDiv{
+        text-decoration: none;
+        color: black;
+        display: flex;
+        height: 20%;
+        width: 90%;
+        column-gap: 3%;
+        border-radius: 8px;
+ }
+
+ .outerIconDiv{
+        height: 100%;
+        width: 20%;
+        background-color: #FFCAD4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+
+ }
+
+ .innerIcon{
+        font-size: 20px;
+ }
+
+ .widgetMedDiv{
+        height: 100%;
+        width: 80%;
+        background-color: #FFCAD4;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: "Gamja Flower", sans-serif;
+        border-radius: 8px;
+ }
+
+ .widgetMedTitle{
+        font-size: 25px;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+ }
+
+ .widgetMedSub{
+        font-size: 15px;
+        margin: 0;
+ }
+
+ .schedListDiv{
+        width: 90%;
+        height: 70%;
+        overflow-y: scroll;
+ }
+
+ .sched{
+        width: 100%;
+        height: 20%;
+        text-align: center;
+        margin: 0;
+ }
+
+ .dashTodaySchedDiv{
+        height: 35%;
+        width: 70%;
+        background-color: #D8E2DC;
+        border-radius: 8px;
+ }
+
+ .indSchedDiv{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 90%;
+ }
+
+ .todayTitle{
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 30px;
+        margin: 0;
+        margin-top: 3%;
+        margin-bottom: 3%;
+ }
+
+ .todaySchedDiv{
+        background-color: #D8E2DC;
+        width: 70%;
+        height: 70%;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: scroll;
+ }
+
+ .settingsBtn{
+        position: fixed;
+        top: 3%;
+        left: 3%;
+        font-size: 40px;
+ }
+
+ .link{
+        text-decoration: none;
+        color: black;
+ }
+
+ .dockDiv{
+        width: 100%;
+        height: 10%;
+        margin: 0;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 20px;
+        text-shadow: 1px 1px 1px #000000;
+ }
+
+ .accInfoDiv{
+        height: 80%;
+        width: 70%;
+        background-color: #F4ACB7;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 5%;
+ }
+
+ .innerMedsDiv{
+        height: 80%;
+        width: 70%;
+        background-color: #F4ACB7;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 5%;
+        overflow-y: scroll;
+ }
+
+ .infoDiv{
+        background-color: #FFE5D9;
+        border-radius: 8px;
+        padding-left: 5%;
+        padding-right: 5%;
+
+ }
+
+ .info{
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 20px;
+ }
+
+ .schedInfo{
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 20px;
+        width: 90%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+ }
+
+ .medFormBody{
+        background-color: #F4ACB7;
+        width: 100%;
+        height: 80%;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+ }
+
+ .gridInfoDiv{
+        display: flex;
+        justify-content: space-between;
+        align-items: space-between;
+        flex-wrap: wrap;
+        height: 45%;
+        width: 90%;
+        border-radius: 8px;
+        row-gap: 5%;
+ }
+
+ .medSchedsDiv{
+        background-color: #D8E2DC;
+        border-radius: 8px;
+        height: 45%;
+        width: 90%;
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+ }
+
+ .gridInfoBlock{
+        width: 47%;
+        background-color: #F4ACB7;
+        border-radius: 8px;
+        height: 47%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+ }
+
+ .gridInfoTxt{
+        font-family: "Gamja Flower", sans-serif;
+        margin: 0;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 90%;
+ }
+
+ .gridInfoSub{
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 20px;
+        margin: 0;
+        text-align: center;
+        height: 50%;
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+ }
+
+ .gridInfoTitle{
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 30px;
+        margin: 0;
+        text-align: center;
+        height: 50%;
+        width: 90%;
+ }
+
+ .innerShowMedDiv{
+        background-color: #FFCAD4;
+        height: 80%;
+        width: 70%;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 8px;
+ }
+
+ .medFormIcon{
+        background-color: #FFCAD4;
+        height: 25%;
+        width: 90%;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+ }
+
+ .innerMedFormTitle{
+        margin: 0;
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20%;
+        width: 90%;
+ }
+
+ .txtInputs{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 5%;
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 20px;
+        margin: 0;
+ }
+
+ .txtField{
+        width: 50%;
+        background-color: #FFE5D9;
+        border-radius: 8px;
+        border-style: none;
+        outline: none;
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 20px;
+ }
+
+ .selectField{
+        width: 20%;
+        background-color: #FFE5D9;
+        border-radius: 8px;
+        border-style: none;
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 20px;
+ }
+
+ .selectSchedField{
+        width: 80%;
+        background-color: #FFE5D9;
+        border-radius: 8px;
+        border-style: none;
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 20px;
+ }
+
+ .icons{
+       border-radius: 8px;
+       border-style: solid;
+       border-color: #FFE5D9; 
+       height: 90%;
+       width: auto;
+       padding-left: 2%;
+       padding-right: 2%;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       
+ }
+
+ .scrollIcons{
+        display: flex;
+        overflow-x: scroll;
+        align-items: center;
+        width: 90%;
+        height: 80%;
+        font-size: 35px;
+        column-gap: 5%;
+ }
+
+ .scrollColors{
+        display: flex;
+        overflow-x: scroll;
+        align-items: center;
+        width: 90%;
+        height: 80%;
+        font-size: 45px;
+        column-gap: 5%;
+ }
+
+ .medFormColor{
+        background-color: #FFCAD4;
+        height: 25%;
+        width: 90%;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+ }
+
+
+ .txtBodySection{
+        height: 40%;
+        width: 90%;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+ }
+
+ .dateField{
+        width: 50%;
+        background-color: #FFE5D9;
+        border-radius: 8px;
+        border-style: none;
+        outline: none;
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 20px;
+ }
+
+ .timeField{
+        width: 80%;
+        background-color: #FFE5D9;
+        border-radius: 8px;
+        border-style: none;
+        outline: none;
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 20px;
+ }
+
+ .outerMedForm{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 5%;
+        width: 70%;
+        height: 100%;
+ }
+
+ .tinyDate{
+        background-color: #D8E2DC;
+        border-radius: 20px;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-style: solid;
+        border-color: #D8E2DC;
+ }
