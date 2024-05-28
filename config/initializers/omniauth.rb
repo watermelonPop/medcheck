@@ -1,3 +1,5 @@
+require 'omniauth/rails_csrf_protection'
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   google_credentials = Rails.application.credentials.google
 
@@ -12,5 +14,3 @@ end
 
 OmniAuth.config.allowed_request_methods = [:post, :get]
 OmniAuth.config.silence_get_warning = true
-
-Rails.application.config.middleware.use OmniAuth::Rails::CsrfProtection
