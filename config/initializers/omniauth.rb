@@ -6,10 +6,11 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     prompt: 'select_account',
     image_aspect_ratio: 'square',
     image_size: 50,
-    access_type: 'offline',  # This ensures refresh tokens are received
-    redirect_uri: "#{ENV['HOST_URL']}/auth/google_oauth2/callback" # Ensure this matches your callback URL
+    access_type: 'offline'
   }
 end
 
-OmniAuth.config.allowed_request_methods = [:post, :get] # Ensure GET is allowed
-OmniAuth.config.silence_get_warning = true # Silence the warning for allowing GET requests
+OmniAuth.config.allowed_request_methods = [:post, :get]
+OmniAuth.config.silence_get_warning = true
+
+Rails.application.config.middleware.use OmniAuth::Rails::CsrfProtection

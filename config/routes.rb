@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   get '/logout', to: 'sessions#logout', as: 'logout'
   get '/auth/google_oauth2/callback', to: 'sessions#omniauth'
+  get '/auth/failure', to: 'sessions#failure'
 
   get '/users/:user_id/medications/:medication_id/medication_schedules/:id/set_taken', to: 'dashboard#set_taken', as: :set_taken
   get '/users/:user_id/medications/:medication_id/get_medication_schedules/:day_of_week', to: 'medication_schedules#get_day_schedules', as: 'get-day-schedule'

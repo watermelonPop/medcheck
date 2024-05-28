@@ -23,4 +23,9 @@ class SessionsController < ApplicationController
       redirect_to welcome_path, alert: 'Login failed.'
     end
   end
+
+  def failure
+    flash[:error] = "Authentication failed: #{params[:message]}"
+    redirect_to welcome_path
+  end
 end
