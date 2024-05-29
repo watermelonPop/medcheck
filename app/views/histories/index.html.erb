@@ -1,17 +1,21 @@
 <script>
         function setLabels(){
                 let scanElement = document.getElementById("scan");
-                let value = scanElement.innerHTML;
-                value = value.replaceAll("Previous", "<");
-                value = value.replaceAll("Next", ">");
-                value = value.replaceAll("Sun", "U");
-                value = value.replaceAll("Mon", "M");
-                value = value.replaceAll("Tue", "T");
-                value = value.replaceAll("Wed", "W");
-                value = value.replaceAll("Thu", "R");
-                value = value.replaceAll("Fri", "F");
-                value = value.replaceAll("Sat", "S");
-                scanElement.innerHTML = value;
+                if(scanElement != null){
+                        let value = scanElement.innerHTML;
+                        if(value != null){
+                                value = value.replaceAll("Previous", "<");
+                                value = value.replaceAll("Next", ">");
+                                value = value.replaceAll("Sun", "U");
+                                value = value.replaceAll("Mon", "M");
+                                value = value.replaceAll("Tue", "T");
+                                value = value.replaceAll("Wed", "W");
+                                value = value.replaceAll("Thu", "R");
+                                value = value.replaceAll("Fri", "F");
+                                value = value.replaceAll("Sat", "S");
+                                scanElement.innerHTML = value;
+                        }
+                }
         }
         setLabels();
 </script>
