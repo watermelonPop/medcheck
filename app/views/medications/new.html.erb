@@ -1,0 +1,116 @@
+<html>
+<div class="backingDivAcc">
+        <div class="titleDivDash">
+                <p class="dashTitle">New Med</p>
+        </div>
+        <%= form_with(model: @medication, url: user_medications_path(user_id: @user.id), class: "outerMedForm", method: :POST) do |form| %>
+                <div class="medFormBody">
+                  <div class="txtBodySection">
+                    <p class="txtInputs">name: <%= form.text_field :name, class: "txtField" %></p>
+                    <p class="txtInputs">amount taken: <%= form.number_field :amount_taken, class: "txtField" %></p>
+                    <p class="txtInputs">dose: <%= form.number_field :dose_amount, class: "txtField" %><%= form.select :dose_unit, options_for_select([
+                      ['mg', 'mg'],
+                      ['g', 'g'],
+                      ['mcg', 'mcg'],
+                      ['mL', 'mL']]), {}, class: "selectField" %></p>
+                    <p class="txtInputs">amount left: <%= form.number_field :amount_left, class: "txtField" %></p>
+                    <p class="txtInputs">last pick up: <%= form.date_field :last_picked_up, class: "dateField" %></p>
+                  </div>
+            
+                  <div class="medFormIcon">
+                    <% icons = [
+                      ['Icon 1"', '<i class="fa-solid fa-stethoscope"></i>'],
+                      ['Icon 2', '<i class="fa-solid fa-tablets"></i>'],
+                      ['Icon 3', '<i class="fa-solid fa-capsules"></i>'],
+                      ['Icon 4', '<i class="fa-solid fa-syringe"></i>'],
+                      ['Icon 5', '<i class="fa-solid fa-pills"></i>']
+                    ] %>
+                    <p class="innerMedFormTitle">icons</p>
+                    <div class="scrollIcons">
+                      <% icons.each do |icon| %>
+                        <div class="icons" onclick="selectIcon('<%= icon[1] %>')">
+                          <div class="medicationIcon">
+                            <%= raw icon[1] %>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+            
+            
+                  <div class="medFormColor">
+                    <p class="innerMedFormTitle">colors</p>
+                    <% colors = ["#bf4f51", "#609078", "#6ca0dc", "#13274f", "#663046"] %>
+                    <div class="scrollColors">
+                      <% colors.each do |color| %>
+                        <div class="colorDiv" style="background-color: <%= color %>;" onclick="selectColor('<%= color %>')">
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <%= form.hidden_field :icon, class: 'icon-input' %>
+                <%= form.hidden_field :color, class: 'color-input' %>
+                
+                <div class="titleDivNewMed"><%= form.submit "create", class: "new-btn" %></div>
+        <% end %>
+</div>
+</html>
+
+<script>
+      function selectIcon(icon) {
+        var icons = [
+          '<i class="fa-solid fa-stethoscope"></i>',
+          '<i class="fa-solid fa-tablets"></i>',
+          '<i class="fa-solid fa-capsules"></i>',
+          '<i class="fa-solid fa-syringe"></i>',
+          '<i class="fa-solid fa-pills"></i>'
+        ];
+        var iconList = document.getElementsByClassName("icons");
+        for (var j = 0; j < iconList.length; j++) {
+          iconList[j].style.border = "solid 2px #FFE5D9";
+        }
+        let iconInd = icons.indexOf(icon);
+        iconList[iconInd].style.border = "solid 2px black";
+
+        updateIcon(icon);
+      } 
+
+      function updateIcon(selectedIcon){
+        console.log("Selected Icon: ", selectedIcon); 
+        var iconInput = document.querySelector('input[name="medication[icon]"]');
+        iconInput.value = selectedIcon;
+      }
+
+      function selectColor(selectedColor){
+        var colors = ["#bf4f51", "#609078", "#6ca0dc", "#13274f", "#663046"];
+
+        var colorList = document.getElementsByClassName("colorDiv");
+
+        for (var j = 0; j < colorList.length; j++) {
+          colorList[j].style.borderColor = "#FFE5D9";
+        }
+      
+
+        let colorInd = colors.indexOf(selectedColor);
+        colorList[colorInd].style.borderColor = "black";
+
+        var newSelectedColor = colorList[colorInd].style.backgroundColor;
+        updateColor(newSelectedColor);
+        changeIconColor(newSelectedColor);
+      }
+
+      function updateColor(selectedColor) {
+        var colorInput = document.querySelector('input[name="medication[color]"]');
+        colorInput.value = selectedColor;
+      }
+
+      function changeIconColor(selectedColor){
+        var iconList = document.querySelectorAll('.medicationIcon > i');
+
+        for (var i=0; i<iconList.length; i++){
+          iconList[i].style.color = selectedColor
+        }
+      }
+</script>
+

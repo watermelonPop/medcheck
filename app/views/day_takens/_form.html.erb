@@ -1,0 +1,27 @@
+<%= form_with(model: day_taken) do |form| %>
+  <% if day_taken.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(day_taken.errors.count, "error") %> prohibited this day_taken from being saved:</h2>
+
+      <ul>
+        <% day_taken.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :date, style: "display: block" %>
+    <%= form.date_field :date %>
+  </div>
+
+  <div>
+    <%= form.label :taken, style: "display: block" %>
+    <%= form.check_box :taken %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

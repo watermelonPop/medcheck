@@ -1,0 +1,21 @@
+<div class="backingDivAcc">
+        <div class="titleDivDash">
+                <p class="dashTitle">MEDS</p>
+        </div>
+        <div class="innerMedsDiv">
+          <% @medications.each do |medication| %>
+            <%= link_to user_medication_path(user_id: @user.id, id: medication.id), class: "medicationLgDiv" do %>
+              <div class="outerIconDiv">
+                      <p style="color: <%= medication.color %>;" class="innerIcon"><%= raw medication.icon %></p>
+              </div>
+              <div class="widgetMedDiv">
+                      <p class="widgetMedTitle"><%= medication.name %></p>
+                      <p class="widgetMedSub"><%= medication.dose_amount %><%= medication.dose_unit %></p>
+                      <p class="widgetMedSub"><%= medication.amount_left %> left</p>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="titleDivDash"><%= link_to "+ new", new_user_medication_path(user_id: @user.id), class: "new-btn" %></div>
+</div>
+

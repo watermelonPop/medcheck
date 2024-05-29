@@ -8,10 +8,19 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b7b6d87d91.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
     <%= render partial: 'shared/display_flash' if not flash.empty? %>
     <%= yield %>
+    <% if (controller_name != 'medication_schedules' || action_name != 'get_day_schedules') && (controller_name != 'histories' || action_name != 'get_history_day_schedules') %>
+      <% if session[:user_id] %>
+        <%= render partial: 'shared/dock' %>
+      <% end %>
+    <% end %>
   </body>
 </html>

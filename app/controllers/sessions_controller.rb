@@ -18,9 +18,14 @@ class SessionsController < ApplicationController
 
     if @user.valid?
       session[:user_id] = @user.id
-      redirect_to user_path(@user), notice: 'You are logged in.'
+      redirect_to user_dashboard_index_path(user_id: @user.id), notice: 'You are logged in.'
     else
       redirect_to welcome_path, alert: 'Login failed.'
     end
+  end
+
+  def failure
+    flash[:error] = "Authentication failed: #{params[:message]}"
+    redirect_to welcome_path
   end
 end

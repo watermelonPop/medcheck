@@ -1,0 +1,22 @@
+<html>
+<div class="innerDaySched">
+        <hr class="schedDivider">
+        <% @current_day_schedules.each do |item| %>
+                <p class="schedListItem">
+                        <%= item[:schedule].time.strftime("%l:%M %p") %> | <%= item[:medication].name %> <%= item[:medication].dose_amount %><%= item[:medication].dose_unit %> 
+                        <%= link_to user_medication_medication_schedule_path(user_id: @user.id, medication_id: @medication.id, id: item[:schedule].id), method: :delete, data: { turbo_confirm: "Delete #{@medication.name}?", turbo_method: :delete, user_id: @user.id, medication_id: item[:medication].id }, onclick: "redirect(this)", class: "link" do %>
+                                <i class="fa-solid fa-delete-left"></i>
+                        <% end %>
+                </p>
+                <hr class="schedDivider">
+        <% end %>
+</div>
+</html>
+
+<script>
+        function redirect(element) {
+                var userId = element.dataset.userId;
+                var medId = element.dataset.medicationId;
+                window.location.href = "/users/#{userId}/medications/#{medId}/medication_schedules/new";
+        }
+</script>

@@ -1,3 +1,7 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
-<p><%= button_to "Login with Google", "/auth/google_oauth2", data: {turbo: "false"} %></p>
+<div class="backingDiv">
+        <div class="titleDiv">
+                <p class="title">medcheck</p>
+        </div>
+        <%= image_tag "/images/app-icon.png", class: "logo" %>
+        <div class="outerBtnDiv"><%= button_to "Login with Google", "/auth/google_oauth2", data: {turbo: "false"}, class: "login-btn" %></div>
+</div>

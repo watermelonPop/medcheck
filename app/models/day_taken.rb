@@ -1,0 +1,2 @@
+class DayTaken < ApplicationRecord
+end

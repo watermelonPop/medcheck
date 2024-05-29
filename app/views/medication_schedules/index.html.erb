@@ -1,0 +1,68 @@
+<html>
+<% if @medication %>
+  <% days_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] %>
+  <% current_day = days_of_week[Time.now.strftime("%w").to_i] %>
+  <div class="backingDivAcc">
+          <div class="titleDivDash">
+                  <p class="SchedTitle"><%= @medication.name %> Schedule</p>
+          </div>
+          <div class="daysWeekDiv" id="day-container" data-current-day="<%= current_day %>" data-user-id="<%= @user.id %>" data-medication-id="<%= @medication.id %>">
+            <p class="dayWeek" id="Sunday">U</p>
+            <p class="dayWeek" id="Monday">M</p>
+            <p class="dayWeek" id="Tuesday">T</p>
+            <p class="dayWeek" id="Wednesday">W</p>
+            <p class="dayWeek" id="Thursday">R</p>
+            <p class="dayWeek" id="Friday">F</p>
+            <p class="dayWeek" id="Saturday">S</p>
+          </div>
+          <div class="schedDiv scheduleDiv">
+          </div>
+          <div class="titleDivDash">
+                  <p class="dashTitle"><%= link_to "+ schedule", new_user_medication_medication_schedule_path(user_id: @user.id, medication_id: @medication.id), class: "new-btn" %></p>
+          </div>
+  </div>
+<% end %>
+</html>
+
+<script>
+  var iden = document.getElementById("day-container").dataset.currentDay;
+  var userId = document.getElementById("day-container").dataset.userId;
+  var medId = document.getElementById("day-container").dataset.medicationId;
+  var selected = document.getElementById(iden);
+  selected.style.backgroundColor = "#9D8189";
+  var circleDays = document.getElementsByClassName("dayWeek");
+  updateSchedule(iden);
+
+  for (var i = 0; i < circleDays.length; i++) {
+    circleDays[i].addEventListener("click", function() {
+      // Remove the currentDay class from all circleDay divs
+      for (var j = 0; j < circleDays.length; j++) {
+              circleDays[j].style.backgroundColor = "#F4ACB7";
+      }
+
+      // Add the currentDay class to the clicked circleDay div
+      this.style.backgroundColor = "#9D8189";
+
+      var selectedDay = this.id;
+      updateSchedule(selectedDay);
+    });
+  }
+
+  function updateSchedule(selectedDay) {
+    var scheduleDiv = document.querySelector(".scheduleDiv");
+    fetch("/users/" + userId + "/medications/" + medId + "/get_medication_schedules/" + selectedDay)
+    .then(response => {
+    if (!response.ok) {
+            throw new Error('Network response was not ok');
+    }
+    return response.text();
+    })
+    .then(scheduleData => {
+    // Update the scheduleDiv with the retrieved data
+      scheduleDiv.innerHTML = scheduleData;
+    })
+    .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+    });
+  }
+</script>

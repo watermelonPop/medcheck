@@ -1,0 +1,83 @@
+
+<html>
+  <% days_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] %>
+  <% current_day = days_of_week[Time.now.strftime("%w").to_i] %>
+  <div class="backingDivAcc">
+          <div class="titleDivDash">
+                  <p class="SchedTitle">New <%= @medication.name %> Schedule</p>
+          </div>
+          <div class="daysWeekDiv" id="day-container" data-current-day="<%= current_day %>" data-user-id="<%= @user.id %>" data-medication-id="<%= @medication.id %>">
+            <p class="dayWeek" id="Sunday">U</p>
+            <p class="dayWeek" id="Monday">M</p>
+            <p class="dayWeek" id="Tuesday">T</p>
+            <p class="dayWeek" id="Wednesday">W</p>
+            <p class="dayWeek" id="Thursday">R</p>
+            <p class="dayWeek" id="Friday">F</p>
+            <p class="dayWeek" id="Saturday">S</p>
+          </div>
+          <div class="newschedDiv scheduleDiv">
+          </div>
+          <%= form_with(model: @medication.medication_schedules.build, url: user_medication_medication_schedules_path(medication_id: @medication.id), class: "outerSchedForm") do |form| %>
+            <div class="schedInputDiv">
+              <div class="schedInputs">
+                <p class="schedInfo">Day: <%= form.select :day_of_week, options_for_select([
+                  ['Sunday', 'Sunday'],
+                  ['Monday', 'Monday'],
+                  ['Tuesday', 'Tuesday'],
+                  ['Wednesday', 'Wednesday'],
+                  ['Thursday', 'Thursday'],
+                  ['Friday', 'Friday'],
+                  ['Saturday', 'Saturday'],
+                  ['Everyday', 'Everyday']
+                  ]), {}, class: "selectSchedField" %></p>
+                <p class="schedInfo">Time: <%= form.time_field :time, class: "timeField" %></p>
+              </div>
+              <div class="titleDivNewSchedMed"><%= form.submit "create", class: "new-sched-btn" %></div>
+            </div>
+          <% end %>
+          
+  </div>
+</html>
+
+<script>
+  var iden = document.getElementById("day-container").dataset.currentDay;
+  var userId = document.getElementById("day-container").dataset.userId;
+  var medId = document.getElementById("day-container").dataset.medicationId;
+  var selected = document.getElementById(iden);
+  selected.style.backgroundColor = "#9D8189";
+  var circleDays = document.getElementsByClassName("dayWeek");
+  updateSchedule(iden);
+
+  for (var i = 0; i < circleDays.length; i++) {
+    circleDays[i].addEventListener("click", function() {
+      // Remove the currentDay class from all circleDay divs
+      for (var j = 0; j < circleDays.length; j++) {
+              circleDays[j].style.backgroundColor = "#F4ACB7";
+      }
+
+      // Add the currentDay class to the clicked circleDay div
+      this.style.backgroundColor = "#9D8189";
+
+      var selectedDay = this.id;
+      updateSchedule(selectedDay);
+    });
+  }
+
+  function updateSchedule(selectedDay) {
+    var scheduleDiv = document.querySelector(".scheduleDiv");
+    fetch("/users/" + userId + "/medications/" + medId + "/get_medication_schedules/" + selectedDay)
+    .then(response => {
+    if (!response.ok) {
+            throw new Error('Network response was not ok');
+    }
+    return response.text();
+    })
+    .then(scheduleData => {
+    // Update the scheduleDiv with the retrieved data
+      scheduleDiv.innerHTML = scheduleData;
+    })
+    .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+    });
+  }
+</script>

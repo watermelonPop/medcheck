@@ -1,0 +1,76 @@
+<div class="backingDivDash">
+        <div class="titleDivDash">
+                <p class="dashTitle">DASHBOARD</p>
+        </div>
+        <div class="dashTodaySchedDiv">
+                <%= link_to get_today_schedule_path(user_id: @current_user.id), class: "link" do %>
+                        <p class="widgetTitle" id="dateTime"></p>
+                        <hr class="schedDivider">
+                        <div class="dashTodaySched">
+                                <% @current_day_schedules.each do |schedule| %>
+                                        <div class="indSched">
+                                                <p><%= schedule.medication.name %> <%= schedule.time.strftime("%l:%M %p") %></p>
+                                                <%= link_to set_taken_path(user_id: @user.id, medication_id: schedule.medication.id, id: schedule.id), class: "dashTaken" do %>
+                                                        <% if schedule.taken %>
+                                                                <i class="fa-solid fa-circle-check"></i>
+                                                        <% else %>
+                                                                <i class="fa-regular fa-circle"></i>
+                                                        <% end %>
+                                                <% end %>
+                                        </div>
+                                        <hr class="schedDivider">
+                                <% end %>
+                        </div>
+                <% end %>
+        </div>
+        <%= link_to user_medications_path(user_id: @user.id), class: "link" do %>
+                <div class="dashMedsDiv">
+                        <p class="widgetTitle">meds</p>
+                        <div class="scrollableMeds">
+                                <% @medications.each do |medication| %>
+                                        <%= link_to user_medication_path(user_id: @user.id, id: medication.id), class: "medicationDiv" do %>
+                                                <div class="outerIconDiv">
+                                                        <p style="color: <%= medication.color %>;" class="innerIcon"><%= raw medication.icon %></p>
+                                                </div>
+                                                <div class="widgetMedDiv">
+                                                        <p class="widgetMedTitle"><%= medication.name %></p>
+                                                        <p class="widgetMedSub"><%= medication.dose_amount %><%= medication.dose_unit %></p>
+                                                        <p class="widgetMedSub"><%= medication.amount_left %> left</p>
+                                                </div>
+                                        <% end %>
+                                <% end %>
+                        </div>
+                </div>
+        <% end %>
+</div>
+
+<script>
+        function formatDate(date) {
+                const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                const months = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."];
+
+                const dayOfWeek = daysOfWeek[date.getDay()];
+                const month = months[date.getMonth()];
+                const day = date.getDate();
+
+                return `${dayOfWeek}, ${month} ${day}`;
+        }
+
+        function updateDate(){
+                // Get the current date
+                var today = new Date();
+        
+                // Format the date
+                var formattedDate = formatDate(today);
+        
+                // Set the formatted date to the div with id "dateTime"
+        
+                document.getElementById("dateTime").innerHTML = formattedDate;
+        }
+
+        updateDate();
+
+        // Set an interval to update the date every minute (60000 milliseconds)
+        setInterval(updateDate, 60000);
+        
+</script>

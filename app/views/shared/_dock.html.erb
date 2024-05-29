@@ -1,0 +1,17 @@
+<div class="dockDiv">
+        <%= link_to user_path(@current_user), class: "link" do %>
+                <i class="fa-solid fa-gear"></i>
+        <% end %>
+        <%= link_to get_today_schedule_path(user_id: @current_user.id), class: "link" do %>
+                <i class="fa-solid fa-sun"></i>
+        <% end %>
+        <%= link_to user_dashboard_index_path(user_id: @current_user.id), class: "link" do %>
+                <i class="fa-solid fa-house"></i>
+        <% end %>
+        <%= link_to user_medications_path(user_id: @current_user.id), class: "link" do %>
+                <i class="fa-solid fa-pills"></i>
+        <% end %>
+        <%= link_to user_histories_path(user_id: @current_user.id), class: "link" do %>
+                <i class="fa-solid fa-calendar-week"></i>
+        <% end %>
+</div>

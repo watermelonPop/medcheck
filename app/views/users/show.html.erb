@@ -1,19 +1,15 @@
-<h2>Howdy <%= @current_user.first_name %>!</h2>
-<div id="user-details">
-  <p>
-    <strong>Email:</strong>
-    <%= @current_user.email %>
-  </p>
-
-  <p>
-    <strong>First name:</strong>
-    <%= @current_user.first_name %>
-  </p>
-
-  <p>
-    <strong>Last name:</strong>
-    <%= @current_user.last_name %>
-  </p>
+<div class="backingDivAcc">
+        <div class="titleDivDash">
+                <p class="title">ACCOUNT</p>
+        </div>
+        <div class="accInfoDiv">
+          <div class="infoDiv">
+            <p class="info">Name: <%= @user.first_name %> <%= @user.last_name %></p>
+          </div>
+          <div class="infoDiv">
+            <p class="info">Email: <%= @user.email %></p>
+          </div>
+        </div>
+        <div class="titleDivDash"><%= link_to "Logout", logout_path, class: "login-btn link" %></div>
 </div>
 
-<%= link_to "Logout", logout_path %>

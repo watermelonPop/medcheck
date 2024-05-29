@@ -1,0 +1,38 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="backingDivAcc">
+        <div class="titleDivDash">
+                <div class="medShowTitle"><p style="color: <%= @medication.color %>;"><%= raw @medication.icon %></p> <%= @medication.name %></div>
+        </div>
+        <div class="innerShowMedDiv">
+          <div class="gridInfoDiv">
+            <div class="gridInfoBlock">
+              <div class="gridInfoTxt"><p class="gridInfoTitle"><%= @medication.amount_left %></p><p class="gridInfoSub">left</p></div>
+            </div>
+            <div class="gridInfoBlock">
+              <p class="gridInfoTxt"><p class="gridInfoTitle"><%= @medication.dose_amount %><%= @medication.dose_unit %></p></p>
+            </div>
+            <div class="gridInfoBlock">
+              <p class="gridInfoTxt"><p class="gridInfoTitle">new<br>pickup<p></p>
+            </div>
+            <div class="gridInfoBlock">
+              <div class="gridInfoTxt"><p class="gridInfoTitle"><%= @medication.amount_taken %></p><p class="gridInfoSub">at a time</p></div>
+            </div>
+          </div>
+          <div class="medSchedsDiv">
+            <%= link_to user_medication_medication_schedules_path(user_id: @user.id, medication_id: @medication.id), class: "link medSchedLink" do %>
+              <p class="widgetMedTitle">schedules</p>
+              <div class="schedListDiv">
+                <hr class="schedDividerShow">
+                <% @schedules.each do |sched| %>
+                  <p class="sched">
+                    <%= sched.day_of_week %> @ <%= sched.time.strftime("%l:%M %p") %>
+                  </p>
+                  <hr class="schedDividerShow">
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="titleDivDash"><%= link_to "edit", edit_user_medication_path(@medication), class: "new-btn" %></div>
+</div>
