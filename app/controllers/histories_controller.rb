@@ -38,7 +38,7 @@ class HistoriesController < ApplicationController
   def get_history_day_schedules
     @user = current_user
     @date = params[:date_needed]
-    @days_taken = @user.day_takens.where("date == ?", params[:date_needed])
+    @days_taken = @user.day_takens.where("date = ?", params[:date_needed])
 
     if Date.parse(@date) > Date.today
       temp_day_taken = Struct.new(:date, :taken, :medication_schedule_id, :time)
@@ -68,7 +68,7 @@ class HistoriesController < ApplicationController
     
     @current_day = params[:day_of_week]
     @current_day_schedules = []
-    medication_schedules = @medication.medication_schedules.where("day_of_week == ? OR day_of_week == ?", @current_day, 'Everyday')
+    medication_schedules = @medication.medication_schedules.where("day_of_week = ? OR day_of_week = ?", @current_day, 'Everyday')
     puts "SCHEDULES: " + medication_schedules.to_s
     medication_schedules = medication_schedules.sort_by { |schedule| schedule.time.strftime("%H:%M") }
     medication_schedules.each do |schedule|
