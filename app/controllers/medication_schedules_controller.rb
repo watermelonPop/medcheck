@@ -78,7 +78,7 @@ class MedicationSchedulesController < ApplicationController
     
     @current_day = params[:day_of_week]
     @current_day_schedules = []
-    medication_schedules = @medication.medication_schedules.where("day_of_week == ? OR day_of_week == ?", @current_day, 'Everyday')
+    medication_schedules = @medication.medication_schedules.where("day_of_week = ? OR day_of_week = ?", @current_day, 'Everyday')
     puts "SCHEDULES: " + medication_schedules.to_s
     medication_schedules = medication_schedules.sort_by { |schedule| schedule.time.strftime("%H:%M") }
     medication_schedules.each do |schedule|
@@ -96,7 +96,7 @@ class MedicationSchedulesController < ApplicationController
     @medications = @user.medications
     total_schedules = []
     @medications.each do |medication|
-      medication_schedules = medication.medication_schedules.where("day_of_week == ? OR day_of_week == ?", @current_day, 'Everyday')
+      medication_schedules = medication.medication_schedules.where("day_of_week = ? OR day_of_week = ?", @current_day, 'Everyday')
       medication_schedules.each do |schedule|
         total_schedules << schedule
       end
