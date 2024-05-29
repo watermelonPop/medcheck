@@ -90,7 +90,11 @@
                 })
                 .then(data => {
                         // Update the scheduleDiv with the retrieved data
-                        document.getElementById("details").innerHTML = data;
+                        if(document.getElementById("details").innerHTML != null){
+                                document.getElementById("details").innerHTML = data;
+                        }else{
+                                alert("error");
+                        }
                 })
                 .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
