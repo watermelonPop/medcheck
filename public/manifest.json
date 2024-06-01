@@ -1,0 +1,16 @@
+{
+        "name": "medcheck",
+        "short_name": "meds",
+        "description": "Medications Tracker",
+        "start_url": "/",
+        "display": "standalone",
+        "background_color": "#FFE5D9",
+        "theme_color": "#F4ACB7",
+        "icons": [
+          {
+            "src": "/images/app-icon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+          }
+        ]
+      }

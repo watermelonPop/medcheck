@@ -9,6 +9,16 @@
                         <div class="indSchedDiv">
                                 <p class="info"><%= item[:schedule].time.strftime("%l:%M %p") %></p>
                                 <p class="info"><%= item[:medication].name %>, <%= item[:medication].dose_amount %><%= item[:medication].dose_unit %></p>
+                                <p class="info">
+                                        <%= link_to set_taken_path(user_id: @user.id, medication_id: item[:medication].id, id: item[:schedule].id), class: "dashTaken" do %>
+                                                <% if item[:schedule].taken %>
+                                                        <i class="fa-solid fa-circle-check"></i>
+                                                <% else %>
+                                                        <i class="fa-regular fa-circle"></i>
+                                                <% end %>
+                                        <% end %>
+                                </p>
+                                
                         </div>
                         <hr class="schedDividerShow">
                 <% end %>
