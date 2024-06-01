@@ -11,7 +11,7 @@
             <div class="gridInfoBlock">
               <p class="gridInfoTxt"><p class="gridInfoTitle"><%= @medication.dose_amount %><%= @medication.dose_unit %></p></p>
             </div>
-            <div class="gridInfoBlock">
+            <div class="gridInfoBlock" onclick="showModal()">
               <p class="gridInfoTxt"><p class="gridInfoTitle">new<br>pickup<p></p>
             </div>
             <div class="gridInfoBlock">
@@ -35,3 +35,52 @@
         </div>
         <div class="titleDivDash"><%= link_to "edit", edit_user_medication_path(@medication), class: "new-btn" %></div>
 </div>
+
+<div id="myModal" class="modal" data-user-id="<%= @user.id %>" data-med-id="<%= @medication.id %>">
+
+  <div class="modal-content">
+    <span class="close" onclick="hideModal()">&times;</span>
+    <p>Last Pickup Date: </p>
+    <p><%= @medication.last_picked_up.strftime("%A, %b %d") %></p>
+    <p>Next Pickup Prediction: </p>
+    <p><%= @predicted_date.strftime("%A, %b %d") %></p>
+    <p>New Pickup Date: </p>
+    <input type="date" class="modalInput" id="modalDate" />
+    <p>Amount: </p>
+    <input type="number" class="modalInput" id="modalAmt" />
+    <p class="modalBtn" onclick="newPickup()">create</p>
+  </div>
+
+</div>
+
+<script>
+        function showModal(){
+          document.getElementById("myModal").style.display = "flex";
+        }
+
+        function hideModal(){
+          document.getElementById("myModal").style.display = "none";
+        }
+
+        function newPickup(){
+          let userId = document.getElementById("myModal").dataset.userId;
+          let medId = document.getElementById("myModal").dataset.medId;
+          let date = document.getElementById("modalDate").value;
+          let amt = document.getElementById("modalAmt").value
+          fetch("/users/" + userId + "/medications/" + medId + "/new_pickup/" + date + "/" + amt)
+                .then(response => {
+                if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                }
+                return response.text();
+                })
+                .then(data => {
+                        // Update the scheduleDiv with the retrieved data
+                        hideModal();
+                        location.reload();
+                })
+                .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+</script>

@@ -11,6 +11,8 @@ class MedicationsController < ApplicationController
   def show
     @user = current_user
     @schedules = @medication.medication_schedules
+    @amount = @medication.amount_left.to_i
+    @predicted_date = Date.today + @amount
   end
 
   # GET /medications/new
@@ -62,6 +64,16 @@ class MedicationsController < ApplicationController
       format.html { redirect_to medications_url, notice: "Medication was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def new_pickup
+    @user = current_user
+    @medication = @user.medications.find_by(id: params[:medication_id])
+    @date = Date.parse(params[:date])
+    @amount = params[:amount].to_i
+    new_amt = @medication.amount_left.to_i + @amount
+    @medication.update(amount_left: new_amt)
+    @medication.update(last_picked_up: @date)
   end
 
   private

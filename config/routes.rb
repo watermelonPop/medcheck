@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get '/users/:user_id/medications/:medication_id/medication_schedules/:id/set_taken', to: 'dashboard#set_taken', as: :set_taken
   get '/users/:user_id/medications/:medication_id/get_medication_schedules/:day_of_week', to: 'medication_schedules#get_day_schedules', as: 'get-day-schedule'
   get '/users/:user_id/get_today_schedules', to: 'medication_schedules#get_today_schedules', as: 'get-today-schedule'
+  get '/users/:user_id/medications/:medication_id/new_pickup/:date/:amount', to: 'medications#new_pickup', as: 'new-pickup'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
