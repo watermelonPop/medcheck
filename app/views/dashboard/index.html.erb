@@ -23,8 +23,8 @@
                         </div>
                 <% end %>
         </div>
-        <%= link_to user_medications_path(user_id: @user.id), class: "link outerMedsDiv" do %>
-                <div class="dashMedsDiv">
+        <div class="dashMedsDiv">
+                <%= link_to user_medications_path(user_id: @user.id), class: "link" do %>
                         <p class="widgetTitle">meds</p>
                         <div class="scrollableMeds">
                                 <% @medications.each do |medication| %>
@@ -40,8 +40,8 @@
                                         <% end %>
                                 <% end %>
                         </div>
-                </div>
-        <% end %>
+                <% end %>
+        </div>
 </div>
 
 <script>

@@ -58,10 +58,11 @@ class MedicationsController < ApplicationController
 
   # DELETE /medications/1 or /medications/1.json
   def destroy
+    @user = current_user
     @medication.destroy!
 
     respond_to do |format|
-      format.html { redirect_to medications_url, notice: "Medication was successfully destroyed." }
+      format.html { redirect_to user_medications_path(user_id: @user.id), notice: "Medication was successfully destroyed." }
       format.json { head :no_content }
     end
   end
