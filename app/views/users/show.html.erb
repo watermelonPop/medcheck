@@ -9,7 +9,167 @@
           <div class="infoDiv">
             <p class="info">Email: <%= @user.email %></p>
           </div>
+          <div class="infoDiv" onclick="showThemeModal()">
+            <p class="info">Theme: <%= @user.themes.find_by(id: @user.current_theme).name %></p>
+          </div>
         </div>
-        <div class="titleDivDash"><%= link_to "Logout", logout_path, class: "login-btn link" %></div>
+        <div class="titleDivDash"><%= link_to "Logout", logout_path, class: "login-btn" %></div>
 </div>
 
+<div id="myModal" class="modal">
+
+  <div class="modal-content">
+    <span class="close" onclick="hideThemeModal()">&times;</span>
+    <p>Themes</p>
+    <div class="themeScroll">
+      <% @user.themes.each do |theme| %>
+        <div class="outerThemeLink" onclick='setCurrentTheme("<%= @user.id %>", "<%= theme.id %>")'>
+          <div class="outerThemeDiv" <% if theme == @user.current_theme %>style="background-color: var(--main_background)"<% end %>>
+            <%= link_to user_theme_path(user_id: @user.id, id: theme.id), method: :delete, data: { turbo_confirm: "Delete Theme?", turbo_method: :delete }, class: "outerDelTheme" do %>
+              <p class="delTheme">&times;</p>
+            <% end %>
+            <p style='font-family: "<%= theme.font %>"; margin-top: 0;'><%= theme.name %></p>
+            <div class="themeDiv">
+              <div class="colorThemeDiv" style="background-color: <%= theme.main_background %>">
+              </div>
+              <div class="colorThemeDiv" style="background-color: <%= theme.schedule_background %>">
+              </div>
+              <div class="colorThemeDiv" style="background-color: <%= theme.medication_background %>">
+              </div>
+              <div class="colorThemeDiv" style="background-color: <%= theme.medication_main %>">
+              </div>
+              <div class="colorThemeDiv" style="background-color: <%= theme.heading %>">
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="newThemeBtn" onclick="showNewThemeModal()">+ new</div>
+  </div>
+</div>
+
+<div id="newThemeModal" class="modal">
+
+  <div class="modal-content">
+    <span class="close" onclick="hideNewThemeModal()">&times;</span>
+    <p>New Theme</p>
+    <div class="themeScroll">
+      <div class="colorChooseDiv">
+        <p>Name: </p>
+        <input class="colorInput" type="text" id="name">
+      </div>
+      <div class="colorChooseDiv">
+        <p>Main Background: </p>
+        <input class="colorInput" type="text" id="main_background" data-coloris>
+      </div>
+      <div class="colorChooseDiv">
+        <p>Schedule Background: </p>
+        <input class="colorInput" type="text" id="schedule_background" data-coloris>
+      </div>
+      <div class="colorChooseDiv">
+        <p>Medication Background: </p>
+        <input class="colorInput" type="text" id="medication_background" data-coloris>
+      </div>
+      <div class="colorChooseDiv">
+        <p>Medication Main: </p>
+        <input class="colorInput" type="text" id="medication_main" data-coloris>
+      </div>
+      <div class="colorChooseDiv">
+        <p>Heading: </p>
+        <input class="colorInput" type="text" id="heading" data-coloris>
+      </div>
+      <div class="colorChooseDiv">
+        <p>Font: </p>
+        <select class="fontSelect" id="font">
+          <option value="Gamja Flower" style='font-family: "Gamja Flower"'>Gamja Flower</option>
+          <option value="Quicksand" style='font-family: "Quicksand"'>Quicksand</option>
+          <option value="Crimson Pro" style='font-family: "Crimson Pro"'>Crimson Pro</option>
+          <option value="Chivo Mono" style='font-family: "Chivo Mono"'>Chivo Mono</option>
+        </select>
+      </div>
+    </div>
+    <div class="newThemeBtn" onclick="createNewTheme(<%= @user.id %>)">create</div>
+  </div>
+</div>
+
+<script>
+
+  function showThemeModal(){
+    document.getElementById("myModal").style.display = "flex";
+  }
+
+  function hideThemeModal(){
+    document.getElementById("myModal").style.display = "none";
+  }
+
+  function showNewThemeModal(){
+    hideThemeModal();
+    document.getElementById("newThemeModal").style.display = "flex";
+  }
+
+  function hideNewThemeModal(){
+    document.getElementById("newThemeModal").style.display = "none";
+  }
+
+  function createNewTheme(userId){
+    const url = `/users/${userId}/themes`;
+    let name = document.getElementById("name").value;
+    let mainBack = document.getElementById("main_background").value;
+    let schedBack = document.getElementById("schedule_background").value;
+    let medBack = document.getElementById("medication_background").value;
+    let medMain = document.getElementById("medication_main").value;
+    let heading = document.getElementById("heading").value;
+    let font = document.getElementById("font").value;
+
+    const data = {
+      name: name,
+      main_background: mainBack,
+      schedule_background: schedBack,
+      medication_background: medBack,
+      medication_main: medMain,
+      heading: heading,
+      font: font
+    };
+  
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Success:', data);
+      window.location.reload();
+    })
+    .catch(error => {
+      console.error('There has been a problem with your fetch operation:', error);
+    });
+  }
+
+  function setCurrentTheme(user_id, theme_id){
+    const url = `/users/${user_id}/set_current_theme/${theme_id}`;
+    fetch(url)
+    .then(response => {
+    if (!response.ok) {
+            throw new Error('Network response was not ok');
+    }
+    return response.text();
+    })
+    .then(scheduleData => {
+      location.reload();
+    })
+    .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+    });
+  }
+
+</script>

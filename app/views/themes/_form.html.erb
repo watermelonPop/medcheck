@@ -1,0 +1,47 @@
+<%= form_with(model: theme) do |form| %>
+  <% if theme.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(theme.errors.count, "error") %> prohibited this theme from being saved:</h2>
+
+      <ul>
+        <% theme.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :main_background, style: "display: block" %>
+    <%= form.text_field :main_background %>
+  </div>
+
+  <div>
+    <%= form.label :schedule_background, style: "display: block" %>
+    <%= form.text_field :schedule_background %>
+  </div>
+
+  <div>
+    <%= form.label :medication_background, style: "display: block" %>
+    <%= form.text_field :medication_background %>
+  </div>
+
+  <div>
+    <%= form.label :medication-main, style: "display: block" %>
+    <%= form.text_field :medication-main %>
+  </div>
+
+  <div>
+    <%= form.label :heading, style: "display: block" %>
+    <%= form.text_field :heading %>
+  </div>
+
+  <div>
+    <%= form.label :font, style: "display: block" %>
+    <%= form.text_field :font %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

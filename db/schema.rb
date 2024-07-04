@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_27_015607) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_02_192100) do
   create_table "day_takens", force: :cascade do |t|
     t.string "date"
     t.boolean "taken"
@@ -45,6 +45,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_27_015607) do
     t.index ["name"], name: "index_medications_on_name", unique: true
   end
 
+  create_table "themes", force: :cascade do |t|
+    t.string "name"
+    t.string "main_background"
+    t.string "schedule_background"
+    t.string "medication_background"
+    t.string "medication_main"
+    t.string "heading"
+    t.string "font"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "first_name"
@@ -53,6 +66,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_27_015607) do
     t.datetime "updated_at", null: false
     t.string "uid"
     t.string "provider"
+    t.integer "current_theme_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

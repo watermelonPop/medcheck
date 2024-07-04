@@ -11,7 +11,9 @@
     <%= javascript_importmap_tags %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Gamja+Flower&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>
     <script src="https://kit.fontawesome.com/b7b6d87d91.js" crossorigin="anonymous"></script>
     <script>
       if ('serviceWorker' in navigator) {
@@ -24,6 +26,38 @@
         });
       }
     </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        function onLoadFunction() {
+          var r = document.querySelector(':root');
+          r.style.setProperty('--main_background', document.getElementById("passBack").dataset.mainBackground);
+          r.style.setProperty('--schedule_background', document.getElementById("passBack").dataset.scheduleBackground);
+          r.style.setProperty('--medication_background', document.getElementById("passBack").dataset.medicationBackground);
+          r.style.setProperty('--medication_main', document.getElementById("passBack").dataset.medicationMain);
+          r.style.setProperty('--heading', document.getElementById("passBack").dataset.heading);
+          r.style.setProperty('--font', document.getElementById("passBack").dataset.font);
+          
+          if(document.getElementById("passBack").dataset.font == "Gamja Flower"){
+            r.style.setProperty('--large_title', '60px');
+            r.style.setProperty('--med_title', '50px');
+            r.style.setProperty('--small_title', '40px');
+            r.style.setProperty('--large_txt', '30px');
+            r.style.setProperty('--med_txt', '20px');
+            r.style.setProperty('--small_txt', '15px');
+          }else{
+            r.style.setProperty('--large_title', '30px');
+            r.style.setProperty('--med_title', '28px');
+            r.style.setProperty('--small_title', '25px');
+            r.style.setProperty('--large_txt', '20px');
+            r.style.setProperty('--med_txt', '15px');
+            r.style.setProperty('--small_txt', '2px');
+          }
+        }
+
+        onLoadFunction();
+      });
+    </script>
   </head>
 
   <body>
@@ -31,8 +65,10 @@
     <% if (controller_name != 'medication_schedules' || action_name != 'get_day_schedules') && (controller_name != 'histories' || action_name != 'get_history_day_schedules') %>
       <% if session[:user_id] %>
         <%= render partial: 'shared/dock' %>
+        <div style="display: none;" id="passBack" data-main-background="<%= User.find_by(id: session[:user_id]).current_theme.main_background %>" data-schedule-background="<%= User.find_by(id: session[:user_id]).current_theme.schedule_background %>" data-medication-background="<%= User.find_by(id: session[:user_id]).current_theme.medication_background %>" data-medication-main="<%= User.find_by(id: session[:user_id]).current_theme.medication_main %>" data-heading="<%= User.find_by(id: session[:user_id]).current_theme.heading %>" data-font="<%= User.find_by(id: session[:user_id]).current_theme.font %>"></div>
       <% end %>
     <% end %>
   </body>
 </html>
+
 

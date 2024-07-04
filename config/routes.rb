@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :themes
   resources :day_takens
   get 'sessions/logout'
   get 'sessions/omniauth'
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
     resources :histories, only: [:index, :new, :show, :create, :edit], as: 'histories' do
     end
     resources :day_takens, only: [:create, :edit, :update, :new, :index]
+    resources :themes, only: [:new, :create, :destroy]
   end
 
   get '/logout', to: 'sessions#logout', as: 'logout'
@@ -29,7 +31,7 @@ Rails.application.routes.draw do
   get '/users/:user_id/get_today_schedules', to: 'medication_schedules#get_today_schedules', as: 'get-today-schedule'
   get '/users/:user_id/medications/:medication_id/new_pickup/:date/:amount', to: 'medications#new_pickup', as: 'new-pickup'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
+  get '/users/:user_id/set_current_theme/:theme_id', to: 'users#set_current_theme', as: 'set-current-theme'
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check

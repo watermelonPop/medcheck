@@ -26,7 +26,7 @@
         </div>
         <div class="outerViewCal" id="scan">
                 <%= month_calendar do |date| %>
-                                <p class="tinyDate" <% if @user %>data-user-id="<%= @user.id %>"<% end %> data-date="<%= date %>" <% if date.year == Date.today.year && date.month == Date.today.month && date.day == Date.today.day %>style="background-color: #9D8189;"<% end %> onclick="selectDay(this)">
+                                <p class="tinyDate" <% if @user %>data-user-id="<%= @user.id %>"<% end %> data-date="<%= date %>" <% if date.year == Date.today.year && date.month == Date.today.month && date.day == Date.today.day %>style="background-color: var(--heading); color: var(--schedule_background)"<% end %> onclick="selectDay(this)">
                                         <%= date.strftime("%d") %>
                                 </p>
                 <% end %>
@@ -72,7 +72,7 @@
         function selectDay(element){
                 let listDays = document.getElementsByClassName("tinyDate");
                 for(let i = 0; i < listDays.length; i++){
-                        listDays[i].style.borderColor = "#D8E2DC";
+                        listDays[i].style.borderColor = "var(--schedule_background)";
                 }
                 element.style.borderColor = "black"
                 let d = element.dataset.date;

@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  main_background: MyString
+  schedule_background: MyString
+  medication_background: MyString
+  medication-main: MyString
+  heading: MyString
+  font: MyString
+
+two:
+  main_background: MyString
+  schedule_background: MyString
+  medication_background: MyString
+  medication-main: MyString
+  heading: MyString
+  font: MyString

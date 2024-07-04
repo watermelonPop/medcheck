@@ -14,8 +14,110 @@
  *= require_self
  */
 
+ :root {
+       --main_background: #FFE5D9;
+       --schedule_background: #D8E2DC;
+       --medication_background: #F4ACB7;
+       --medication-main: #FFCAD4;
+       --heading: #9D8189;
+       --font: "Gamja Flower";
+
+       --large_title: 60px;
+       --med_title: 50px;
+       --small_title: 40px;
+       --large_txt: 30px;
+       --med_txt: 20px;
+       --small_txt: 15px;
+}
+
+.themeDiv{
+       display: flex;
+       justify-content: space-evenly;
+       align-items: center;
+       width: 100%;
+       height: 50%;
+}
+
+.outerThemeDiv{
+       width: 80%;
+       height: 100%;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       padding: 5%;
+       border-radius: 8px;
+       border: 2px solid black;
+}
+
+.outerThemeLink{
+       color: black;
+       text-decoration: none;
+       width: 70%;
+       height: fit-content;
+       display: flex;
+       align-items: center;
+       cursor: pointer;
+       margin-top: 5%;
+}
+
+.themeScroll{
+       height: 60vh;
+       width: 100%;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       overflow-y: scroll;
+       row-gap: 10%;
+}
+
+.colorChooseDiv{
+       width: 100%;
+       height: fit-content;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+}
+
+.colorInput{
+       background-color: var(--main_background);
+       border-radius: 8px;
+       border-style: none;
+       font-family: var(--font);
+       font-size: var(--med_txt);
+       width: 70%;
+       color: black;
+}
+
+.fontSelect{
+       width: 70%;
+       height: 5vh;
+       font-family: var(--font);
+       font-size: var(--med_txt);
+       background-color: var(--main_background);
+       border-radius: 8px;
+       border-style: none;
+       color: black;
+}
+
+.newThemeBtn{
+       background-color: var(--main_background);
+       color: var(--medication_background);
+       padding: 5%;
+       border-radius: 8px;
+       margin-top: 5%;
+       cursor: pointer;;
+}
+
+.colorThemeDiv{
+       width: 20%;
+       height: 90%;
+       border: 2px black solid;
+}
+
  body{
-        background-color: #FFE5D9;
+        background-color:  var(--main_background);
         height: 100vh;
         width: 100vw;
         margin: 0px;
@@ -74,14 +176,14 @@
  }
 
  .titleDiv{
-        background-color: #D8E2DC;
+        background-color: var(--schedule_background);
         width: 70%;
         height: 15%;
         border-radius: 8px;
  }
 
  .titleDivDash{
-        background-color: #9D8189;
+        background-color: var(--heading);
         width: 70%;
         height: 15%;
         border-radius: 8px;
@@ -91,8 +193,8 @@
  }
 
  .title{
-        font-size: 60px;
-        font-family: "Gamja Flower", sans-serif;
+        font-size: var(--large_title);
+        font-family: var(--font);
         text-align: center;
         width: 100%;
         height: 100%;
@@ -100,12 +202,25 @@
         display: flex;
         justify-content: center;
         align-items: center;
+       color: var(--main_background);
+ }
 
+ .titleBlack{
+       font-size: var(--large_title);
+        font-family: var(--font);
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       color: black;
  }
 
  .dashTitle{
-        font-size: 60px;
-        font-family: "Gamja Flower", sans-serif;
+        font-size: var(--large_title);
+        font-family: var(--font);
         text-align: center;
         width: 100%;
         height: 100%;
@@ -113,12 +228,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #FFE5D9;
+        color:  var(--main_background);
  }
 
  .SchedTitle{
-        font-size: 40px;
-        font-family: "Gamja Flower", sans-serif;
+        font-size: var(--small_title);
+        font-family: var(--font);
         text-align: center;
         width: 100%;
         height: 100%;
@@ -126,12 +241,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #FFE5D9;
+        color:  var(--main_background);
  }
 
  .medEditTitle{
-        font-size: 35px;
-        font-family: "Gamja Flower", sans-serif;
+        font-size: var(--large_txt);
+        font-family: var(--font);
         text-align: center;
         width: 100%;
         height: 100%;
@@ -139,12 +254,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #FFE5D9;
+        color:  var(--main_background);
  }
 
  .medShowTitle{
-        font-size: 50px;
-        font-family: "Gamja Flower", sans-serif;
+        font-size: var(--med_title);
+        font-family: var(--font);
         text-align: center;
         width: 90%;
         height: 100%;
@@ -152,7 +267,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        color: #FFE5D9;
+        color:  var(--main_background);
  }
 
  .medSchedLink{
@@ -168,7 +283,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 25px;
+        font-size: var(--med_txt);
  }
 
  .outerHist{
@@ -178,7 +293,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        font-family: "Gamja Flower", sans-serif;
+        font-family: var(--font);
  }
 
  .histScroll{
@@ -201,11 +316,11 @@
 
  .innerHist p{
         width: fit-content;
-        font-size: 20px;
+        font-size: var(--med_txt);
  }
  .titleDivNewMed{
-        font-size: 60px;
-        font-family: "Gamja Flower", sans-serif;
+        font-size: var(--large_title);
+        font-family: var(--font);
         text-align: center;
         width: 100%;
         height: 15%;
@@ -213,13 +328,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #9D8189;
+        background-color: var(--heading);
         border-radius: 8px;
  }
 
  .titleDivNewSchedMed{
-        font-size: 60px;
-        font-family: "Gamja Flower", sans-serif;
+        font-size: var(--large_title);
+        font-family: var(--font);
         text-align: center;
         width: 100%;
         height: 35%;
@@ -227,13 +342,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #9D8189;
+        background-color: var(--heading);
         border-radius: 8px;
  }
 
  .titleDivEditMed{
-        font-size: 60px;
-        font-family: "Gamja Flower", sans-serif;
+        font-size: var(--large_title);
+        font-family: var(--font);
         text-align: center;
         width: 70%;
         height: 15%;
@@ -241,7 +356,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #D8E2DC;
+        background-color: var(--schedule_background);
         border-radius: 8px;
  }
 
@@ -252,12 +367,12 @@
         justify-content: center;
         align-items: center;
         border-radius: 8px;
-        background-color: #D8E2DC;
+        background-color: var(--schedule_background);
  }
 
  .login-btn{
-        font-size: 40px;
-        font-family: "Gamja Flower", sans-serif;
+        font-size: var(--small_title);
+        font-family: var(--font);
         text-align: center;
         outline: none;
         border-style: none;
@@ -270,11 +385,13 @@
         align-items: center;
         border-radius: 8px;
         background-color: transparent;
+        color: var(--main_background);
+        text-decoration: none;
  }
 
  .new-btn{
-        font-size: 40px;
-        font-family: "Gamja Flower", sans-serif;
+        font-size: var(--small_title);
+        font-family: var(--font);
         text-align: center;
         outline: none;
         border-style: none;
@@ -287,13 +404,13 @@
         align-items: center;
         border-radius: 8px;
         background-color: transparent;
-        color: #FFE5D9;
+        color:  var(--main_background);
         text-decoration: none;
  }
 
  .new-sched-btn{
-        font-size: 40px;
-        font-family: "Gamja Flower", sans-serif;
+        font-size: var(--small_title);
+        font-family: var(--font);
         text-align: center;
         outline: none;
         border-style: none;
@@ -304,15 +421,15 @@
         align-items: center;
         border-radius: 8px;
         background-color: transparent;
-        color: #FFE5D9;
+        color:  var(--main_background);
         text-decoration: none;
         height: 20vh;
         margin:0;
  }
 
  .delBtn{
-        font-size: 40px;
-        font-family: "Gamja Flower", sans-serif;
+        font-size: var(--small_title);
+        font-family: var(--font);
         text-align: center;
         outline: none;
         border-style: none;
@@ -330,7 +447,7 @@
 
  .daysWeekDiv{
         display: flex;
-        background-color: #FFCAD4;
+        background-color: var(--medication-main);
         width: 70%;
         border-radius: 8px;
         justify-content: space-evenly;
@@ -338,10 +455,10 @@
  }
 
  .dayWeek{
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 20px;
-        background-color: #F4ACB7;
-        border-radius: 20px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
+        background-color: var(--medication_background);
+        border-radius: var(--med_txt);
         padding-left: 3%;
         padding-right: 3%;
  }
@@ -363,7 +480,7 @@
  }
 
  .schedInputs{
-        background-color: #9D8189;
+        background-color: var(--heading);
         width: 100%;
         height: 70%;
         display: flex;
@@ -376,8 +493,8 @@
  }
 
  .create-btn{
-        font-size: 40px;
-        font-family: "Gamja Flower", sans-serif;
+        font-size: var(--small_title);
+        font-family: var(--font);
         text-align: center;
         outline: none;
         border-style: none;
@@ -403,29 +520,29 @@
         justify-content: center;
         align-items: center;
         border-radius: 8px;
-        border-color: #FFE5D9;
+        border-color:  var(--main_background);
         width: 150%;
  }
 
 
  .dashMedsDiv{
-        height: 35%;
-        width: 70%;
+        height: 100%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: #F4ACB7;
+        background-color: var(--medication_background);
         border-radius: 8px;
  }
 
  .outerViewCal{
-        background-color: #F4ACB7;
+        background-color: var(--medication_background);
         border-radius: 8px;
         height: 47%;
         width: 70%;
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 25px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -458,7 +575,7 @@
  }
 
  .innerDetailsCal{
-        background-color: #D8E2DC;
+        background-color: var(--schedule_background);
         border-radius: 8px;
         height: 25%;
         width: 70%;
@@ -486,8 +603,8 @@
 
  .indSched{
         display: flex;
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 20px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
         width: 90%;
         justify-content: space-evenly;
         align-items: center;
@@ -528,14 +645,14 @@
  }
 
  .schedDiv{
-        background-color: #D8E2DC;
+        background-color: var(--schedule_background);
         border-radius: 8px;
         width: 70%;
         height: 70%;
  }
 
  .newschedDiv{
-        background-color: #D8E2DC;
+        background-color: var(--schedule_background);
         border-radius: 8px;
         width: 70%;
         height: 30%;
@@ -550,13 +667,13 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: #D8E2DC;
+        background-color: var(--schedule_background);
         width: 100%;
         height: 100%;
         overflow-y: scroll;
         border-radius: 8px;
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 20px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
  }
 
  .schedListItem{
@@ -567,8 +684,8 @@
         height: 20%;
         width: 100%;
         text-align: center;
-        font-size: 25px;
-        font-family: "Gamja Flower", sans-serif;
+        font-size: var(--med_txt);
+        font-family: var(--font);
         margin: 0;
         display: flex;
         justify-content: center;
@@ -600,7 +717,7 @@
  .outerIconDiv{
         height: 100%;
         width: 20%;
-        background-color: #FFCAD4;
+        background-color: var(--medication-main);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -609,30 +726,30 @@
  }
 
  .innerIcon{
-        font-size: 20px;
+        font-size: var(--med_txt);
  }
 
  .widgetMedDiv{
         height: 100%;
         width: 80%;
-        background-color: #FFCAD4;
+        background-color: var(--medication-main);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        font-family: "Gamja Flower", sans-serif;
+        font-family: var(--font);
         border-radius: 8px;
  }
 
  .widgetMedTitle{
-        font-size: 25px;
+        font-size: var(--med_txt);
         margin: 0;
         width: 100%;
         text-align: center;
  }
 
  .widgetMedSub{
-        font-size: 15px;
+        font-size: var(--small_txt);
         margin: 0;
  }
 
@@ -652,7 +769,7 @@
  .dashTodaySchedDiv{
         height: 35%;
         width: 70%;
-        background-color: #D8E2DC;
+        background-color: var(--schedule_background);
         border-radius: 8px;
  }
 
@@ -664,15 +781,15 @@
  }
 
  .todayTitle{
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 30px;
+        font-family: var(--font);
+        font-size: var(--large_txt);
         margin: 0;
         margin-top: 3%;
         margin-bottom: 3%;
  }
 
  .todaySchedDiv{
-        background-color: #D8E2DC;
+        background-color: var(--schedule_background);
         width: 70%;
         height: 70%;
         border-radius: 8px;
@@ -686,12 +803,17 @@
         position: fixed;
         top: 3%;
         left: 3%;
-        font-size: 40px;
+        font-size: var(--small_title);
  }
 
  .link{
         text-decoration: none;
         color: black;
+ }
+
+ .outerMedsDiv{
+       height: 35%;
+       width: 70%;
  }
 
  .dockDiv{
@@ -701,26 +823,27 @@
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        font-size: 20px;
+        font-size: var(--med_txt);
         text-shadow: 1px 1px 1px #000000;
  }
 
  .accInfoDiv{
         height: 80%;
         width: 70%;
-        background-color: #F4ACB7;
+        background-color: var(--medication_background);
         border-radius: 8px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         row-gap: 5%;
+        cursor: pointer;
  }
 
  .innerMedsDiv{
         height: 80%;
         width: 70%;
-        background-color: #F4ACB7;
+        background-color: var(--medication_background);
         border-radius: 8px;
         display: flex;
         flex-direction: column;
@@ -731,7 +854,7 @@
  }
 
  .infoDiv{
-        background-color: #FFE5D9;
+        background-color:  var(--main_background);
         border-radius: 8px;
         padding-left: 5%;
         padding-right: 5%;
@@ -739,13 +862,13 @@
  }
 
  .info{
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 20px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
  }
 
  .schedInfo{
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 20px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
         width: 90%;
         height: auto;
         display: flex;
@@ -754,7 +877,7 @@
  }
 
  .medFormBody{
-        background-color: #F4ACB7;
+        background-color: var(--medication_background);
         width: 100%;
         height: 80%;
         border-radius: 8px;
@@ -776,12 +899,12 @@
  }
 
  .medSchedsDiv{
-        background-color: #D8E2DC;
+        background-color: var(--schedule_background);
         border-radius: 8px;
         height: 45%;
         width: 90%;
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 20px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -790,7 +913,7 @@
 
  .gridInfoBlock{
         width: 47%;
-        background-color: #F4ACB7;
+        background-color: var(--medication_background);
         border-radius: 8px;
         height: 47%;
         display: flex;
@@ -800,7 +923,7 @@
  }
 
  .gridInfoTxt{
-        font-family: "Gamja Flower", sans-serif;
+        font-family: var(--font);
         margin: 0;
         text-align: center;
         display: flex;
@@ -812,8 +935,8 @@
  }
 
  .gridInfoSub{
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 20px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
         margin: 0;
         text-align: center;
         height: 50%;
@@ -824,8 +947,8 @@
  }
 
  .gridInfoTitle{
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 30px;
+        font-family: var(--font);
+        font-size: var(--large_txt);
         margin: 0;
         text-align: center;
         height: 50%;
@@ -833,7 +956,7 @@
  }
 
  .innerShowMedDiv{
-        background-color: #FFCAD4;
+        background-color: var(--medication-main);
         height: 80%;
         width: 70%;
         display: flex;
@@ -844,7 +967,7 @@
  }
 
  .medFormIcon{
-        background-color: #FFCAD4;
+        background-color: var(--medication-main);
         height: 25%;
         width: 90%;
         border-radius: 8px;
@@ -856,8 +979,8 @@
 
  .innerMedFormTitle{
         margin: 0;
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 20px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -870,43 +993,43 @@
         justify-content: center;
         align-items: center;
         column-gap: 5%;
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 20px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
         margin: 0;
  }
 
  .txtField{
         width: 50%;
-        background-color: #FFE5D9;
+        background-color:  var(--main_background);
         border-radius: 8px;
         border-style: none;
         outline: none;
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 20px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
  }
 
  .selectField{
         width: 20%;
-        background-color: #FFE5D9;
+        background-color:  var(--main_background);
         border-radius: 8px;
         border-style: none;
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 20px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
  }
 
  .selectSchedField{
         width: 80%;
-        background-color: #FFE5D9;
+        background-color:  var(--main_background);
         border-radius: 8px;
         border-style: none;
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 20px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
  }
 
  .icons{
        border-radius: 8px;
        border-style: solid;
-       border-color: #FFE5D9; 
+       border-color:  var(--main_background); 
        height: 90%;
        width: auto;
        padding-left: 2%;
@@ -923,7 +1046,7 @@
         align-items: center;
         width: 90%;
         height: 80%;
-        font-size: 35px;
+        font-size: var(--large_txt);
         column-gap: 5%;
  }
 
@@ -933,12 +1056,12 @@
         align-items: center;
         width: 90%;
         height: 80%;
-        font-size: 45px;
+        font-size: var(--small_title);
         column-gap: 5%;
  }
 
  .medFormColor{
-        background-color: #FFCAD4;
+        background-color: var(--medication-main);
         height: 25%;
         width: 90%;
         border-radius: 8px;
@@ -961,22 +1084,22 @@
 
  .dateField{
         width: 50%;
-        background-color: #FFE5D9;
+        background-color:  var(--main_background);
         border-radius: 8px;
         border-style: none;
         outline: none;
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 20px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
  }
 
  .timeField{
         width: 80%;
-        background-color: #FFE5D9;
+        background-color:  var(--main_background);
         border-radius: 8px;
         border-style: none;
         outline: none;
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 20px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
  }
 
  .outerMedForm{
@@ -990,14 +1113,14 @@
  }
 
  .tinyDate{
-        background-color: #D8E2DC;
-        border-radius: 20px;
+        background-color: var(--schedule_background);
+        border-radius: var(--med_txt);
         margin: 0;
         display: flex;
         justify-content: center;
         align-items: center;
         border-style: solid;
-        border-color: #D8E2DC;
+        border-color: var(--schedule_background);
  }
 
 
@@ -1018,8 +1141,8 @@
       
       /* Modal Content/Box */
       .modal-content {
-        background-color: #F4ACB7;
-        padding: 20px;
+        background-color: var(--medication_background);
+        padding: var(--med_txt);
         width: 70%; /* Could be more or less, depending on screen size */
         height: 80%;
         border-radius: 8px;
@@ -1027,8 +1150,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 20px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
       }
 
       .modal-content p{
@@ -1037,22 +1160,47 @@
       }
 
       .modalInput{
-        font-family: "Gamja Flower", sans-serif;
-        font-size: 20px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
         outline: none;
         border-style: none;
         border-radius: 8px;
-        background-color: #FFE5D9;
+        background-color:  var(--main_background);
       }
       
       /* The Close Button */
       .close {
-        color: #FFCAD4;
+        color: var(--medication-main);
         float: right;
-        font-size: 28px;
+        font-size: var(--large_txt);
         font-weight: bold;
         width: 80%;
         text-align: right;
+      }
+
+      .delTheme{
+       width: 100%;
+       height: 100%;
+       margin: 0;
+       padding: 0;
+       text-align: right;
+       display: flex;
+       justify-content: right;
+       align-items: center;
+       font-size: var(--large_txt);
+      }
+
+      .outerDelTheme{
+       width: 90%;
+       height: 10%;
+       margin: 0;
+       padding: 0;
+       text-align: right;
+       text-decoration: none;
+       color: black;
+       display: flex;
+       justify-content: right;
+       align-items: center;
       }
       
       .close:hover,
@@ -1063,7 +1211,7 @@
       }
 
       .modalBtn{
-        background-color: #D8E2DC;
+        background-color: var(--schedule_background);
         border-radius: 8px;
         padding: 5%;
       }
