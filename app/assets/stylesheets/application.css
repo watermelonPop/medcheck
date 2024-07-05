@@ -27,8 +27,1229 @@
        --small_title: 40px;
        --large_txt: 30px;
        --med_txt: 20px;
-       --small_txt: 15px;
+       --small_txt: 20px;
 }
+
+body{
+       margin: 0;
+       padding: 0;
+       width: 100vw;
+       height: 100vh;
+       font-family: var(--font);
+       background-color: var(--main_background);
+       overflow: hidden;
+}
+
+
+.themeDiv{
+       display: flex;
+       justify-content: space-evenly;
+       align-items: center;
+       width: 100%;
+       height: 50%;
+}
+
+.outerThemeDiv{
+       width: 80%;
+       height: 100%;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       padding: 5%;
+       border-radius: 8px;
+       border: 2px solid black;
+}
+
+.outerThemeLink{
+       color: black;
+       text-decoration: none;
+       width: 70%;
+       height: fit-content;
+       display: flex;
+       align-items: center;
+       cursor: pointer;
+       margin-top: 5%;
+}
+
+.themeScroll{
+       height: 60vh;
+       width: 100%;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       overflow-y: scroll;
+       row-gap: 10%;
+}
+
+.colorChooseDiv{
+       width: 100%;
+       height: fit-content;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+}
+
+.colorInput{
+       background-color: var(--main_background);
+       border-radius: 8px;
+       border-style: none;
+       font-family: var(--font);
+       font-size: var(--med_txt);
+       width: 70%;
+       color: black;
+}
+
+.fontSelect{
+       width: 70%;
+       height: 5vh;
+       font-family: var(--font);
+       font-size: var(--med_txt);
+       background-color: var(--main_background);
+       border-radius: 8px;
+       border-style: none;
+       color: black;
+}
+
+.newThemeBtn{
+       background-color: var(--main_background);
+       color: var(--medication_background);
+       padding: 5%;
+       border-radius: 8px;
+       margin-top: 5%;
+       cursor: pointer;;
+}
+
+.colorThemeDiv{
+       width: 20%;
+       height: 90%;
+       border: 2px black solid;
+}
+
+ .backingDiv{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 90%;
+        width: 100%;
+        margin: 0px;
+        row-gap: 5%;
+ }
+
+ .backingDivAcc{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 80%;
+        width: 100%;
+        margin: 0px;
+        row-gap: 2%;
+        margin-top: 3%;
+        margin-bottom: 3%;
+ }
+
+ .backingDivDash{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 90%;
+        width: 100%;
+        margin: 0px;
+        row-gap: 2%;
+ }
+
+ .backingDivToday{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 90%;
+        width: 100%;
+        margin: 0px;
+        row-gap: 2%;
+ }
+
+ .logo{
+        height: 50%;
+        width: auto;
+ }
+
+ .titleDiv{
+        background-color: var(--schedule_background);
+        width: 70%;
+        height: 15%;
+        border-radius: 8px;
+ }
+
+ .titleDivDash{
+        background-color: var(--heading);
+        width: 70%;
+        height: 15%;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+ }
+
+ .title{
+        font-size: var(--large_title);
+        font-family: var(--font);
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       color: var(--main_background);
+ }
+
+ .titleBlack{
+       font-size: var(--large_title);
+        font-family: var(--font);
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       color: black;
+ }
+
+ .dashTitle{
+        font-size: var(--large_title);
+        font-family: var(--font);
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color:  var(--main_background);
+ }
+
+ .SchedTitle{
+        font-size: var(--small_title);
+        font-family: var(--font);
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color:  var(--main_background);
+ }
+
+ .medEditTitle{
+        font-size: var(--large_txt);
+        font-family: var(--font);
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color:  var(--main_background);
+ }
+
+ .medShowTitle{
+        font-size: var(--med_title);
+        font-family: var(--font);
+        text-align: center;
+        width: 90%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color:  var(--main_background);
+ }
+
+ .medSchedLink{
+        width: 100%;
+        height: 100%;
+ }
+
+ .historyDate{
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        height: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: var(--med_txt);
+ }
+
+ .outerHist{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: var(--font);
+ }
+
+ .histScroll{
+        overflow-y: scroll;
+        margin: 0;
+        height: 70%;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+ }
+
+ .innerHist{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+ }
+
+ .innerHist p{
+        width: fit-content;
+        font-size: var(--med_txt);
+ }
+ .titleDivNewMed{
+        font-size: var(--large_title);
+        font-family: var(--font);
+        text-align: center;
+        width: 100%;
+        height: 15%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--heading);
+        border-radius: 8px;
+ }
+
+ .titleDivNewSchedMed{
+        font-size: var(--large_title);
+        font-family: var(--font);
+        text-align: center;
+        width: 100%;
+        height: 35%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--heading);
+        border-radius: 8px;
+ }
+
+ .titleDivEditMed{
+        font-size: var(--large_title);
+        font-family: var(--font);
+        text-align: center;
+        width: 70%;
+        height: 15%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--schedule_background);
+        border-radius: 8px;
+ }
+
+ .outerBtnDiv{
+        width: 70%;
+        height: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: var(--schedule_background);
+ }
+
+ .login-btn{
+        font-size: var(--small_title);
+        font-family: var(--font);
+        text-align: center;
+        outline: none;
+        border-style: none;
+        width: 70vw;
+        height: 15vh;
+        margin: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: transparent;
+        color: var(--main_background);
+        text-decoration: none;
+ }
+
+ .new-btn{
+        font-size: var(--small_title);
+        font-family: var(--font);
+        text-align: center;
+        outline: none;
+        border-style: none;
+        width: 70vw;
+        height: 15vh;
+        margin: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: transparent;
+        color:  var(--main_background);
+        text-decoration: none;
+ }
+
+ .new-sched-btn{
+        font-size: var(--small_title);
+        font-family: var(--font);
+        text-align: center;
+        outline: none;
+        border-style: none;
+        margin: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: transparent;
+        color:  var(--main_background);
+        text-decoration: none;
+        height: 20vh;
+        margin:0;
+ }
+
+ .delBtn{
+        font-size: var(--small_title);
+        font-family: var(--font);
+        text-align: center;
+        outline: none;
+        border-style: none;
+        width: 100%;
+        height: 100%;
+        margin: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: transparent;
+        text-decoration: none;
+ }
+
+ .daysWeekDiv{
+        display: flex;
+        background-color: var(--medication-main);
+        width: 70%;
+        border-radius: 8px;
+        justify-content: space-evenly;
+        align-items: center;
+ }
+
+ .dayWeek{
+        font-family: var(--font);
+        font-size: var(--med_txt);
+        background-color: var(--medication_background);
+        border-radius: var(--med_txt);
+        padding-left: 3%;
+        padding-right: 3%;
+ }
+
+ .schedInputDiv{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        row-gap: 5%;
+ }
+
+ .outerSchedForm{
+        width: 70%;
+        height: 35%;
+ }
+
+ .schedInputs{
+        background-color: var(--heading);
+        width: 100%;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        border-radius: 8px;
+
+ }
+
+ .create-btn{
+        font-size: var(--small_title);
+        font-family: var(--font);
+        text-align: center;
+        outline: none;
+        border-style: none;
+        width: 100%;
+        height: 15vh;
+        margin: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: transparent;
+        margin: 0;
+ }
+
+
+
+ .colorDiv{
+        height: 4vh;
+        border-style: solid;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        border-color:  var(--main_background);
+        width: 4vh;
+ }
+
+
+ .dashMedsDiv{
+        height: 35%;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--medication_background);
+        border-radius: 8px;
+ }
+
+ .outerViewCal{
+        background-color: var(--medication_background);
+        border-radius: 8px;
+        height: 47%;
+        width: 70%;
+        font-family: var(--font);
+        font-size: var(--med_txt);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+ }
+
+ .calendar-heading{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+ }
+
+ .simple-calendar{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+ }
+
+ .calendar-heading nav a {
+        color: black;
+        text-decoration: none;
+ }
+
+ .table, .table-striped{
+        height: 60%;
+        width: 95%;
+ }
+
+ .innerDetailsCal{
+        background-color: var(--schedule_background);
+        border-radius: 8px;
+        height: 25%;
+        width: 70%;
+ }
+
+ .scrollableMeds{
+       min-height: 20vh;
+       min-width: 60vw;
+        height: 70%;
+        width: 100%;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 10%;
+ }
+
+ .dashTodaySched{
+        height: 60%;
+        width: 100%;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 3%;
+ }
+
+ 
+
+ .indSched{
+        display: flex;
+        font-family: var(--font);
+        font-size: var(--med_txt);
+        width: 90%;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+ }
+
+ .dashTaken{
+        color: black;
+        width: 20%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+
+ }
+
+ .dashTaken i{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+ }
+
+ .indSched p{
+        text-align: center;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+ }
+ .schedDivider{
+        border: 1px solid black;
+        width: 90%;
+ }
+
+ .schedDiv{
+        background-color: var(--schedule_background);
+        border-radius: 8px;
+        width: 70%;
+        height: 70%;
+ }
+
+ .newschedDiv{
+        background-color: var(--schedule_background);
+        border-radius: 8px;
+        width: 70%;
+        height: 30%;
+ }
+
+ .schedDividerShow{
+        border: 1px solid black;
+        width: 90%;
+ }
+
+ .innerDaySched{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: var(--schedule_background);
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        border-radius: 8px;
+        font-family: var(--font);
+        font-size: var(--med_txt);
+ }
+
+ .schedListItem{
+
+ }
+
+ .widgetTitle{
+        height: 20%;
+        width: 100%;
+        text-align: center;
+        font-size: var(--med_txt);
+        font-family: var(--font);
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 3%;
+ }
+
+ .medicationDiv{
+        text-decoration: none;
+        color: black;
+        display: flex;
+        height: 50%;
+        width: 90%;
+        column-gap: 3%;
+        border-radius: 8px;
+
+ }
+
+ .medicationLgDiv{
+        text-decoration: none;
+        color: black;
+        display: flex;
+        height: 20%;
+        width: 90%;
+        column-gap: 3%;
+        border-radius: 8px;
+ }
+
+ .outerIconDiv{
+        height: 100%;
+        width: 20%;
+        background-color: var(--medication-main);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+
+ }
+
+ .innerIcon{
+        font-size: var(--med_txt);
+ }
+
+ .widgetMedDiv{
+        height: 100%;
+        width: 80%;
+        background-color: var(--medication-main);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: var(--font);
+        border-radius: 8px;
+ }
+
+ .widgetMedTitle{
+        font-size: var(--med_txt);
+        margin: 0;
+        width: 100%;
+        text-align: center;
+ }
+
+ .widgetMedSub{
+        font-size: var(--small_txt);
+        margin: 0;
+ }
+
+ .schedListDiv{
+        width: 90%;
+        height: 70%;
+        overflow-y: scroll;
+ }
+
+ .sched{
+        width: 100%;
+        height: 20%;
+        text-align: center;
+        margin: 0;
+ }
+
+ .dashTodaySchedDiv{
+        height: 35%;
+        width: 70%;
+        background-color: var(--schedule_background);
+        border-radius: 8px;
+ }
+
+ .indSchedDiv{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 90%;
+ }
+
+ .todayTitle{
+        font-family: var(--font);
+        font-size: var(--large_txt);
+        margin: 0;
+        margin-top: 3%;
+        margin-bottom: 3%;
+ }
+
+ .todaySchedDiv{
+        background-color: var(--schedule_background);
+        width: 70%;
+        height: 70%;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: scroll;
+ }
+
+ .settingsBtn{
+        position: fixed;
+        top: 3%;
+        left: 3%;
+        font-size: var(--small_title);
+ }
+
+ .link{
+        text-decoration: none;
+        color: black;
+ }
+
+ .outerMedsDiv{
+       height: 35%;
+       width: 70%;
+ }
+
+ .dashMedDiv{
+       background-color: var(--medication_background);
+       width: 70%;
+       height: 35%;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+ }
+
+ .innerDashMedDiv{
+       background-color: blue;
+       width: 100%;
+       height: 100%;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+ }
+
+ .dockDiv{
+        width: 100%;
+        height: 10%;
+        margin: 0;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: var(--med_txt);
+        text-shadow: 1px 1px 1px #000000;
+ }
+
+ .accInfoDiv{
+        height: 80%;
+        width: 70%;
+        background-color: var(--medication_background);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 5%;
+        cursor: pointer;
+ }
+
+ .innerMedsDiv{
+        height: 80%;
+        width: 70%;
+        background-color: var(--medication_background);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 5%;
+        overflow-y: scroll;
+ }
+
+ .infoDiv{
+        background-color:  var(--main_background);
+        border-radius: 8px;
+        padding-left: 5%;
+        padding-right: 5%;
+
+ }
+
+ .info{
+        font-family: var(--font);
+        font-size: var(--med_txt);
+ }
+
+ .schedInfo{
+        font-family: var(--font);
+        font-size: var(--med_txt);
+        width: 90%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+ }
+
+ .medFormBody{
+        background-color: var(--medication_background);
+        width: 100%;
+        height: 80%;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+ }
+
+ .gridInfoDiv{
+        display: flex;
+        justify-content: space-between;
+        align-items: space-between;
+        flex-wrap: wrap;
+        height: 45%;
+        width: 90%;
+        border-radius: 8px;
+        row-gap: 5%;
+ }
+
+ .medSchedsDiv{
+        background-color: var(--schedule_background);
+        border-radius: 8px;
+        height: 45%;
+        width: 90%;
+        font-family: var(--font);
+        font-size: var(--med_txt);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+ }
+
+ .gridInfoBlock{
+        width: 47%;
+        background-color: var(--medication_background);
+        border-radius: 8px;
+        height: 47%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+ }
+
+ .gridInfoTxt{
+        font-family: var(--font);
+        margin: 0;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 90%;
+ }
+
+ .gridInfoSub{
+        font-family: var(--font);
+        font-size: var(--med_txt);
+        margin: 0;
+        text-align: center;
+        height: 50%;
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+ }
+
+ .gridInfoTitle{
+        font-family: var(--font);
+        font-size: var(--large_txt);
+        margin: 0;
+        text-align: center;
+        height: 50%;
+        width: 90%;
+ }
+
+ .innerShowMedDiv{
+        background-color: var(--medication-main);
+        height: 80%;
+        width: 70%;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 8px;
+ }
+
+ .medFormIcon{
+        background-color: var(--medication-main);
+        height: 25%;
+        width: 90%;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+ }
+
+ .innerMedFormTitle{
+        margin: 0;
+        font-family: var(--font);
+        font-size: var(--med_txt);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20%;
+        width: 90%;
+ }
+
+ .txtInputs{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 5%;
+        font-family: var(--font);
+        font-size: var(--med_txt);
+        margin: 0;
+ }
+
+ .txtField{
+        width: 50%;
+        background-color:  var(--main_background);
+        border-radius: 8px;
+        border-style: none;
+        outline: none;
+        font-family: var(--font);
+        font-size: var(--med_txt);
+ }
+
+ .selectField{
+        width: 20%;
+        background-color:  var(--main_background);
+        border-radius: 8px;
+        border-style: none;
+        font-family: var(--font);
+        font-size: var(--med_txt);
+ }
+
+ .selectSchedField{
+        width: 80%;
+        background-color:  var(--main_background);
+        border-radius: 8px;
+        border-style: none;
+        font-family: var(--font);
+        font-size: var(--med_txt);
+ }
+
+ .icons{
+       border-radius: 8px;
+       border-style: solid;
+       border-color:  var(--main_background); 
+       height: auto;
+       width: auto;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       padding: 2%;
+ }
+
+ .scrollIcons{
+        display: flex;
+        overflow-x: scroll;
+        align-items: center;
+        width: 90%;
+        height: 80%;
+        font-size: var(--large_txt);
+        column-gap: 5%;
+ }
+
+ .scrollColors{
+        display: flex;
+        overflow-x: scroll;
+        align-items: center;
+        width: 90%;
+        height: 80%;
+        font-size: var(--small_title);
+        column-gap: 5%;
+ }
+
+ .medFormColor{
+        background-color: var(--medication-main);
+        height: 25%;
+        width: 90%;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+ }
+
+
+ .txtBodySection{
+        height: 40%;
+        width: 90%;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        overflow-y: scroll;
+ }
+
+ .dateField{
+        width: 50%;
+        background-color:  var(--main_background);
+        border-radius: 8px;
+        border-style: none;
+        outline: none;
+        font-family: var(--font);
+        font-size: var(--med_txt);
+ }
+
+ .timeField{
+        width: 80%;
+        background-color:  var(--main_background);
+        border-radius: 8px;
+        border-style: none;
+        outline: none;
+        font-family: var(--font);
+        font-size: var(--med_txt);
+ }
+
+ .outerMedForm{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 5%;
+        width: 70%;
+        height: 100%;
+ }
+
+ .tinyDate{
+        background-color: var(--schedule_background);
+        border-radius: var(--med_txt);
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-style: solid;
+        border-color: var(--schedule_background);
+ }
+
+
+ .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        justify-content: center;
+        align-items: center;
+      }
+      
+      /* Modal Content/Box */
+      .modal-content {
+        background-color: var(--medication_background);
+        padding: var(--med_txt);
+        width: 70%; /* Could be more or less, depending on screen size */
+        height: 80%;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: var(--font);
+        font-size: var(--med_txt);
+      }
+
+      .modal-content p{
+              margin: 0;
+              margin-top: 10px;
+              margin-bottom: 10px;
+      }
+
+      .modalInput{
+        font-family: var(--font);
+        font-size: var(--med_txt);
+        outline: none;
+        border-style: none;
+        border-radius: 8px;
+        background-color:  var(--main_background);
+        width: 70%;
+      }
+      
+      /* The Close Button */
+      .close {
+        color: var(--medication-main);
+        float: right;
+        font-size: var(--large_txt);
+        font-weight: bold;
+        width: 80%;
+        text-align: right;
+      }
+
+      .delTheme{
+       width: 100%;
+       height: 100%;
+       margin: 0;
+       padding: 0;
+       text-align: right;
+       display: flex;
+       justify-content: right;
+       align-items: center;
+       font-size: var(--large_txt);
+      }
+
+      .outerDelTheme{
+       width: 90%;
+       height: 10%;
+       margin: 0;
+       padding: 0;
+       text-align: right;
+       text-decoration: none;
+       color: black;
+       display: flex;
+       justify-content: right;
+       align-items: center;
+      }
+      
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .modalBtn{
+        background-color: var(--schedule_background);
+        border-radius: 8px;
+        padding: 5%;
+      }
+
+/*
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+*/
+
+
+@media only screen and (max-width: 600px) {
 
 .themeDiv{
        display: flex;
@@ -1239,3 +2460,4 @@
         border-radius: 8px;
         padding: 5%;
       }
+}
