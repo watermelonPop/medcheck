@@ -4,7 +4,6 @@ class DashboardController < ApplicationController
                 @medications = @user.medications
                 @current_day_schedules = []
                 current_day_of_week = Time.now.strftime('%A')
-                puts "CURRENT DAY: " + current_day_of_week
                 @medications.each do |medication|
                         schedules = medication.medication_schedules
                         schedules.each do |schedule|

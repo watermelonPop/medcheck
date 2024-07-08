@@ -1,28 +1,10 @@
 class DayTakensController < ApplicationController
-  before_action :set_day_taken, only: %i[ show edit update destroy ]
-
-  # GET /day_takens or /day_takens.json
-  def index
-    @day_takens = DayTaken.all
-  end
-
-  # GET /day_takens/1 or /day_takens/1.json
-  def show
-  end
-
-  # GET /day_takens/new
-  def new
-    @day_taken = DayTaken.new
-  end
-
-  # GET /day_takens/1/edit
-  def edit
-  end
+  before_action :set_day_taken, only: %i[update destroy ]
 
   # POST /day_takens or /day_takens.json
   def create
     @day_taken = DayTaken.new(day_taken_params)
-
+    @day_taken.user_id = current_user.id
     respond_to do |format|
       if @day_taken.save
         format.html { redirect_to day_taken_url(@day_taken), notice: "Day taken was successfully created." }
@@ -49,11 +31,15 @@ class DayTakensController < ApplicationController
 
   # DELETE /day_takens/1 or /day_takens/1.json
   def destroy
-    @day_taken.destroy!
 
     respond_to do |format|
-      format.html { redirect_to day_takens_url, notice: "Day taken was successfully destroyed." }
-      format.json { head :no_content }
+      if @day_taken.destroy
+        format.html { redirect_to day_takens_url, notice: "Day taken was successfully destroyed." }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to day_takens_url, notice: "Day taken was not destroyed." , status: :unprocessable_entity }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -65,6 +51,6 @@ class DayTakensController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def day_taken_params
-      params.require(:day_taken).permit(:date, :taken)
+      params.require(:day_taken).permit(:date, :taken, :user_id, :medication_schedule_id)
     end
 end

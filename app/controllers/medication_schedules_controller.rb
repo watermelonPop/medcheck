@@ -1,5 +1,5 @@
 class MedicationSchedulesController < ApplicationController
-  before_action :set_medication_schedule, only: %i[ show edit update destroy ]
+  before_action :set_medication_schedule, only: %i[ show destroy ]
 
   # GET /medication_schedules or /medication_schedules.json
   def index
@@ -10,21 +10,11 @@ class MedicationSchedulesController < ApplicationController
     end
   end
 
-  # GET /medication_schedules/1 or /medication_schedules/1.json
-  def show
-    @user = current_user
-    @medication = @user.medications.find_by(id: params[:medication_id])
-  end
-
   # GET /medication_schedules/new
   def new
     @user = current_user
     @medication = @user.medications.find_by(id: params[:medication_id])
     @medication_schedule = MedicationSchedule.new
-  end
-
-  # GET /medication_schedules/1/edit
-  def edit
   end
 
   # POST /medication_schedules or /medication_schedules.json
@@ -45,19 +35,6 @@ class MedicationSchedulesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /medication_schedules/1 or /medication_schedules/1.json
-  def update
-    respond_to do |format|
-      if @medication_schedule.update(medication_schedule_params)
-        format.html { redirect_to medication_schedule_url(@medication_schedule), notice: "Medication schedule was successfully updated." }
-        format.json { render :show, status: :ok, location: @medication_schedule }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @medication_schedule.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /medication_schedules/1 or /medication_schedules/1.json
   def destroy
     @user = current_user
@@ -72,14 +49,12 @@ class MedicationSchedulesController < ApplicationController
   end
 
   def get_day_schedules
-    puts "BEGIN DAY"
     @user = current_user
     @medication = @user.medications.find_by(id: params[:medication_id])
     
     @current_day = params[:day_of_week]
     @current_day_schedules = []
     medication_schedules = @medication.medication_schedules.where("day_of_week = ? OR day_of_week = ?", @current_day, 'Everyday')
-    puts "SCHEDULES: " + medication_schedules.to_s
     medication_schedules = medication_schedules.sort_by { |schedule| schedule.time.strftime("%H:%M") }
     medication_schedules.each do |schedule|
         @current_day_schedules << { medication: @medication, schedule: schedule }
@@ -87,7 +62,6 @@ class MedicationSchedulesController < ApplicationController
   end
 
   def get_today_schedules
-    puts "BEGIN DAY"
     @user = current_user
     
     @current_day = Date.today.strftime("%A")

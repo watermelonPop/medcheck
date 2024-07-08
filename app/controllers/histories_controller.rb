@@ -6,35 +6,6 @@ class HistoriesController < ApplicationController
     @unique_days = @user.day_takens.uniq.pluck(:date)
   end
 
-  def new
-  end
-
-  def show
-    @user = current_user
-    @medications = @user.medications.all
-    @unique_days = @user.unique_user_days
-    @taken_by_date = []
-    @days_taken.each do |day|
-      @taken_by_date << {id: day.id, medication_schedule: day.medication_schedule, taken: day.taken}
-    end
-    @taken_by_date
-  end
-
-  def create
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
-  def search
-  end
-
   def get_history_day_schedules
     @user = current_user
     @date = params[:date_needed]

@@ -1,10 +1,5 @@
 class ThemesController < ApplicationController
 
-  # GET /themes/new
-  def new
-    @theme = Theme.new
-  end
-
   # POST /themes or /themes.json
   def create
     @user = current_user
@@ -28,6 +23,6 @@ class ThemesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def theme_params
-      params.require(:theme).permit(:main_background, :schedule_background, :medication_background, :medication-main, :heading, :font)
+      params.require(:theme).permit(:name, :main_background, :schedule_background, :medication_background, :medication_main, :heading, :font)
     end
 end

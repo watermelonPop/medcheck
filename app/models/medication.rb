@@ -6,6 +6,7 @@ class Medication < ApplicationRecord
         validates :amount_taken, presence: true
         validates :icon, presence: true
         validates :color, presence: true
+        validates :last_picked_up, presence: true
         
         has_many :medication_schedules, dependent: :destroy
         belongs_to :user

@@ -3,18 +3,18 @@
         <div class="titleDivDash">
                 <p class="medEditTitle">Edit <%= @medication.name %></p>
         </div>
-        <%= form_with(url: edit_user_medication_path(user_id: @user.id, id: @medication.id), class: "outerMedForm") do |form| %>
+        <%= form_with(model: [@user, @medication], url: user_medication_path(user_id: @user.id, id: @medication.id), method: :patch, class: "outerMedForm") do |form| %>
                 <div class="medFormBody">
                   <div class="txtBodySection">
-                    <p class="txtInputs">name: <%= form.text_field :name, class: "txtField" %></p>
-                    <p class="txtInputs">amount taken: <%= form.number_field :amount_taken, class: "txtField" %></p>
-                    <p class="txtInputs">dose: <%= form.number_field :dose_amount, class: "txtField" %><%= form.select :dose_unit, options_for_select([
+                    <p class="txtInputs">name: <%= form.text_field :name, class: "txtField", value: @medication.name %></p>
+                    <p class="txtInputs">amount taken: <%= form.number_field :amount_taken, class: "txtField",value: @medication.amount_taken %></p>
+                    <p class="txtInputs">dose: <%= form.number_field :dose_amount, class: "txtField", value: @medication.dose_amount %><%= form.select :dose_unit, options_for_select([
                       ['mg', 'mg'],
                       ['g', 'g'],
                       ['mcg', 'mcg'],
-                      ['mL', 'mL']]), {}, class: "selectField" %></p>
-                    <p class="txtInputs">amount left: <%= form.number_field :amount_left, class: "txtField" %></p>
-                    <p class="txtInputs">last pick up: <%= form.date_field :last_picked_up, class: "dateField" %></p>
+                      ['mL', 'mL']]), {}, class: "selectField", value: @medication.dose_unit %></p>
+                    <p class="txtInputs">amount left: <%= form.number_field :amount_left, class: "txtField", value: @medication.amount_left %></p>
+                    <p class="txtInputs">last pick up: <%= form.date_field :last_picked_up, class: "dateField", value: @medication.last_picked_up %></p>
                   </div>
             
                   <div class="medFormIcon">
@@ -28,7 +28,7 @@
                     <p class="innerMedFormTitle">icons</p>
                     <div class="scrollIcons">
                       <% icons.each do |icon| %>
-                        <div class="icons" onclick="selectIcon('<%= icon[1] %>')">
+                        <div class="icons" onclick="selectIcon('<%= icon[1] %>')" style="<% if icon[1] == @medication.icon %>border-color: black;<% end %>">
                           <div class="medicationIcon">
                             <%= raw icon[1] %>
                           </div>
@@ -43,14 +43,14 @@
                     <% colors = ["#bf4f51", "#609078", "#6ca0dc", "#13274f", "#663046"] %>
                     <div class="scrollColors">
                       <% colors.each do |color| %>
-                        <div class="colorDiv" style="background-color: <%= color %>;" onclick="selectColor('<%= color %>')">
+                        <div class="colorDiv" style="background-color: <%= color %>;<% if color == @medication.color || color == rgb_to_hex(@medication.color) %>border-color: black;<% end %>" onclick="selectColor('<%= color %>')">
                         </div>
                       <% end %>
                     </div>
                   </div>
                 </div>
-                <%= form.hidden_field :icon, class: 'icon-input' %>
-                <%= form.hidden_field :color, class: 'color-input' %>
+                <%= form.hidden_field :icon, class: 'icon-input', value: @medication.icon %>
+                <%= form.hidden_field :color, class: 'color-input', value: @medication.color %>
                 
                 <div class="titleDivNewMed"><%= form.submit "create", class: "new-btn" %></div>
         <% end %>

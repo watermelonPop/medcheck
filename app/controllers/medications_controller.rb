@@ -45,9 +45,10 @@ class MedicationsController < ApplicationController
 
   # PATCH/PUT /medications/1 or /medications/1.json
   def update
+    @user = current_user
     respond_to do |format|
       if @medication.update(medication_params)
-        format.html { redirect_to medication_url(@medication), notice: "Medication was successfully updated." }
+        format.html { redirect_to user_medication_path(user_id: @user.id, id: @medication.id), notice: "Medication was successfully updated." }
         format.json { render :show, status: :ok, location: @medication }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -59,11 +60,17 @@ class MedicationsController < ApplicationController
   # DELETE /medications/1 or /medications/1.json
   def destroy
     @user = current_user
-    @medication.destroy!
+    @medication = @user.medications.find_by(id: params[:id])
+    @medication.medication_schedules.destroy_all
 
     respond_to do |format|
-      format.html { redirect_to user_medications_path(user_id: @user.id), notice: "Medication was successfully destroyed." }
-      format.json { head :no_content }
+      if @medication.destroy
+        format.html { redirect_to user_medications_path(user_id: @user.id), notice: "Medication was successfully destroyed." }
+        format.json { head :no_content }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @medication.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -73,8 +80,12 @@ class MedicationsController < ApplicationController
     @date = Date.parse(params[:date])
     @amount = params[:amount].to_i
     new_amt = @medication.amount_left.to_i + @amount
-    @medication.update(amount_left: new_amt)
-    @medication.update(last_picked_up: @date)
+
+    if @medication.update(amount_left: new_amt, last_picked_up: @date)
+      redirect_to user_medication_path(user_id: @user.id, id: @medication.id)
+    else
+      render :show, status: :unprocessable_entity
+    end
   end
 
   private
