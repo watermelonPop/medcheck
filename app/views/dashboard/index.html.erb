@@ -2,46 +2,54 @@
         <div class="titleDivDash">
                 <p class="dashTitle">DASHBOARD</p>
         </div>
-        <div class="dashTodaySchedDiv">
-                <%= link_to get_today_schedule_path(user_id: @current_user.id), class: "link" do %>
-                        <p class="widgetTitle" id="dateTime"></p>
-                        <hr class="schedDivider">
-                        <div class="dashTodaySched">
-                                <% @current_day_schedules.each do |schedule| %>
-                                        <div class="indSched">
-                                                <p><%= schedule.medication.name %> <%= schedule.time.strftime("%l:%M %p") %></p>
-                                                <%= link_to set_taken_path(user_id: @user.id, medication_id: schedule.medication.id, id: schedule.id), class: "dashTaken" do %>
-                                                        <% if schedule.taken %>
-                                                                <i class="fa-solid fa-circle-check"></i>
-                                                        <% else %>
-                                                                <i class="fa-regular fa-circle"></i>
+        <% if @medications.empty? %>
+                <%= link_to user_medications_path(user_id: @user.id), class: "link getStartedLink" do %>
+                        <div class="getStarted">
+                                <p class="getStartedText">get started <i class="fa-solid fa-arrow-right"></i></p>
+                        </div>
+                <% end %>
+        <% else %>
+                <div class="dashTodaySchedDiv">
+                        <%= link_to get_today_schedule_path(user_id: @current_user.id), class: "link" do %>
+                                <p class="widgetTitle" id="dateTime"></p>
+                                <hr class="schedDivider">
+                                <div class="dashTodaySched">
+                                        <% @current_day_schedules.each do |schedule| %>
+                                                <div class="indSched">
+                                                        <p><%= schedule.medication.name %> <%= schedule.time.strftime("%l:%M %p") %></p>
+                                                        <%= link_to set_taken_path(user_id: @user.id, medication_id: schedule.medication.id, id: schedule.id), class: "dashTaken" do %>
+                                                                <% if schedule.taken %>
+                                                                        <i class="fa-solid fa-circle-check"></i>
+                                                                <% else %>
+                                                                        <i class="fa-regular fa-circle"></i>
+                                                                <% end %>
                                                         <% end %>
-                                                <% end %>
-                                        </div>
-                                        <hr class="schedDivider">
-                                <% end %>
-                        </div>
-                <% end %>
-        </div>
-        <div class="dashMedsDiv">
-                <%= link_to user_medications_path(user_id: @user.id), class: "link" do %>
-                        <p class="widgetTitle">meds</p>
-                        <div class="scrollableMeds">
-                                <% @medications.each do |medication| %>
-                                        <%= link_to user_medication_path(user_id: @user.id, id: medication.id), class: "medicationDiv" do %>
-                                                <div class="outerIconDiv">
-                                                        <p style="color: <%= medication.color %>;" class="innerIcon"><%= raw medication.icon %></p>
                                                 </div>
-                                                <div class="widgetMedDiv">
-                                                        <p class="widgetMedTitle"><%= medication.name %></p>
-                                                        <p class="widgetMedSub"><%= medication.dose_amount %><%= medication.dose_unit %></p>
-                                                        <p class="widgetMedSub"><%= medication.amount_left %> left</p>
-                                                </div>
+                                                <hr class="schedDivider">
                                         <% end %>
-                                <% end %>
-                        </div>
-                <% end %>
-        </div>
+                                </div>
+                        <% end %>
+                </div>
+                <div class="dashMedsDiv">
+                        <%= link_to user_medications_path(user_id: @user.id), class: "link" do %>
+                                <p class="widgetTitle">meds</p>
+                                <div class="scrollableMeds">
+                                        <% @medications.each do |medication| %>
+                                                <%= link_to user_medication_path(user_id: @user.id, id: medication.id), class: "medicationDiv" do %>
+                                                        <div class="outerIconDiv">
+                                                                <p style="color: <%= medication.color %>;" class="innerIcon"><%= raw medication.icon %></p>
+                                                        </div>
+                                                        <div class="widgetMedDiv">
+                                                                <p class="widgetMedTitle"><%= medication.name %></p>
+                                                                <p class="widgetMedSub"><%= medication.dose_amount %><%= medication.dose_unit %></p>
+                                                                <p class="widgetMedSub"><%= medication.amount_left %> left</p>
+                                                        </div>
+                                                <% end %>
+                                        <% end %>
+                                </div>
+                        <% end %>
+                </div>
+        <% end %>
 </div>
 
 <script>
