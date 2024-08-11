@@ -26,12 +26,36 @@ https://med-check-7129cd9e51ba.herokuapp.com/
 - Users can assign icons and colors to medications to better differentiate between them
 - Calendar view to see medication taking history
 
+## API Reference
+
+#### Take Medication
+Marks the closest schedule for a medication taken, and adjusts the amount left. Your history of taken and not taken medication schedules is in the history page. 
+```http
+  PATCH /users/${user_id}/${medication_name}/take_closest_schedule
+```
+
+#### Set Up NFC tag
+- Requires: iphone, ios 13 and later, nfc tag
+- Create a new automation in the shortcuts app on your phone
+- choose nfc
+- click scan and hold the nfc tag to the top of your phone
+- Name the tag after the medication it controls
+- Choose run immediately or run after confirmation
+- optionally require the automation to notify you when it's run
+- Click next
+- Choose New Blank automation
+- Add an action and choose Get Contents of URL
+- click the toggle to see further settings for the action
+- Choose PATCH for the method
+- Grab your customized nfc link from the settings page of the app
+- use the link and click done
+- Now, by tapping your phone to the nfc tag, you can take your medications
+
+
 ## Installation
 
 To install medcheck on your phone, go to the demo link below in safari, click the share button, and select Add to Home Screen. 
 
 ```bash
-  https://med-check-7129cd9e51ba.herokuapp.com/
+  https://med-check-da59da84c5e7.herokuapp.com/
 ```
-
-- Click done
