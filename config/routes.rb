@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get '/users/:id', to: 'users#show', as: 'user'
   get 'users/:user_id/history/get_date/:date_needed', to: 'histories#get_history_day_schedules', as: :get_day_history
+  patch '/users/:user_id/:medication_name/take_closest_schedule', to: 'medication_schedules#take_closest_schedule', as: :take_closest_schedule
 
   resources :users do
     resources :dashboard, only: [:index], as: 'dashboard'

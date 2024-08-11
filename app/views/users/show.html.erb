@@ -12,8 +12,27 @@
           <div class="infoDiv" onclick="showThemeModal()">
             <p class="info">Theme: <%= @user.themes.find_by(id: @user.current_theme).name %></p>
           </div>
+          <div class="infoDiv" onclick="showNfcModal()">
+            <p class="info">get nfc link</p>
+          </div>
         </div>
-        <div class="titleDivDash"><%= link_to "Logout", logout_path, class: "login-btn" %></div>
+        <div class="titleDivDash"><%= link_to "Logout", logout_path, method: :delete, class: "login-btn" %></div>
+</div>
+
+<div id="nfcModal" class="modal">
+
+  <div class="modal-content">
+    <span class="close" onclick="hideNfcModal()">&times;</span>
+    <p class = "nfcTitle">get nfc tag link</p>
+    <p class="nfcDesc">make an nfc tag to take your medications with a tap of your phone!</p>
+    <p class="nfcSelectTxt">choose a medication:</p>
+    <select id="medicationSelect" name="medication" data-user="<%= @user.id %>">
+      <% @medications.each do |medication| %>
+        <option value="<%= medication.name %>"><%= medication.name %></option>
+      <% end %>
+    </select>
+    <p id="nfcLink" onclick="copyLink(this)">https://med-check-da59da84c5e7.herokuapp.com/users/<%= @user.id %>/<%= @medications.first.name %>/take_closest_schedule</p>
+  </div>
 </div>
 
 <div id="myModal" class="modal">
@@ -95,6 +114,20 @@
 
 <script>
 
+  var medicationSelect = document.getElementById('medicationSelect');
+
+  medicationSelect.addEventListener('change', function(event) {
+    var selectedValue = event.target.value;
+    let user = medicationSelect.dataset.user;
+    document.getElementById("nfcLink").innerHTML = "https://med-check-da59da84c5e7.herokuapp.com/users/" + user + "/" + selectedValue + "/take_closest_schedule";
+  });
+
+  function copyLink(element){
+          alert("hi");
+          navigator.clipboard.writeText(element.innerHTML);
+          alert("Copied the text: ");
+  }
+
   function showThemeModal(){
     document.getElementById("myModal").style.display = "flex";
   }
@@ -110,6 +143,13 @@
 
   function hideNewThemeModal(){
     document.getElementById("newThemeModal").style.display = "none";
+  }
+
+  function showNfcModal(){
+    document.getElementById("nfcModal").style.display = "flex";
+  }
+  function hideNfcModal(){
+    document.getElementById("nfcModal").style.display = "none";
   }
 
   function createNewTheme(userId){

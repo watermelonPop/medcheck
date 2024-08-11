@@ -1,13 +1,46 @@
 require 'rails_helper'
 
 RSpec.describe MedicationSchedulesController do
+        include ActiveSupport::Testing::TimeHelpers
         before do
                 User.destroy_all
                 User.create({ first_name: 'Test', last_name: 'Test', email: 'test@gmail.com' })
                 User.find_by(email: 'test@gmail.com').medications.create(name: 'TestMed', dose_amount: 100, dose_unit: 'mg', amount_taken: 1, amount_left: '70', last_picked_up: Date.today, icon: '<i class=\"fa-solid fa-tablets\"></i>', color: 'rgb(108, 160, 220)')
                 User.find_by(email: 'test@gmail.com').medications.find_by(name: 'TestMed').medication_schedules.create(time: "11:30", day_of_week: 'Everyday', taken: false)
+                User.find_by(email: 'test@gmail.com').medications.find_by(name: 'TestMed').medication_schedules.create(time: "12:30", day_of_week: 'Everyday', taken: false)
         end
         let!(:user) { User.find_by(email: 'test@gmail.com') }
+
+        describe "PATCH /take_closest_schedule" do
+
+                around do |example|
+                        travel_to Time.zone.parse("12:00") do
+                          example.run
+                        end
+                end
+                  
+                it 'updates the closest schedule to taken' do
+                        patch :take_closest_schedule, params: { user_id: user.id, medication_name: 'TestMed' }
+                        
+                        closest_schedule = user.medications.find_by(name: 'TestMed').medication_schedules.order(:time).first
+                        expect(closest_schedule.reload.taken).to be true
+                end
+                
+                it 'does not update other schedules' do
+                        patch :take_closest_schedule, params: { user_id: user.id, medication_name: 'TestMed' }
+                        
+                        other_schedule = user.medications.find_by(name: 'TestMed').medication_schedules.order(:time).last
+                        expect(other_schedule.reload.taken).to be false
+                end
+
+                it 'updates existing day taken' do
+                        user.day_takens.create(date: Date.today, taken: false, medication_schedule_id: user.medications.find_by(name: 'TestMed').medication_schedules.order(:time).first.id)
+                        patch :take_closest_schedule, params: { user_id: user.id, medication_name: 'TestMed' }
+                        
+                        closest_schedule = user.medications.find_by(name: 'TestMed').medication_schedules.order(:time).first
+                        expect(user.day_takens.find_by(id: closest_schedule.id).taken).to be true
+                end
+        end
 
         describe "GET /index" do
                 before { session[:user_id] = user.id }
@@ -123,12 +156,13 @@ RSpec.describe MedicationSchedulesController do
                         expect(response).to have_http_status(:found)
                 end
                 it 'deletes medication successfully' do
-                        delete :destroy, params: {
-                                user_id: user.id, 
-                                medication_id: user.medications.find_by(name: 'TestMed').id,
-                                id: user.medications.find_by(name: 'TestMed').medication_schedules.first.id
-                        }
-                        expect(user.medications.find_by(name: 'TestMed').medication_schedules.count).to eq(0)
+                        expect{
+                                delete :destroy, params: {
+                                        user_id: user.id, 
+                                        medication_id: user.medications.find_by(name: 'TestMed').id,
+                                        id: user.medications.find_by(name: 'TestMed').medication_schedules.first.id
+                                }
+                        }.to change(user.medications.find_by(name: 'TestMed').medication_schedules, :count).by(-1)
                 end
                 it 'redirects to user medications page' do
                         delete :destroy, params: {

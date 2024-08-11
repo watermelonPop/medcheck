@@ -52,7 +52,7 @@
                 <%= form.hidden_field :icon, class: 'icon-input', value: @medication.icon %>
                 <%= form.hidden_field :color, class: 'color-input', value: @medication.color %>
                 
-                <div class="titleDivNewMed"><%= form.submit "create", class: "new-btn" %></div>
+                <div class="titleDivNewMed"><%= form.submit "done", class: "new-btn" %></div>
         <% end %>
         <div class="titleDivEditMed">
           <%= link_to user_medication_path(user_id: @user.id, id: @medication.id), method: :delete, data: { turbo_confirm: "Delete #{@medication.name}?", turbo_method: :delete, user_id: @user.id, medication_id: @medication.id }, onclick: "redirect(this)", class: "link" do %>

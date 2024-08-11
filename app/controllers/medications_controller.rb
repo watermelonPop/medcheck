@@ -34,7 +34,7 @@ class MedicationsController < ApplicationController
 
     respond_to do |format|
       if @medication.save
-        format.html { redirect_to user_medications_path(user_id: @user.id), notice: "Medication was successfully created." }
+        format.html { redirect_to user_medications_path(user_id: @user.id), notice: @medication.name + " was successfully created." }
         format.json { render :show, status: :created, location: @medication }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -48,7 +48,7 @@ class MedicationsController < ApplicationController
     @user = current_user
     respond_to do |format|
       if @medication.update(medication_params)
-        format.html { redirect_to user_medication_path(user_id: @user.id, id: @medication.id), notice: "Medication was successfully updated." }
+        format.html { redirect_to user_medication_path(user_id: @user.id, id: @medication.id), notice: @medication.name + " was successfully updated." }
         format.json { render :show, status: :ok, location: @medication }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -65,7 +65,7 @@ class MedicationsController < ApplicationController
 
     respond_to do |format|
       if @medication.destroy
-        format.html { redirect_to user_medications_path(user_id: @user.id), notice: "Medication was successfully destroyed." }
+        format.html { redirect_to user_medications_path(user_id: @user.id), notice: @medication.name + " was successfully deleted." }
         format.json { head :no_content }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -80,11 +80,14 @@ class MedicationsController < ApplicationController
     @date = Date.parse(params[:date])
     @amount = params[:amount].to_i
     new_amt = @medication.amount_left.to_i + @amount
-
-    if @medication.update(amount_left: new_amt, last_picked_up: @date)
-      redirect_to user_medication_path(user_id: @user.id, id: @medication.id)
-    else
-      render :show, status: :unprocessable_entity
+    respond_to do |format|
+      if @medication.update(amount_left: new_amt, last_picked_up: @date)
+        format.html { redirect_to user_medication_path(user_id: @user.id, id: @medication.id), notice: "A new pickup date and amount left has been set for " + @medication.name + "." }
+        format.json { head :no_content }
+      else
+        format.html { render :show, status: :unprocessable_entity }
+        format.json { render json: @medication.errors, status: :unprocessable_entity }
+      end
     end
   end
 
